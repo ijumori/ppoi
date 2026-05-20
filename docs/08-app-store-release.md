@@ -17,7 +17,7 @@
 | 8.4 | App Privacy（データの収集）申告 | ⬜ | ユーザー（下記テンプレ参照） |
 | 8.5 | スクリーンショット（6.7インチ必須） | ⬜ | ユーザー |
 | 8.6 | 説明文・キーワード入力 | ⬜ | `app-store-metadata.md` をコピー |
-| 8.7 | Xcode Archive → TestFlight | ⬜ | ユーザー |
+| 8.7 | Archive → Upload → TestFlight | 🟡 **1.0.0 (1)** Upload済・輸出コンプライアンス **審査待ち**・内部テストにビルド追加済 | ユーザー |
 | 8.8 | 審査提出 | ⬜ | ユーザー |
 | 8.9 | Cloud Functions 自動配信（任意） | ⬜ | `cloud-functions-setup.md` |
 
@@ -61,88 +61,182 @@ App Store Connect → **App Privacy** で以下を参考に申告:
 
 ---
 
-## 8.7 TestFlight 手順（Xcode）— 詳細
+## 8.7 TestFlight
 
-### 事前チェック（5分）
+### いまの状態（2026-05-20 時点）
 
-| 確認 | 手順 |
+| 項目 | 状態 |
 |------|------|
-| 署名 | Xcode → PPOI → **Signing & Capabilities** → Team 選択、Automatically manage signing ✅ |
-| Bundle ID | `com.takahiro.ppoi` |
-| plist 同梱 | **Build Phases → Copy Bundle Resources** に `GoogleService-Info.plist` がある |
-| バージョン | **General** → Version `1.0` / Build `1` |
-| 実機 | iPhone を接続（Archive はケーブル不要だが推奨） |
+| ASC「ビルドのアップロード」 | ✅ **1.0.0 (1)**・終了 |
+| 輸出コンプライアンス | 🟡 申告済み → ビルド **1** は **審査待ち** |
+| 内部テスト | ✅ グループに **1.0.0 (1)** 追加済み |
+| iPhone の TestFlight アプリ | ⏳ **テスト可能** になるまでアプリは**表示されない**（正常） |
+| 実機動作確認 | ⬜ **テスト可能** 後にインストール |
 
-### Step 1: Release でビルド設定
+**重要**: **1.0.0 (2) は存在しない**。再 Upload 前にターゲットの `CURRENT_PROJECT_VERSION` を上げる（下記 §8.7.4）。
 
-1. Xcode 上部の実行先 → **Any iOS Device (arm64)** を選択  
-   ※ シミュレータ名が選ばれていると Archive がグレーアウトする
-2. メニュー **Product → Scheme → Edit Scheme...**
-3. 左 **Archive** → Build Configuration を **Release** にする → Close
+**過去の不具合・修正**
 
-### Step 2: Archive 作成
+| 問題 | 対処 |
+|------|------|
+| Upload 90474（iPad 向き） | `TARGETED_DEVICE_FAMILY = 1`（iPhone のみ） |
+| 「Build 2」と誤認 | `Info.plist` だけ変更しても無効。**ターゲット**の `CURRENT_PROJECT_VERSION` が ASC のビルド番号になる |
+| ASC にアプリは見えるが TestFlight に出ない | ビルドが **審査待ち** の間は配布不可 |
 
-1. **Product → Archive**（または ⇧⌘B のあと Archive）
-2. 初回は数分かかる。完了すると **Organizer** が開く
-3. 左に今日の日付のアーカイブが表示されれば OK
+---
 
-**よくあるエラー**
+### 8.7.1 ステップバイステップ（推奨フロー）
 
-| エラー | 対処 |
-|--------|------|
-| Archive がグレー | 実行先を **Any iOS Device** に変更 |
-| Signing failed | Team / Bundle ID を確認 |
-| Missing GoogleService-Info | Copy Bundle Resources に追加 |
+各ステップ完了後、次に進む。詳細は会話ログまたは本節のトラブルシュートを参照。
 
-### Step 3: App Store Connect へアップロード
+| Step | 内容 | 完了の目安 |
+|------|------|------------|
+| 1 | ASC → **っぽい格言** → **TestFlight** → iOS | **ビルドのアップロード** に **1.0.0 (1)** が見える |
+| 2 | **バージョン 1.0.0** のビルド **1** → **管理**（輸出コンプライアンス） | 申告保存済み（ステータスが **審査待ち** または **テスト可能**） |
+| 3 | **内部テスト** → グループに **1.0.0 (1)** を追加 | グループにビルドが紐づく |
+| 4 | iPhone に **TestFlight** アプリをインストール、Apple ID を ASC と揃える | 準備完了 |
+| 5 | ビルド **1** が **テスト可能** になるまで待つ（24〜48h） | 黄色警告・審査待ちが消える |
+| 6 | TestFlight で **っぽい格言** → **インストール** | ホーム画面にアイコン |
+| 7 | 実機チェック（格言・共有・設定） | `docs/07-testing-checklist.md` 相当 |
+| 8 | §8.4〜8.6 完了後、**審査に提出** | App Store タブから提出 |
 
-1. Organizer で最新 Archive を選択
-2. **Distribute App** をクリック
-3. **App Store Connect** → Next
-4. **Upload** → Next
-5. オプションは基本デフォルトのまま:
-   - Include bitcode: 任意（通常オフで可）
-   - Upload symbols: ✅ 推奨
-6. **Automatically manage signing** → Next
-7. 内容確認 → **Upload**
-8. 「Upload Successful」まで待つ
+---
 
-### Step 4: TestFlight で確認
+### 8.7.2 輸出コンプライアンス（暗号化申告）
 
-1. [App Store Connect](https://appstoreconnect.apple.com/) → **っぽい格言** → **TestFlight**
-2. **ビルド** に新しいビルドが出るまで待つ（**10〜30分**、Processing → Ready）
-3. **内部テスト**:
-   - 自分をテスターに追加
-   - iPhone に **TestFlight** アプリをインストール
-   - 招待からインストールして動作確認
+**場所**: TestFlight → **バージョン 1.0.0** → ビルド **1** → **管理**
 
-### Step 5: 審査提出（TestFlight OK 後）
+#### 質問「アプリに暗号化は使用していますか？」
 
-1. **App Store** タブ → **1.0 の準備をする**
-2. 以下を入力済みにする:
-   - スクリーンショット（6.7インチ）
-   - 説明文（`app-store-metadata.md`）
-   - プライバシーポリシー URL
-   - サポート URL
-   - App Privacy
-3. ビルドを選択 → **審査に提出**
+| 選択 | っぽい格言 |
+|------|------------|
+| **いいえ** | ✅ 推奨（HTTPS / Firebase / AdMob の標準 API のみ） |
+| はい | 追加質問へ。書類提出を選ぶと **審査待ち** が長くなる |
+
+#### 4つの画像（暗号化書類の種類）だけ出る場合
+
+| 選ぶ | ラベルの例 |
+|------|------------|
+| ✅ 1位 | **暗号化を使用しない** |
+| ✅ 2位 | **免除される暗号化のみ** / 標準的な暗号のみ |
+| ❌ | **独自の暗号化** |
+| ❌ | **書類を提出** / コンプライアンス書類のアップロード |
+
+#### ステータス別の動き
+
+| ASC のステータス | TestFlight（iPhone） | やること |
+|------------------|----------------------|----------|
+| **コンプライアンスがありません** | 出ない | **管理** で上記を申告 |
+| **審査待ち** | **出ない**（正常） | 24〜48h 待つ。内部テストのテスター追加は先に可 |
+| **テスト可能** | **出る** | TestFlight からインストール |
+| **処理中** | 出ない | Upload 後 10〜30 分待つ |
+
+---
+
+### 8.7.3 トラブルシューティング
+
+#### ASC（ブラウザ）にはアプリがあるが、TestFlight アプリに出ない
+
+1. ビルド **1** のステータスを確認 → **審査待ち** なら **待つだけ**
+2. iPhone の **設定 → Apple ID** が ASC ログインと**同じ**か確認
+3. **内部テスト** → グループ → **テスター** に iPhone のメールを追加
+4. **テスト可能** になったら TestFlight アプリを再起動
+
+#### 48時間以上「審査待ち」のまま
+
+- 申告で **書類提出** / **はい（独自暗号）** を選んでいないか確認
+- ASC サポートまたは再申告（**管理** から修正できる場合あり）
+- 急ぎの実機確認は Xcode から実機 **Release** 実行でも可（TestFlight 以外）
+
+---
+
+### 8.7.4 ビルド番号の上げ方（再 Upload 時）
+
+**正**: Xcode → ターゲット **PPOI** → **Build Settings** → `Current Project Version`  
+（`project.pbxproj` のターゲット `CURRENT_PROJECT_VERSION`。次回 Upload 用は **2** に設定済み）
+
+**誤**: `Info.plist` の `CFBundleVersion` だけ変更（上書きされる）
+
+`Info.plist` は次の変数参照に統一:
+
+```xml
+<key>CFBundleShortVersionString</key>
+<string>$(MARKETING_VERSION)</string>
+<key>CFBundleVersion</key>
+<string>$(CURRENT_PROJECT_VERSION)</string>
+```
+
+再 Upload 手順:
+
+1. `CURRENT_PROJECT_VERSION` を未使用の整数に **+1**
+2. `./scripts/testflight-upload.sh` または Xcode Archive → Upload
+3. ASC で新しい **(n)** が **終了** → コンプライアンス → 内部テストに追加
+
+---
+
+### 8.7.5 方法 A: CLI 自動 Upload
+
+```bash
+cd "/Users/takahironishii/マイドライブ（ijumorimori@gmail.com）/04.Dev/PPOI"
+./scripts/testflight-upload.sh
+```
+
+| 項目 | 内容 |
+|------|------|
+| スクリプト | `scripts/testflight-upload.sh` |
+| 設定 | `ExportOptions.plist`（`app-store-connect` + upload） |
+| Team | `NXFZ5AUX62` |
+| デバイス | iPhone のみ（`TARGETED_DEVICE_FAMILY = 1`） |
+
+**dSYM 警告**（Firebase / AdMob）: 警告のみ。Upload は成功する。
+
+---
+
+### 8.7.6 方法 B: Xcode GUI（手動）
+
+#### 事前チェック
+
+| # | 項目 |
+|---|------|
+| 1 | 実行先 **Any iOS Device (arm64)** |
+| 2 | Archive = **Release**（Edit Scheme） |
+| 3 | `GoogleService-Info.plist` が Copy Bundle Resources にある |
+| 4 | `CURRENT_PROJECT_VERSION` が ASC 未使用の番号 |
+
+#### Archive → Upload
+
+1. **Product → Archive**
+2. Organizer → **Distribute App** → App Store Connect → **Upload**
+3. ASC → TestFlight で **1.0.0 (n)** の **終了** を確認
+
+#### 内部テスト → 実機
+
+1. **内部テスト** → ビルド **1.0.0 (1)** をグループに追加
+2. **テスト可能** 後、iPhone の TestFlight からインストール
+3. 起動・格言・共有・設定を確認
+
+---
 
 ### Release ビルドの注意（AdMob）
 
 | ビルド | 広告 |
 |--------|------|
-| Debug（開発中） | テスト広告のみ（`TEST AD` 表示） |
-| **Release（TestFlight / 本番）** | **本番 AdMob ID** が使われる |
+| Debug | テスト広告（`TEST AD`） |
+| **Release（TestFlight / 本番）** | **本番 AdMob ID** |
 
 > TestFlight 中も **本番広告を自分でクリックしない**（[admob-policy-compliance.md](./admob-policy-compliance.md)）
 
-### 提出前チェックリスト
+---
 
-- [ ] 実行先は **Any iOS Device**
-- [ ] Archive は **Release**
-- [ ] `GoogleService-Info.plist` 同梱
-- [ ] Upload Successful
-- [ ] TestFlight で起動・格言表示・共有まで確認
+### TestFlight 提出前チェックリスト
+
+- [x] Archive（Release）・Upload **1.0.0 (1)**
+- [x] 輸出コンプライアンス申告
+- [x] 内部テストにビルド追加
+- [ ] ビルド **1** が **テスト可能**
+- [ ] iPhone TestFlight からインストール・動作確認
+- [ ] スクショ・メタデータ・App Privacy（§8.4〜8.6）
+- [ ] App Store 審査提出
 
 ---
 
@@ -157,3 +251,5 @@ App Store Connect → **App Privacy** で以下を参考に申告:
 | 日付 | 内容 |
 |------|------|
 | 2026-05-20 | 初版 — ASC 登録完了後 |
+| 2026-05-20 | §8.7 CLI・Build 番号の注意 |
+| 2026-05-20 | 実態反映: (1) のみ・審査待ち・ステップバイステップ・トラブルシュート・CURRENT_PROJECT_VERSION |

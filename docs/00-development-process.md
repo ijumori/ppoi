@@ -68,11 +68,18 @@
 - 実機テスト完了（`docs/07-testing-checklist.md`）
 - v1.1 改善予定: 共有画像の改行位置
 
-### Phase 8: リリース
+### Phase 8: リリース 🟡 進行中
 
-- App Store Connect 設定
-- スクリーンショット・説明文
-- プライバシーポリシー
+| 項目 | 状態 |
+|------|------|
+| Bundle ID・ASC アプリ | ✅ |
+| プライバシーポリシー URL | ✅ |
+| TestFlight Upload **1.0.0 (1)** | ✅ |
+| 輸出コンプライアンス | 🟡 審査待ち |
+| TestFlight 実機確認 | ⬜ テスト可能後 |
+| スクショ・メタデータ・審査提出 | ⬜ |
+
+詳細: `docs/08-app-store-release.md` §8.7
 
 ---
 
@@ -97,8 +104,8 @@
 
 - **フェーズ**: Phase 8 — リリース準備
 - **Phase 1〜7**: ✅ 完了
-- **Phase 8**: Bundle ID + ASC 登録 ✅
-- **次**: P8-Q5（Archive / Upload 完了確認）
+- **Phase 8**: TestFlight **1.0.0 (1)** Upload済・輸出コンプライアンス **審査待ち**
+- **次**: ビルド **テスト可能** → iPhone TestFlight インストール → §8.4〜8.6 → 審査提出
 - **8.3 Pages**: ✅ https://ijumori.github.io/ppoi/legal/privacy-policy.html
 - **成果物**: `docs/08-app-store-release.md`, `docs/legal/`, `docs/app-store-metadata.md`
-- **更新日**: 2026-05-19
+- **更新日**: 2026-05-20
