@@ -98,6 +98,7 @@
 - **フェーズ**: Phase 8 — リリース準備
 - **Phase 1〜7**: ✅ 完了
 - **Phase 8**: Bundle ID + ASC 登録 ✅
-- **次**: P8-Q3（GitHub push + Pages 確認後 → サポートメール）
+- **次**: P8-Q4（TestFlight 提出 — Xcode Archive）
+- **8.3 Pages**: ✅ https://ijumori.github.io/ppoi/legal/privacy-policy.html
 - **成果物**: `docs/08-app-store-release.md`, `docs/legal/`, `docs/app-store-metadata.md`
 - **更新日**: 2026-05-19

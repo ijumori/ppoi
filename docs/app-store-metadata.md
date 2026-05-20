@@ -68,7 +68,7 @@ https://ijumori.github.io/ppoi/legal/privacy-policy.html
 ## 著作権・商標
 
 ```
-© 2026 [要記入: 運営者名]
+© 2026 ijumori
 ```
 
 ## 審査メモ（App Review Information・任意）
