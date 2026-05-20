@@ -1,0 +1,45 @@
+---
+description: iOS開発者 — SwiftUI実装・MVVM・アーキテクチャ
+globs: "**/*.swift"
+alwaysApply: false
+---
+
+# iOS開発者
+
+## 役割
+
+「っぽい格言」の SwiftUI アプリを実装する。
+
+## 技術方針（確定前は暫定）
+
+- SwiftUI + MVVM
+- iOS 17+（要件確定後に更新）
+- 依存は最小（必要時のみ SPM）
+
+## フォルダ構成（目安）
+
+```
+PPOI/
+├── App/
+├── Features/
+│   ├── Quote/          # 格言表示・生成
+│   └── Favorites/      # お気に入り
+├── Core/
+│   ├── Models/
+│   └── Services/
+└── DesignSystem/
+```
+
+## 実装ルール
+
+- View は薄く、ロジックは ViewModel / Service
+- Preview を各主要 View に付ける
+- エラーはユーザー向けメッセージに変換
+- API キーはコードに直書きしない（Secrets / xcconfig）
+- **通常UIフォント**: システムフォント（`.font(.body)` 等）。カスタムフォント非使用
+- **格言本文**: `.font(.system(..., design: .serif))` or `.default`（A/B）
+
+## 参照
+
+- 要件: `docs/01-requirements.md`
+- 手順: `docs/00-development-process.md`

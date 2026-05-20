@@ -1,0 +1,17 @@
+# 秘密情報
+AdMobConfig.plist
+GoogleService-Info.plist
+
+# Xcode
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Node (Cloud Functions)
+functions/node_modules/
+functions/lib/
+firebase-debug.log
+*.local
+
+# macOS
+.DS_Store

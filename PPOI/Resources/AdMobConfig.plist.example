@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  AdMobConfig.plist.example をコピーして AdMobConfig.plist を作成し、
+  実際の ID に差し替えてください。詳細: docs/admob-setup.md
+-->
+<plist version="1.0">
+<dict>
+	<key>AdMobAppID</key>
+	<string>ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX</string>
+	<key>BannerAdUnitID</key>
+	<string>ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX</string>
+	<key>InterstitialAdUnitID</key>
+	<string>ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX</string>
+</dict>
+</plist>

@@ -1,0 +1,60 @@
+name: PPOI
+options:
+  bundleIdPrefix: com.takahiro
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    from: 10.29.0
+  GoogleMobileAds:
+    url: https://github.com/googleads/swift-package-manager-google-mobile-ads.git
+    from: 11.0.0
+
+targets:
+  PPOI:
+    type: application
+    platform: iOS
+    sources:
+      - path: PPOI
+        excludes:
+          - "**/.DS_Store"
+          - "**/GoogleService-Info.plist.example"
+    dependencies:
+      - package: Firebase
+        product: FirebaseFirestore
+      - package: GoogleMobileAds
+        product: GoogleMobileAds
+    info:
+      path: PPOI/Resources/Info.plist
+      properties:
+        GADApplicationIdentifier: ca-app-pub-5816327733677416~9254015974
+        CFBundleDisplayName: "っぽい格言"
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.takahiro.ppoi
+        GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+
+schemes:
+  PPOI:
+    build:
+      targets:
+        PPOI: all
+    run:
+      config: Debug
