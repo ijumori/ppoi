@@ -61,20 +61,88 @@ App Store Connect → **App Privacy** で以下を参考に申告:
 
 ---
 
-## 8.7 TestFlight 手順（Xcode）
+## 8.7 TestFlight 手順（Xcode）— 詳細
 
-1. Xcode → **Product → Archive**（Release / Any iOS Device）
-2. **Organizer** → **Distribute App** → **App Store Connect** → Upload
-3. App Store Connect → **TestFlight** → ビルド処理完了を待つ（10〜30分）
-4. **内部テスト** または **外部テスト** で実機確認
-5. 問題なければ **審査に提出**
+### 事前チェック（5分）
 
-### 提出前の Release 確認
+| 確認 | 手順 |
+|------|------|
+| 署名 | Xcode → PPOI → **Signing & Capabilities** → Team 選択、Automatically manage signing ✅ |
+| Bundle ID | `com.takahiro.ppoi` |
+| plist 同梱 | **Build Phases → Copy Bundle Resources** に `GoogleService-Info.plist` がある |
+| バージョン | **General** → Version `1.0` / Build `1` |
+| 実機 | iPhone を接続（Archive はケーブル不要だが推奨） |
 
-- [ ] Debug ではない **Release** ビルド
+### Step 1: Release でビルド設定
+
+1. Xcode 上部の実行先 → **Any iOS Device (arm64)** を選択  
+   ※ シミュレータ名が選ばれていると Archive がグレーアウトする
+2. メニュー **Product → Scheme → Edit Scheme...**
+3. 左 **Archive** → Build Configuration を **Release** にする → Close
+
+### Step 2: Archive 作成
+
+1. **Product → Archive**（または ⇧⌘B のあと Archive）
+2. 初回は数分かかる。完了すると **Organizer** が開く
+3. 左に今日の日付のアーカイブが表示されれば OK
+
+**よくあるエラー**
+
+| エラー | 対処 |
+|--------|------|
+| Archive がグレー | 実行先を **Any iOS Device** に変更 |
+| Signing failed | Team / Bundle ID を確認 |
+| Missing GoogleService-Info | Copy Bundle Resources に追加 |
+
+### Step 3: App Store Connect へアップロード
+
+1. Organizer で最新 Archive を選択
+2. **Distribute App** をクリック
+3. **App Store Connect** → Next
+4. **Upload** → Next
+5. オプションは基本デフォルトのまま:
+   - Include bitcode: 任意（通常オフで可）
+   - Upload symbols: ✅ 推奨
+6. **Automatically manage signing** → Next
+7. 内容確認 → **Upload**
+8. 「Upload Successful」まで待つ
+
+### Step 4: TestFlight で確認
+
+1. [App Store Connect](https://appstoreconnect.apple.com/) → **っぽい格言** → **TestFlight**
+2. **ビルド** に新しいビルドが出るまで待つ（**10〜30分**、Processing → Ready）
+3. **内部テスト**:
+   - 自分をテスターに追加
+   - iPhone に **TestFlight** アプリをインストール
+   - 招待からインストールして動作確認
+
+### Step 5: 審査提出（TestFlight OK 後）
+
+1. **App Store** タブ → **1.0 の準備をする**
+2. 以下を入力済みにする:
+   - スクリーンショット（6.7インチ）
+   - 説明文（`app-store-metadata.md`）
+   - プライバシーポリシー URL
+   - サポート URL
+   - App Privacy
+3. ビルドを選択 → **審査に提出**
+
+### Release ビルドの注意（AdMob）
+
+| ビルド | 広告 |
+|--------|------|
+| Debug（開発中） | テスト広告のみ（`TEST AD` 表示） |
+| **Release（TestFlight / 本番）** | **本番 AdMob ID** が使われる |
+
+> TestFlight 中も **本番広告を自分でクリックしない**（[admob-policy-compliance.md](./admob-policy-compliance.md)）
+
+### 提出前チェックリスト
+
+- [ ] 実行先は **Any iOS Device**
+- [ ] Archive は **Release**
 - [ ] `GoogleService-Info.plist` 同梱
-- [ ] AdMob は本番 ID（Release 時のみ。開発中はテスト ID のまま）
-- [ ] バージョン `1.0 (1)`
+- [ ] Upload Successful
+- [ ] TestFlight で起動・格言表示・共有まで確認
 
 ---
 
