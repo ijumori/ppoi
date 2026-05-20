@@ -10,9 +10,10 @@
 
 | # | 項目 | 状態 | 担当 |
 |---|------|------|------|
+| 8.0 | GitHub push（ijumori/ppoi） | ✅ | エージェント |
 | 8.1 | Apple Developer — Bundle ID 登録 | ✅ | ユーザー |
 | 8.2 | App Store Connect — 新規アプリ作成 | ✅ | ユーザー |
-| 8.3 | プライバシーポリシー URL 公開 | ⬜ | `github-pages-setup.md` 参照 |
+| 8.3 | プライバシーポリシー URL 公開 | ✅ | https://ijumori.github.io/ppoi/legal/privacy-policy.html |
 | 8.4 | App Privacy（データの収集）申告 | ⬜ | ユーザー（下記テンプレ参照） |
 | 8.5 | スクリーンショット（6.7インチ必須） | ⬜ | ユーザー |
 | 8.6 | 説明文・キーワード入力 | ⬜ | `app-store-metadata.md` をコピー |
