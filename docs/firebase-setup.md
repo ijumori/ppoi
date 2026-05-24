@@ -152,7 +152,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /quotes/{date} {
-      allow read: if true;
+      allow read: if request.app != null;  // App Check 必須
       allow write: if false;
     }
   }
@@ -161,7 +161,15 @@ service cloud.firestore {
 
 3. **公開** をクリック
 
-> 書き込みは Cloud Functions（Admin SDK）のみ。クライアントからの write は禁止。
+> 書き込みは Cloud Functions（Admin SDK）のみ。クライアントからの write は禁止。  
+> **App Check セットアップ必須** — 詳細: [security.md](./security.md)
+
+### App Check（必須・ルール適用前に実施）
+
+1. Firebase Console → **App Check** → iOS `com.takahiro.ppoi` を登録
+2. DEBUG: Xcode ログの **debug token** を Console に追加
+3. Firestore → App Check **Enforcement 有効化**
+4. 実機で格言取得を確認してからルールを公開
 
 ### CLI からデプロイする場合（任意）
 

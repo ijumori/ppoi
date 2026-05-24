@@ -53,12 +53,18 @@ firebase deploy --only functions,firestore:rules
 
 ### 手動トリガー（テスト）
 
-デプロイ後、Firebase Console → Functions → `generateDailyQuoteManual` の URL にアクセス。
-
-または:
+`MANUAL_QUOTE_SECRET` を Secret Manager に設定:
 
 ```bash
-curl https://asia-northeast1-YOUR_PROJECT_ID.cloudfunctions.net/generateDailyQuoteManual
+firebase functions:secrets:set MANUAL_QUOTE_SECRET
+firebase deploy --only functions
+```
+
+呼び出し（**POST + Bearer 必須**）:
+
+```bash
+curl -X POST "https://asia-northeast1-YOUR_PROJECT_ID.cloudfunctions.net/generateDailyQuoteManual" \
+  -H "Authorization: Bearer YOUR_MANUAL_QUOTE_SECRET"
 ```
 
 成功レスポンス例:

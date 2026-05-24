@@ -7,12 +7,15 @@ protocol QuoteRepository {
 
 enum QuoteRepositoryError: LocalizedError {
     case firebaseNotConfigured
+    case untrustedEnvironment
     case documentNotFound(date: String)
 
     var errorDescription: String? {
         switch self {
         case .firebaseNotConfigured:
             "Firebase が未設定です。GoogleService-Info.plist を配置してください。"
+        case .untrustedEnvironment:
+            "セキュリティ上、ネットワークから格言を取得できません。キャッシュをご利用ください。"
         case .documentNotFound(let date):
             "今日（\(date)）の格言がまだ届いていません。"
         }
@@ -23,6 +26,10 @@ final class FirestoreQuoteRepository: QuoteRepository {
     func fetchQuote(for date: String) async throws -> Quote {
         guard FirebaseBootstrap.isConfigured else {
             throw QuoteRepositoryError.firebaseNotConfigured
+        }
+
+        guard SecurityGuard.isEnvironmentTrusted else {
+            throw QuoteRepositoryError.untrustedEnvironment
         }
 
         // configure 前に Firestore.firestore() を呼ぶとクラッシュするため、guard 後に取得

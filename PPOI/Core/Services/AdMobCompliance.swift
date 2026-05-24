@@ -32,12 +32,7 @@ enum AdMobCompliance {
         #endif
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = testDevices
 
-        print("""
-        [PPOI] ⚠️ AdMob TEST MODE
-        - テスト用広告ユニットのみ使用
-        - 本番広告の自己クリック禁止（アカウント停止リスク）
-        - 詳細: docs/admob-policy-compliance.md
-        """)
+        SecureLogger.info("AdMob TEST MODE active — test ad units only", category: .ads)
         #endif
     }
 

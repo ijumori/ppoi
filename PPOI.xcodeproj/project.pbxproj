@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		07D1325DD8DA9A76FB2B7A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2B94E0769FBF39153271C5 /* Assets.xcassets */; };
 		1CF62DE569E44E690070E0A8 /* SharePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2983B4A85E736D2AAF0695F1 /* SharePreviewView.swift */; };
+		23D77FF1270F0C8BDF6A846D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4562785C1B80CEC9C926C082 /* GoogleService-Info.plist */; };
 		27927917E5BF789D39657283 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8DEC05962BCB1FFB6ED0B3 /* AppTheme.swift */; };
-		38E8AC232FBC5AC800BE7609 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38E8AC222FBC5AC800BE7609 /* GoogleService-Info.plist */; };
-		3C2C7BB82E3B17FD0420AFD5 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 63CADF8F9BC9456177AF044E /* GoogleMobileAds */; };
+		3C2C7BB82E3B17FD0420AFD5 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 773222A9BF038F22B2468A43 /* FirebaseAppCheck */; };
+		3FA48DA650605866E1220910 /* SecurityGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3126C00621087A315C8F3 /* SecurityGuard.swift */; };
 		490539A333DDC397B5193EFA /* FirebaseBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33E846383CDB2214AA46F5B /* FirebaseBootstrap.swift */; };
 		593E8BD115D0967F39A6ED5A /* FirestoreQuoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFC5958499A36F9E1A6E7B3 /* FirestoreQuoteRepository.swift */; };
 		5E661A54DA6D69BA2B456379 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12366567DCABE2230E36064 /* SettingsView.swift */; };
@@ -20,18 +21,27 @@
 		68DD63FD087328DC6555A777 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C0E0B81DD81B866FA76C732C /* FirebaseFirestore */; };
 		7476FAFE2462043448F500D8 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7B92BEE30CCABC685EBFEA /* BannerAdView.swift */; };
 		7ADB89160F188F6A8945354D /* PPOIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D8E6A99300F6695F1011A8 /* PPOIApp.swift */; };
+		7B846251038820F4DD1E8D99 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 872C270942B4BAD826A8B4FD /* PrivacyInfo.xcprivacy */; };
+		7CAFF5EB213D3D115B31EE43 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 63CADF8F9BC9456177AF044E /* GoogleMobileAds */; };
 		81817C1BC964C90AF4338761 /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2A74F46D6DDB925AA0D89 /* UserDefaultsStore.swift */; };
 		832FFC411E3CCFAE1EAF719D /* AdMobCompliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE54F95593BAD01808B2951F /* AdMobCompliance.swift */; };
+		8F083628FD02CD2C2109EF59 /* NetworkSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129E0A18303028FBA82BBC6 /* NetworkSecurity.swift */; };
+		91EBEE0A53A9197A132332A9 /* ClipboardGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5761243E6FD31A543F916323 /* ClipboardGuard.swift */; };
 		9AA181139A10B7F894E3EF03 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8596BCF1978FD9FF0E21A31 /* QuoteViewModel.swift */; };
 		AAFC794AEFBEF5893729278A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94436FEE2E7A3909212A659 /* NotificationService.swift */; };
 		AB45A7B302E4BD45C71064CD /* ShareImageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E4AE3F2B8D21A306868A0 /* ShareImageSpec.swift */; };
+		ABC515D48EF8C07FD16B7362 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAD9927031E844CEEB55CC /* KeychainStore.swift */; };
 		B2DDD37F7B8E4C6DA32027FD /* AdMobConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECB37C104E698AF34C57C0C8 /* AdMobConfig.plist */; };
+		B3AAD54BE3631EF7FED92FEB /* SecureQuoteCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741BED2309AC34CE51CC877 /* SecureQuoteCache.swift */; };
+		BC2EA1BA5D439AF465CCEF8E /* SecurityBlockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC0AF79376EBAB6250631A /* SecurityBlockedView.swift */; };
 		BE16E45804404936A13914D2 /* ShareInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D67C5A3B7757CB658FC79C /* ShareInputView.swift */; };
 		C419404DF4C7F8E45E84043F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036762A5D3199A6387C7FC74 /* Quote.swift */; };
 		C45B71C7361E759B73E92F79 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D34EF85C18777E38ED96B8 /* RootView.swift */; };
 		D2522ACFFB851B4D78E9A13F /* ShareCardExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A01B180ECCAFFD86CA03DC /* ShareCardExportView.swift */; };
 		D32B1F715850F7CED26D0A6E /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE0DA3BF78E327EA8549303 /* InterstitialAdManager.swift */; };
+		D77D307690E4F4871C38D61C /* InputSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21D593F06C501F4B6377DA7 /* InputSanitizer.swift */; };
 		D869F6CA23B8EB4485A8B863 /* AdMobConfig.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = 55CE50EB4B1959DC99A644C2 /* AdMobConfig.plist.example */; };
+		F147770A444AB900B4AA188B /* SecureLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5D8D84E2A91F483408B27 /* SecureLogger.swift */; };
 		F3A7023B0BCD78EF89265C50 /* AdMobConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D375BF77BFD77C1ABFB0BB /* AdMobConfig.swift */; };
 		FBA60806BA42D8E97B2B2BE0 /* QuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D44590A2151F63B7BBD04F /* QuoteService.swift */; };
 		FC1ADA05F7E33D94940B3041 /* ShareImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5333C7F5668B3A528610929 /* ShareImageRenderer.swift */; };
@@ -40,27 +50,36 @@
 /* Begin PBXFileReference section */
 		036762A5D3199A6387C7FC74 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		0616FC6F54125F00726DEA76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		12F3126C00621087A315C8F3 /* SecurityGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityGuard.swift; sourceTree = "<group>"; };
 		1D7B92BEE30CCABC685EBFEA /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		2129E0A18303028FBA82BBC6 /* NetworkSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSecurity.swift; sourceTree = "<group>"; };
+		2741BED2309AC34CE51CC877 /* SecureQuoteCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureQuoteCache.swift; sourceTree = "<group>"; };
 		2983B4A85E736D2AAF0695F1 /* SharePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePreviewView.swift; sourceTree = "<group>"; };
-		38E8AC222FBC5AC800BE7609 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3ABAD9927031E844CEEB55CC /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		3D2B94E0769FBF39153271C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3ED2A74F46D6DDB925AA0D89 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 		43D44590A2151F63B7BBD04F /* QuoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteService.swift; sourceTree = "<group>"; };
+		4562785C1B80CEC9C926C082 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		46B5D8D84E2A91F483408B27 /* SecureLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLogger.swift; sourceTree = "<group>"; };
 		4D8DEC05962BCB1FFB6ED0B3 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		51D375BF77BFD77C1ABFB0BB /* AdMobConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobConfig.swift; sourceTree = "<group>"; };
 		54D8E6A99300F6695F1011A8 /* PPOIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOIApp.swift; sourceTree = "<group>"; };
-		55CE50EB4B1959DC99A644C2 /* AdMobConfig.plist.example */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AdMobConfig.plist.example; sourceTree = "<group>"; };
+		55CE50EB4B1959DC99A644C2 /* AdMobConfig.plist.example */ = {isa = PBXFileReference; path = AdMobConfig.plist.example; sourceTree = "<group>"; };
+		5761243E6FD31A543F916323 /* ClipboardGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardGuard.swift; sourceTree = "<group>"; };
 		82D4E441E5CD4361296EF5C7 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		872C270942B4BAD826A8B4FD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8A2E4AE3F2B8D21A306868A0 /* ShareImageSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageSpec.swift; sourceTree = "<group>"; };
 		8BE0DA3BF78E327EA8549303 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
-		907611180B0FD929890D3880 /* PPOI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPOI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		907611180B0FD929890D3880 /* PPOI.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PPOI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE54F95593BAD01808B2951F /* AdMobCompliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobCompliance.swift; sourceTree = "<group>"; };
 		C1A01B180ECCAFFD86CA03DC /* ShareCardExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardExportView.swift; sourceTree = "<group>"; };
 		C8D67C5A3B7757CB658FC79C /* ShareInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInputView.swift; sourceTree = "<group>"; };
 		C94436FEE2E7A3909212A659 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		D21D593F06C501F4B6377DA7 /* InputSanitizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSanitizer.swift; sourceTree = "<group>"; };
 		D2D34EF85C18777E38ED96B8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D425574337D98F126E997B31 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D8596BCF1978FD9FF0E21A31 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
+		DDCC0AF79376EBAB6250631A /* SecurityBlockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityBlockedView.swift; sourceTree = "<group>"; };
 		E33E846383CDB2214AA46F5B /* FirebaseBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBootstrap.swift; sourceTree = "<group>"; };
 		ECB37C104E698AF34C57C0C8 /* AdMobConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = AdMobConfig.plist; sourceTree = "<group>"; };
 		F12366567DCABE2230E36064 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -74,7 +93,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				68DD63FD087328DC6555A777 /* FirebaseFirestore in Frameworks */,
-				3C2C7BB82E3B17FD0420AFD5 /* GoogleMobileAds in Frameworks */,
+				3C2C7BB82E3B17FD0420AFD5 /* FirebaseAppCheck in Frameworks */,
+				7CAFF5EB213D3D115B31EE43 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,11 +144,12 @@
 		39E8AB8D04B79DBA011DB52D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				38E8AC222FBC5AC800BE7609 /* GoogleService-Info.plist */,
 				ECB37C104E698AF34C57C0C8 /* AdMobConfig.plist */,
 				55CE50EB4B1959DC99A644C2 /* AdMobConfig.plist.example */,
 				3D2B94E0769FBF39153271C5 /* Assets.xcassets */,
+				4562785C1B80CEC9C926C082 /* GoogleService-Info.plist */,
 				0616FC6F54125F00726DEA76 /* Info.plist */,
+				872C270942B4BAD826A8B4FD /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -214,9 +235,25 @@
 			isa = PBXGroup;
 			children = (
 				E20515D2F90F63148604A394 /* Models */,
+				EA46553072321D3AFFC7F009 /* Security */,
 				9E2CE54CD00BF24A6D020FDC /* Services */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		EA46553072321D3AFFC7F009 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				5761243E6FD31A543F916323 /* ClipboardGuard.swift */,
+				D21D593F06C501F4B6377DA7 /* InputSanitizer.swift */,
+				3ABAD9927031E844CEEB55CC /* KeychainStore.swift */,
+				2129E0A18303028FBA82BBC6 /* NetworkSecurity.swift */,
+				46B5D8D84E2A91F483408B27 /* SecureLogger.swift */,
+				2741BED2309AC34CE51CC877 /* SecureQuoteCache.swift */,
+				DDCC0AF79376EBAB6250631A /* SecurityBlockedView.swift */,
+				12F3126C00621087A315C8F3 /* SecurityGuard.swift */,
+			);
+			path = Security;
 			sourceTree = "<group>";
 		};
 		FA7BEA4E9F52733EA348CB33 /* Onboarding */ = {
@@ -245,6 +282,7 @@
 			name = PPOI;
 			packageProductDependencies = (
 				C0E0B81DD81B866FA76C732C /* FirebaseFirestore */,
+				773222A9BF038F22B2468A43 /* FirebaseAppCheck */,
 				63CADF8F9BC9456177AF044E /* GoogleMobileAds */,
 			);
 			productName = PPOI;
@@ -259,6 +297,12 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					FF6EEA01DFC2EAE5FA9B39E4 = {
+						DevelopmentTeam = NXFZ5AUX62;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 860C66DFF942F925C99058E4 /* Build configuration list for PBXProject "PPOI" */;
 			developmentRegion = en;
@@ -289,9 +333,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2DDD37F7B8E4C6DA32027FD /* AdMobConfig.plist in Resources */,
-				38E8AC232FBC5AC800BE7609 /* GoogleService-Info.plist in Resources */,
 				D869F6CA23B8EB4485A8B863 /* AdMobConfig.plist.example in Resources */,
 				07D1325DD8DA9A76FB2B7A60 /* Assets.xcassets in Resources */,
+				23D77FF1270F0C8BDF6A846D /* GoogleService-Info.plist in Resources */,
+				7B846251038820F4DD1E8D99 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,9 +351,13 @@
 				F3A7023B0BCD78EF89265C50 /* AdMobConfig.swift in Sources */,
 				27927917E5BF789D39657283 /* AppTheme.swift in Sources */,
 				7476FAFE2462043448F500D8 /* BannerAdView.swift in Sources */,
+				91EBEE0A53A9197A132332A9 /* ClipboardGuard.swift in Sources */,
 				490539A333DDC397B5193EFA /* FirebaseBootstrap.swift in Sources */,
 				593E8BD115D0967F39A6ED5A /* FirestoreQuoteRepository.swift in Sources */,
+				D77D307690E4F4871C38D61C /* InputSanitizer.swift in Sources */,
 				D32B1F715850F7CED26D0A6E /* InterstitialAdManager.swift in Sources */,
+				ABC515D48EF8C07FD16B7362 /* KeychainStore.swift in Sources */,
+				8F083628FD02CD2C2109EF59 /* NetworkSecurity.swift in Sources */,
 				AAFC794AEFBEF5893729278A /* NotificationService.swift in Sources */,
 				67CDCA37DF7016399EE9B201 /* OnboardingView.swift in Sources */,
 				7ADB89160F188F6A8945354D /* PPOIApp.swift in Sources */,
@@ -317,6 +366,10 @@
 				65D531CEECE49D641885C0E4 /* QuoteView.swift in Sources */,
 				9AA181139A10B7F894E3EF03 /* QuoteViewModel.swift in Sources */,
 				C45B71C7361E759B73E92F79 /* RootView.swift in Sources */,
+				F147770A444AB900B4AA188B /* SecureLogger.swift in Sources */,
+				B3AAD54BE3631EF7FED92FEB /* SecureQuoteCache.swift in Sources */,
+				BC2EA1BA5D439AF465CCEF8E /* SecurityBlockedView.swift in Sources */,
+				3FA48DA650605866E1220910 /* SecurityGuard.swift in Sources */,
 				5E661A54DA6D69BA2B456379 /* SettingsView.swift in Sources */,
 				D2522ACFFB851B4D78E9A13F /* ShareCardExportView.swift in Sources */,
 				FC1ADA05F7E33D94940B3041 /* ShareImageRenderer.swift in Sources */,
@@ -335,20 +388,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = NXFZ5AUX62;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_BITCODE = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PPOI/Resources/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				LD_PIE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.takahiro.ppoi;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_SWIFT_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -357,20 +421,37 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = NXFZ5AUX62;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_BITCODE = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PPOI/Resources/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				LD_PIE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				OTHER_CFLAGS = (
+					"-fstack-protector-all",
+					"-D_FORTIFY_SOURCE=2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.takahiro.ppoi;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_SWIFT_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -408,13 +489,14 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NXFZ5AUX62;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_POSITION_DEPENDENT_CODE = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -432,6 +514,9 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-fstack-protector-all",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -475,12 +560,13 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NXFZ5AUX62;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_POSITION_DEPENDENT_CODE = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -492,6 +578,9 @@
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = (
+					"-fstack-protector-all",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -548,6 +637,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6959C036B6C5C380726963C9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
+		};
+		773222A9BF038F22B2468A43 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21B780CF31DF9000BA33D24F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
 		};
 		C0E0B81DD81B866FA76C732C /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;

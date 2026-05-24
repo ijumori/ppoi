@@ -11,8 +11,12 @@ settings:
     SWIFT_VERSION: "5.0"
     TARGETED_DEVICE_FAMILY: "1"
     MARKETING_VERSION: "1.0.0"
-    CURRENT_PROJECT_VERSION: "1"
-    DEVELOPMENT_TEAM: ""
+    CURRENT_PROJECT_VERSION: "2"
+    DEVELOPMENT_TEAM: NXFZ5AUX62
+    # E2: Enable position-independent executables (ASLR)
+    GCC_GENERATE_POSITION_DEPENDENT_CODE: NO
+    # E2: Stack buffer overflow protection
+    OTHER_CFLAGS: ["-fstack-protector-all"]
 
 packages:
   Firebase:
@@ -31,9 +35,18 @@ targets:
         excludes:
           - "**/.DS_Store"
           - "**/GoogleService-Info.plist.example"
+    resources:
+      - path: PPOI/Resources/GoogleService-Info.plist
+        optional: true
+      - path: PPOI/Resources/AdMobConfig.plist
+        optional: true
+      - path: PPOI/Resources/AdMobConfig.plist.example
+      - path: PPOI/Resources/PrivacyInfo.xcprivacy
     dependencies:
       - package: Firebase
         product: FirebaseFirestore
+      - package: Firebase
+        product: FirebaseAppCheck
       - package: GoogleMobileAds
         product: GoogleMobileAds
     info:
@@ -44,12 +57,49 @@ targets:
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: false
+        # E3: Disable third-party keyboards (prevents keyloggers)
+        UIApplicationSupportsThirdPartyKeyboards: false
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.takahiro.ppoi
         GENERATE_INFOPLIST_FILE: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_STYLE: Automatic
+        # E1: Strip debug symbols in Release
+        STRIP_INSTALLED_PRODUCT: YES
+        COPY_PHASE_STRIP: YES
+        DEAD_CODE_STRIPPING: YES
+        # E1: Strip Swift symbols
+        STRIP_SWIFT_SYMBOLS: YES
+        # E2: Enable Address Space Layout Randomization
+        LD_PIE: YES
+        # E2: Enable ARC — already default but explicit
+        CLANG_ENABLE_OBJC_ARC: YES
+        # E2: Disable bitcode (deprecated but explicit)
+        ENABLE_BITCODE: NO
+        # E2: Enable all compiler warnings
+        GCC_WARN_UNINITIALIZED_AUTOS: YES_AGGRESSIVE
+        GCC_WARN_UNUSED_FUNCTION: YES
+        GCC_WARN_UNUSED_VARIABLE: YES
+        CLANG_WARN_EMPTY_BODY: YES
+        CLANG_WARN_UNREACHABLE_CODE: YES
+      configs:
+        Release:
+          # E1: Aggressive optimization + symbol stripping for Release
+          SWIFT_OPTIMIZATION_LEVEL: "-O"
+          SWIFT_COMPILATION_MODE: wholemodule
+          DEBUG_INFORMATION_FORMAT: "dwarf-with-dsym"
+          # E1: Remove debug info from binary
+          STRIP_INSTALLED_PRODUCT: YES
+          DEPLOYMENT_POSTPROCESSING: YES
+          # E2: Fortify source for buffer overflow detection
+          OTHER_CFLAGS: ["-fstack-protector-all", "-D_FORTIFY_SOURCE=2"]
+        Debug:
+          SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
 
 schemes:
   PPOI:

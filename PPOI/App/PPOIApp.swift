@@ -5,7 +5,6 @@ import SwiftUI
 final class AppState {
     var store = UserDefaultsStore()
 
-    /// RootView の表示切替用（@Observable で直接監視）
     var hasCompletedOnboarding: Bool
 
     init() {
@@ -28,6 +27,9 @@ struct PPOIApp: App {
     @State private var appState = AppState()
 
     init() {
+        // A2: Deny debugger attachment before any other initialization
+        SecurityGuard.denyDebuggerAttachment()
+
         FirebaseBootstrap.configureIfNeeded()
         AdMobCompliance.configureForLaunch()
         GADMobileAds.sharedInstance().start { _ in
@@ -35,11 +37,31 @@ struct PPOIApp: App {
                 InterstitialAdManager.shared.preload()
             }
         }
+
+        // B2: Set file protection level to Complete for the app's data directory
+        setFileProtection()
     }
 
     var body: some Scene {
         WindowGroup {
             RootView(appState: appState)
         }
+    }
+
+    /// B2: NSFileProtection Complete — data is inaccessible when device is locked
+    private func setFileProtection() {
+        #if !targetEnvironment(simulator)
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
+              let libraryURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first
+        else { return }
+
+        let protectedDirectories = [documentsURL, libraryURL]
+        for url in protectedDirectories {
+            try? FileManager.default.setAttributes(
+                [.protectionKey: FileProtectionType.complete],
+                ofItemAtPath: url.path
+            )
+        }
+        #endif
     }
 }

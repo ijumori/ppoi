@@ -20,9 +20,7 @@ final class InterstitialAdManager: NSObject {
             Task { @MainActor in
                 self?.isLoading = false
                 if let error {
-                    #if DEBUG
-                    print("[PPOI] Interstitial load failed: \(error.localizedDescription)")
-                    #endif
+                    SecureLogger.error("Interstitial load failed: \(error.localizedDescription)", category: .ads)
                     return
                 }
                 self?.interstitial = ad

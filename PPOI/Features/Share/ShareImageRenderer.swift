@@ -38,6 +38,9 @@ enum ShareActivityPresenter {
         controller.completionWithItemsHandler = { activityType, completed, _, _ in
             // 𝕏 等へ送った場合でも completed が false になることがある
             let didShare = completed || activityType != nil
+            if didShare {
+                ClipboardGuard.scheduleClipboardClear()
+            }
             onComplete?(didShare)
         }
 
@@ -86,7 +89,7 @@ private extension UIViewController {
 
 enum ShareTextBuilder {
     static func build(reflection: String) -> String {
-        let trimmed = reflection.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmed = InputSanitizer.sanitizeReflection(reflection)
         if trimmed.isEmpty {
             return "#っぽい格言"
         }

@@ -27,6 +27,8 @@ final class QuoteService {
             return fallbackQuote(for: today)
         } catch QuoteRepositoryError.documentNotFound {
             return fallbackQuote(for: today)
+        } catch QuoteRepositoryError.untrustedEnvironment {
+            return fallbackQuote(for: today)
         }
     }
 

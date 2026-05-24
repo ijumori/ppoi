@@ -77,9 +77,10 @@
 | TestFlight Upload **1.0.0 (1)** | ✅ |
 | 輸出コンプライアンス | 🟡 審査待ち |
 | TestFlight 実機確認 | ⬜ テスト可能後 |
+| セキュリティ強化（App Check 等） | 🟡 コード済 — Firebase Console 設定待ち |
 | スクショ・メタデータ・審査提出 | ⬜ |
 
-詳細: `docs/08-app-store-release.md` §8.7
+詳細: `docs/08-app-store-release.md` §8.7 / `docs/security.md`
 
 ---
 

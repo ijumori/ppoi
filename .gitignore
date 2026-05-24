@@ -1,12 +1,21 @@
-# 秘密情報
+# Secrets — NEVER commit these
 AdMobConfig.plist
 GoogleService-Info.plist
+*.p12
+*.p8
+*.mobileprovision
+*.cer
+serviceAccountKey.json
+.env
+.env.*
 
 # Xcode
 build/
 DerivedData/
 *.xcuserstate
 xcuserdata/
+*.xcworkspace
+*.xccheckout
 
 # Node (Cloud Functions)
 functions/node_modules/
@@ -16,3 +25,7 @@ firebase-debug.log
 
 # macOS
 .DS_Store
+
+# Sensitive logs
+*.log
+crash_reports/

@@ -8,15 +8,13 @@ final class UserDefaultsStore {
         static let notificationEnabled = "notificationEnabled"
         static let notificationHour = "notificationHour"
         static let fontVariant = "fontVariant"
-        static let cachedQuoteDate = "cachedQuoteDate"
-        static let cachedQuoteText = "cachedQuoteText"
-        static let cachedQuoteTone = "cachedQuoteTone"
     }
 
     private let defaults: UserDefaults
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
+        SecureQuoteCache.clearLegacyUserDefaults(defaults)
     }
 
     var hasCompletedOnboarding: Bool {
@@ -55,19 +53,11 @@ final class UserDefaultsStore {
     }
 
     func cacheQuote(_ quote: Quote) {
-        defaults.set(quote.date, forKey: Key.cachedQuoteDate)
-        defaults.set(quote.text, forKey: Key.cachedQuoteText)
-        defaults.set(quote.tone.rawValue, forKey: Key.cachedQuoteTone)
+        SecureQuoteCache.save(quote)
     }
 
     func cachedQuote(for date: String) -> Quote? {
-        guard defaults.string(forKey: Key.cachedQuoteDate) == date,
-              let text = defaults.string(forKey: Key.cachedQuoteText),
-              let toneRaw = defaults.string(forKey: Key.cachedQuoteTone),
-              let tone = QuoteTone(rawValue: toneRaw)
-        else { return nil }
-
-        return Quote(id: date, date: date, text: text, tone: tone)
+        SecureQuoteCache.load(for: date)
     }
 }
 
