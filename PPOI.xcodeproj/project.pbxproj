@@ -17,6 +17,7 @@
 		3C2C7BB82E3B17FD0420AFD5 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 773222A9BF038F22B2468A43 /* FirebaseAppCheck */; };
 		3FA48DA650605866E1220910 /* SecurityGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3126C00621087A315C8F3 /* SecurityGuard.swift */; };
 		4D34207FCF7ABEE2A2C85FD1 /* ShareImageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B12EA70D5A6FEC5732CE4 /* ShareImageSpec.swift */; };
+		530018EBB479EE1F0CF7429E /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3900BBD69D3D51ADE7449DA8 /* ScreenshotExportTests.swift */; };
 		5E661A54DA6D69BA2B456379 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12366567DCABE2230E36064 /* SettingsView.swift */; };
 		65D531CEECE49D641885C0E4 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D4E441E5CD4361296EF5C7 /* QuoteView.swift */; };
 		67CDCA37DF7016399EE9B201 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D425574337D98F126E997B31 /* OnboardingView.swift */; };
@@ -47,6 +48,16 @@
 		FC1ADA05F7E33D94940B3041 /* ShareImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5333C7F5668B3A528610929 /* ShareImageRenderer.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E0E0014EA841190CF9FBE937 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A00336A35CE37449FE641411 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF6EEA01DFC2EAE5FA9B39E4;
+			remoteInfo = PPOI;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		032690C7BC7103662C23EBD3 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 		0616FC6F54125F00726DEA76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -56,8 +67,10 @@
 		239199C965EC3B0F0883A45D /* FirebaseBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBootstrap.swift; sourceTree = "<group>"; };
 		2741BED2309AC34CE51CC877 /* SecureQuoteCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureQuoteCache.swift; sourceTree = "<group>"; };
 		2983B4A85E736D2AAF0695F1 /* SharePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePreviewView.swift; sourceTree = "<group>"; };
+		3900BBD69D3D51ADE7449DA8 /* ScreenshotExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotExportTests.swift; sourceTree = "<group>"; };
 		3ABAD9927031E844CEEB55CC /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		3D2B94E0769FBF39153271C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		409527B251AE78247E2895D2 /* PPOIScreenshotTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PPOIScreenshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4562785C1B80CEC9C926C082 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		46B5D8D84E2A91F483408B27 /* SecureLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLogger.swift; sourceTree = "<group>"; };
 		47074C53B9067EEFA5723DEB /* FirestoreQuoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreQuoteRepository.swift; sourceTree = "<group>"; };
@@ -147,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				2ED4E3E40BFDC1BA7D003932 /* PPOI */,
+				8AA9AC35A9C833EB6E76E897 /* PPOIScreenshotTests */,
 				7B40310CAF70FD934921AC47 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -202,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				907611180B0FD929890D3880 /* PPOI.app */,
+				409527B251AE78247E2895D2 /* PPOIScreenshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,6 +237,14 @@
 				A09C43AFA30B3797F6494E19 /* Repositories */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		8AA9AC35A9C833EB6E76E897 /* PPOIScreenshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				3900BBD69D3D51ADE7449DA8 /* ScreenshotExportTests.swift */,
+			);
+			path = PPOIScreenshotTests;
 			sourceTree = "<group>";
 		};
 		914D5B6A2610BC145BCC75F8 /* Models */ = {
@@ -315,6 +338,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EE2D9D76F039026784AF5EB7 /* PPOIScreenshotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E69E443860C8729EAA89AB7C /* Build configuration list for PBXNativeTarget "PPOIScreenshotTests" */;
+			buildPhases = (
+				B580FA015CC1D94A31619DCA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82FED242FC9598BF8187281C /* PBXTargetDependency */,
+			);
+			name = PPOIScreenshotTests;
+			packageProductDependencies = (
+			);
+			productName = PPOIScreenshotTests;
+			productReference = 409527B251AE78247E2895D2 /* PPOIScreenshotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FF6EEA01DFC2EAE5FA9B39E4 /* PPOI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDA2A19BF79A26A9984A11DC /* Build configuration list for PBXNativeTarget "PPOI" */;
@@ -346,6 +387,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					EE2D9D76F039026784AF5EB7 = {
+						DevelopmentTeam = NXFZ5AUX62;
+					};
 					FF6EEA01DFC2EAE5FA9B39E4 = {
 						DevelopmentTeam = NXFZ5AUX62;
 						ProvisioningStyle = Automatic;
@@ -371,6 +415,7 @@
 			projectRoot = "";
 			targets = (
 				FF6EEA01DFC2EAE5FA9B39E4 /* PPOI */,
+				EE2D9D76F039026784AF5EB7 /* PPOIScreenshotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -428,7 +473,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B580FA015CC1D94A31619DCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				530018EBB479EE1F0CF7429E /* ScreenshotExportTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82FED242FC9598BF8187281C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF6EEA01DFC2EAE5FA9B39E4 /* PPOI */;
+			targetProxy = E0E0014EA841190CF9FBE937 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		72DC9721FFF0566B7190B6CC /* Debug */ = {
@@ -500,6 +561,40 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C6870E638F51E83246156E63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.takahiro.ppoi.screenshottests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PPOI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PPOI";
+			};
+			name = Debug;
+		};
+		D82CE81263CE870BACACDF68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.takahiro.ppoi.screenshottests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PPOI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PPOI";
 			};
 			name = Release;
 		};
@@ -646,6 +741,15 @@
 			buildConfigurations = (
 				F23DED371B6D983C2764DB4F /* Debug */,
 				FCF80AC65615623F95BC0A36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E69E443860C8729EAA89AB7C /* Build configuration list for PBXNativeTarget "PPOIScreenshotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6870E638F51E83246156E63 /* Debug */,
+				D82CE81263CE870BACACDF68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
