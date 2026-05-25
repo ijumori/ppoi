@@ -11,7 +11,7 @@ settings:
     SWIFT_VERSION: "5.0"
     TARGETED_DEVICE_FAMILY: "1"
     MARKETING_VERSION: "1.0.0"
-    CURRENT_PROJECT_VERSION: "2"
+    CURRENT_PROJECT_VERSION: "3"
     DEVELOPMENT_TEAM: NXFZ5AUX62
     # E2: Enable position-independent executables (ASLR)
     GCC_GENERATE_POSITION_DEPENDENT_CODE: NO
@@ -59,6 +59,7 @@ targets:
           - UIInterfaceOrientationPortrait
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: false
+        UIRequiresFullScreen: true
         # E3: Disable third-party keyboards (prevents keyloggers)
         UIApplicationSupportsThirdPartyKeyboards: false
     settings:

@@ -115,16 +115,7 @@ enum SecurityGuard {
             // Expected on non-jailbroken device
         }
 
-        // 4. Check if fork() succeeds (should fail in sandbox)
-        let forkResult = fork()
-        if forkResult >= 0 {
-            if forkResult > 0 {
-                kill(forkResult, SIGTERM)
-            }
-            return true
-        }
-
-        // 5. Check for suspicious environment variables
+        // 4. Check for suspicious environment variables
         if getenv("DYLD_INSERT_LIBRARIES") != nil {
             return true
         }

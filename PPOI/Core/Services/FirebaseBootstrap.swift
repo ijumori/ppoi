@@ -22,7 +22,14 @@ enum FirebaseBootstrap {
         #if DEBUG
         AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
         #else
-        AppCheck.setAppCheckProviderFactory(AppAttestProviderFactory())
+        AppCheck.setAppCheckProviderFactory(PPOIAppAttestProviderFactory())
         #endif
+    }
+}
+
+/// Release 用: App Attest プロバイダファクトリ
+private class PPOIAppAttestProviderFactory: NSObject, AppCheckProviderFactory {
+    func createProvider(with app: FirebaseApp) -> (any AppCheckProvider)? {
+        AppAttestProvider(app: app)
     }
 }
