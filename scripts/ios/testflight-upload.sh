@@ -7,7 +7,7 @@
 # 手順: docs/phases/08-app-store-release.md §8.7
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT"
 
 TEAM_ID="${DEVELOPMENT_TEAM:-NXFZ5AUX62}"

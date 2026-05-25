@@ -1,8 +1,9 @@
 # Phase 8: App Store リリース準備 — っぽい格言
 
-> 更新: 2026-05-20  
-> Bundle ID: `com.takahiro.ppoi`  
+> 更新: 2026-05-25
+> Bundle ID: `com.takahiro.ppoi`
 > App Store Connect: 登録済み ✅
+> ステータス: **審査待ち** (v1.0.0 Build 3)
 
 ---
 
@@ -14,11 +15,11 @@
 | 8.1 | Apple Developer — Bundle ID 登録 | ✅ | ユーザー |
 | 8.2 | App Store Connect — 新規アプリ作成 | ✅ | ユーザー |
 | 8.3 | プライバシーポリシー URL 公開 | ✅ | https://ijumori.github.io/ppoi/legal/privacy-policy.html |
-| 8.4 | App Privacy（データの収集）申告 | ⬜ | ユーザー（下記テンプレ参照） |
-| 8.5 | スクリーンショット（6.7インチ必須） | ⬜ | ユーザー |
-| 8.6 | 説明文・キーワード入力 | ⬜ | `app-store-metadata.md` をコピー |
-| 8.7 | Archive → Upload → TestFlight | 🟡 **1.0.0 (1)** Upload済・輸出コンプライアンス **審査待ち**・内部テストにビルド追加済 | ユーザー |
-| 8.8 | 審査提出 | ⬜ | ユーザー |
+| 8.4 | App Privacy（データの収集）申告 | 🟡 | ASC Web画面で手動設定 |
+| 8.5 | スクリーンショット（6.7インチ必須） | ✅ | fastlane deliver でアップロード済（2枚: オンボーディング・ホーム） |
+| 8.6 | 説明文・キーワード入力 | ✅ | fastlane deliver でアップロード済 |
+| 8.7 | Archive → Upload → App Store | ✅ | **1.0.0 (3)** Upload済・審査用ビルド選択済 |
+| 8.8 | 審査提出 | ✅ **審査待ち** | 2026-05-25 提出 |
 | 8.9 | Cloud Functions 自動配信（任意） | ⬜ | `cloud-functions-setup.md` |
 
 ---
@@ -63,23 +64,24 @@ App Store Connect → **App Privacy** で以下を参考に申告:
 
 ## 8.7 TestFlight
 
-### いまの状態（2026-05-20 時点）
+### いまの状態（2026-05-25 時点）
 
 | 項目 | 状態 |
 |------|------|
-| ASC「ビルドのアップロード」 | ✅ **1.0.0 (1)**・終了 |
-| 輸出コンプライアンス | 🟡 申告済み → ビルド **1** は **審査待ち** |
-| 内部テスト | ✅ グループに **1.0.0 (1)** 追加済み |
-| iPhone の TestFlight アプリ | ⏳ **テスト可能** になるまでアプリは**表示されない**（正常） |
-| 実機動作確認 | ⬜ **テスト可能** 後にインストール |
+| ASC「ビルドのアップロード」 | ✅ **1.0.0 (3)**・終了 |
+| 輸出コンプライアンス | ✅ 申告済み |
+| メタデータ | ✅ fastlane deliver でアップロード済 |
+| スクリーンショット | ✅ 6.7" × 2枚アップロード済 |
+| 年齢レーティング | 🟡 ASC Webで手動設定が必要 |
+| **App Store 審査** | 🟡 **審査待ち** |
 
-**重要**: **1.0.0 (2) は存在しない**。再 Upload 前にターゲットの `CURRENT_PROJECT_VERSION` を上げる（下記 §8.7.4）。
+**CURRENT_PROJECT_VERSION**: 現在 **3**。次回 Upload 時は **4** に上げる。
 
 **過去の不具合・修正**
 
 | 問題 | 対処 |
 |------|------|
-| Upload 90474（iPad 向き） | `TARGETED_DEVICE_FAMILY = 1`（iPhone のみ） |
+| Upload 90474（iPad 向き） | `TARGETED_DEVICE_FAMILY = 1`（iPhone のみ）→ §8.7.7 で pbxproj 修正済み |
 | 「Build 2」と誤認 | `Info.plist` だけ変更しても無効。**ターゲット**の `CURRENT_PROJECT_VERSION` が ASC のビルド番号になる |
 | ASC にアプリは見えるが TestFlight に出ない | ビルドが **審査待ち** の間は配布不可 |
 
@@ -217,6 +219,39 @@ cd "/Users/takahironishii/マイドライブ（ijumorimori@gmail.com）/04.Dev/P
 
 ---
 
+### 8.7.7 iPhone のみ（iPad スクショ不要）
+
+ASC に **iPad 用スクリーンショットを求めない** には、バイナリを **iPhone のみ** にする。ASC 単体で iPad をオフにする設定はない。
+
+| 層 | 設定 |
+|----|------|
+| `project.yml` | 全体・ターゲット **PPOI** / **PPOIScreenshotTests** で `TARGETED_DEVICE_FAMILY: "1"` |
+| Xcode 反映 | `xcodegen generate`（`PPOI.xcodeproj` の `"1,2"` を `"1"` に揃える） |
+| `Info.plist` 生成結果 | `UIDeviceFamily` = **1 のみ**（ビルド後に確認） |
+| ASC | iPhone サイズのみアップロード。iPad タブは**空のまま**可 |
+| 審査用ビルド | **iPhone のみの新ビルド**に差し替え（古い Universal ビルドが紐づくと iPad 欄が残る） |
+
+#### 確認コマンド（ビルド後）
+
+```bash
+/usr/libexec/PlistBuddy -c "Print UIDeviceFamily" \
+  "$(xcodebuild -showBuildSettings -scheme PPOI -configuration Release 2>/dev/null \
+    | awk -F' = ' '/TARGET_BUILD_DIR/{d=$2} /FULL_PRODUCT_NAME/{n=$2} END{print d"/"n}')/Info.plist"
+```
+
+期待値: `Array { 1 }`（`2` が含まれていたら `xcodegen generate` を再実行）
+
+#### 再 Upload 手順
+
+1. `CURRENT_PROJECT_VERSION` を未使用番号に +1（§8.7.4）
+2. `xcodegen generate` → `./scripts/ios/testflight-upload.sh`
+3. ASC → **App Store** → バージョン → 審査用ビルドを新 **(n)** に変更
+4. **メタデータ**で iPad タブが消えた／必須でなくなったことを確認
+
+参考: [Screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/)（*Required if app runs on iPad*）
+
+---
+
 ### Release ビルドの注意（AdMob）
 
 | ビルド | 広告 |
@@ -230,13 +265,16 @@ cd "/Users/takahironishii/マイドライブ（ijumorimori@gmail.com）/04.Dev/P
 
 ### TestFlight 提出前チェックリスト
 
-- [x] Archive（Release）・Upload **1.0.0 (1)**
+- [x] Archive（Release）・Upload **1.0.0 (3)**
 - [x] 輸出コンプライアンス申告
 - [x] 内部テストにビルド追加
-- [ ] ビルド **1** が **テスト可能**
-- [ ] iPhone TestFlight からインストール・動作確認
-- [ ] スクショ・メタデータ・App Privacy（§8.4〜8.6）
-- [ ] App Store 審査提出
+- [x] iPhone のみビルド（`TARGETED_DEVICE_FAMILY = 1`）
+- [x] スクショ（fastlane deliver・6.7" × 2枚）
+- [x] メタデータ（fastlane deliver）
+- [x] App Store 審査提出（2026-05-25）
+- [ ] 年齢レーティング（ASC Web で手動設定）
+- [ ] App Privacy（ASC Web で手動設定）
+- [ ] 審査通過・公開
 
 ---
 
@@ -253,3 +291,5 @@ cd "/Users/takahironishii/マイドライブ（ijumorimori@gmail.com）/04.Dev/P
 | 2026-05-20 | 初版 — ASC 登録完了後 |
 | 2026-05-20 | §8.7 CLI・Build 番号の注意 |
 | 2026-05-20 | 実態反映: (1) のみ・審査待ち・ステップバイステップ・トラブルシュート・CURRENT_PROJECT_VERSION |
+| 2026-05-20 | §8.7.7 iPhone のみ（TARGETED_DEVICE_FAMILY・xcodegen・UIDeviceFamily 確認） |
+| 2026-05-25 | ビルド3アップロード・fastlane deliver でメタデータ＋スクショ投入・審査提出 |
