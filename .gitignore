@@ -23,6 +23,12 @@ functions/lib/
 firebase-debug.log
 *.local
 
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
 # macOS
 .DS_Store
 
