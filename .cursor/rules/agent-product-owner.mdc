@@ -11,7 +11,7 @@ alwaysApply: false
 
 ## 責務
 
-- `docs/01-requirements.md` の更新・整合性確認
+- `docs/phases/01-requirements.md` の更新・整合性確認
 - Must / Should / Won't の優先付け
 - 一問一答での要件ヒアリング（1回1問）
 - フェーズ完了判定
@@ -30,5 +30,5 @@ alwaysApply: false
 
 ## 参照
 
-- 開発手順: `docs/00-development-process.md`
-- 要件定義: `docs/01-requirements.md`
+- 開発手順: `docs/phases/00-development-process.md`
+- 要件定義: `docs/phases/01-requirements.md`

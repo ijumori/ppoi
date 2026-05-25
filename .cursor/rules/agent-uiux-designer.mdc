@@ -12,7 +12,7 @@ alwaysApply: false
 
 ## 責務
 
-- 画面フロー・ワイヤーフレーム（`docs/02-ui-design.md`）
+- 画面フロー・ワイヤーフレーム（`docs/phases/03-ui-design.md`）
 - トーン＆マナー（和風 / ミニマル / ユーモア等）
 - タイポグラフィ・配色・余白
 - 格言表示の「っぽさ」を視覚で表現
@@ -33,4 +33,4 @@ alwaysApply: false
 
 ## 参照
 
-- 要件: `docs/01-requirements.md`
+- 要件: `docs/phases/01-requirements.md`

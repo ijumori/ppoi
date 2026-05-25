@@ -14,39 +14,46 @@ xcodebuild -scheme PPOI -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
 
 Xcode で `PPOI.xcodeproj` を開く。
 
-## 構成
+## リポジトリ構成
 
-| パス | 内容 |
-|------|------|
-| `PPOI/App/` | エントリポイント |
-| `PPOI/Features/` | 画面（Quote, Share, Settings, Onboarding） |
-| `PPOI/Core/Models/` | データモデル |
-| `PPOI/Core/Services/` | Firebase, AdMob, 通知 |
-| `PPOI/Core/Security/` | セキュリティ（8ファイル） |
-| `PPOI/DesignSystem/` | 3テーマカラー |
-| `docs/` | 要件・設計ドキュメント |
+```
+PPOI/                    # iOS アプリ（SwiftUI）
+├── App/                 # エントリ・ルート
+├── Features/            # 画面（Quote, Share, Settings, Onboarding, Ads）
+├── Core/
+│   ├── Data/            # モデル・Repository・QuoteService
+│   ├── Persistence/     # UserDefaults
+│   ├── Infrastructure/  # Firebase, AdMob, 通知
+│   └── Security/        # App Check, Keychain, ランタイム保護
+├── DesignSystem/
+└── Resources/
+
+docs/
+├── phases/              # 00〜08 開発フェーズ
+├── guides/              # Firebase, AdMob, セキュリティ, リリース
+├── design/              # UI 参照画像
+├── screenshots/         # App Store 素材
+└── legal/               # プライバシーポリシー（GitHub Pages）
+
+config/
+├── ios/                 # ExportOptions.plist
+└── firebase/            # firestore.rules
+
+functions/               # Cloud Functions
+scripts/ios/             # TestFlight アップロード
+fastlane/                # App Store メタデータ
+```
 
 ## セキュリティ
 
-銀行レベル多層防御を実装（全23施策 / 6フェーズ）。詳細は [docs/security.md](docs/security.md)。
-
-| フェーズ | 内容 | 施策数 |
-|---------|------|--------|
-| A: ランタイム保護 | 脱獄/デバッガ/DYLD注入/署名検証/完全ブロック | 5 |
-| B: データ保護 | Keychain強化/ファイル保護/スナップショット/録画検知/クリップボード | 6 |
-| C: ネットワーク | SSL Pinning/ATS/ログ排除 | 3 |
-| D: Firebase | Firestore Rules/App Check Enforcement/APIキー制限/監査ログ | 4 |
-| E: ビルド強化 | シンボルstrip/ASLR/スタック保護/gitignore | 4 |
-| F: プライバシー | PrivacyInfo/SecureLogger | 2 |
+多層防御を実装。詳細は [docs/guides/security.md](docs/guides/security.md)。
 
 ## ドキュメント
 
-- [開発手順](docs/00-development-process.md)
-- [要件定義](docs/01-requirements.md)
-- [体験設計](docs/02-experience-design.md)
-- [UI設計](docs/03-ui-design.md)
-- [技術選定](docs/04-tech-stack.md)
-- [セキュリティ設計](docs/security.md)
+- [索引](docs/README.md)
+- [開発手順](docs/phases/00-development-process.md)
+- [要件定義](docs/phases/01-requirements.md)
+- [TestFlight / リリース](docs/phases/08-app-store-release.md)
 
 ## Bundle ID
 

@@ -25,7 +25,7 @@ Cursor で該当ルールを有効にするか、会話で役割を指定する:
 PO（要件）→ UI/UX（設計）→ iOS Dev（実装）→ QA（テスト）→ Release（公開）
 ```
 
-詳細は [docs/00-development-process.md](docs/00-development-process.md) を参照。
+詳細は [docs/phases/00-development-process.md](docs/phases/00-development-process.md) を参照。
 
 ## 現在フェーズ
 

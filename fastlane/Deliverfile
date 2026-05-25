@@ -1,0 +1,9 @@
+# Deliverfile for PPOI
+app_identifier "com.takahiro.ppoi"
+username "ijumorimori@gmail.com"
+
+skip_binary_upload true
+force true
+overwrite_screenshots true
+submit_for_review false
+automatic_release false

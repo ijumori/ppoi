@@ -2,7 +2,7 @@
 
 ## 進め方
 
-1. **要件定義**（現在）— 一問一答で `docs/01-requirements.md` を埋める
+1. **要件定義**（現在）— 一問一答で `docs/phases/01-requirements.md` を埋める
 2. **コンセプト・体験設計** — 画面フロー、主要ユースケース
 3. **UI/UX設計** — ワイヤー、デザイン方針、コピー
 4. **技術選定** — SwiftUI / データ保存 / API の決定
@@ -35,22 +35,22 @@
 - ユーザージャーニー（起動 → 格言表示 → 共有/保存）
 - トーン＆マナー（「っぽさ」の定義）
 - オンボーディング・テーマ3択・共有画像方針
-- 成果物: `docs/02-experience-design.md`
+- 成果物: `docs/phases/02-experience-design.md`
 
 ### Phase 3: UI/UX設計 ✅
 
 - 操作フロー、カラートークン、アニメーション
-- 成果物: `docs/03-ui-design.md`
+- 成果物: `docs/phases/03-ui-design.md`
 
 ### Phase 4: 技術選定 ✅
 
 - Firebase + Claude + UserDefaults
-- 成果物: `docs/04-tech-stack.md`
+- 成果物: `docs/phases/04-tech-stack.md`
 
 ### Phase 5: プロジェクト初期化 ✅
 
 - Xcode プロジェクト作成（`PPOI.xcodeproj`）
-- 成果物: `docs/05-project-setup.md`, `README.md`
+- 成果物: `docs/phases/05-project-setup.md`, `README.md`
 
 ### Phase 6: MVP実装
 
@@ -65,7 +65,7 @@
 
 ### Phase 7: テスト ✅
 
-- 実機テスト完了（`docs/07-testing-checklist.md`）
+- 実機テスト完了（`docs/phases/07-testing-checklist.md`）
 - v1.1 改善予定: 共有画像の改行位置
 
 ### Phase 8: リリース 🟡 進行中
@@ -80,7 +80,7 @@
 | セキュリティ強化（App Check 等） | 🟡 コード済 — Firebase Console 設定待ち |
 | スクショ・メタデータ・審査提出 | ⬜ |
 
-詳細: `docs/08-app-store-release.md` §8.7 / `docs/security.md`
+詳細: `docs/phases/08-app-store-release.md` §8.7 / `docs/guides/security.md`
 
 ---
 
@@ -108,5 +108,5 @@
 - **Phase 8**: TestFlight **1.0.0 (1)** Upload済・輸出コンプライアンス **審査待ち**
 - **次**: ビルド **テスト可能** → iPhone TestFlight インストール → §8.4〜8.6 → 審査提出
 - **8.3 Pages**: ✅ https://ijumori.github.io/ppoi/legal/privacy-policy.html
-- **成果物**: `docs/08-app-store-release.md`, `docs/legal/`, `docs/app-store-metadata.md`
+- **成果物**: `docs/phases/08-app-store-release.md`, `docs/legal/`, `docs/guides/app-store-metadata.md`
 - **更新日**: 2026-05-20

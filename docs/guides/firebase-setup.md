@@ -322,7 +322,7 @@ QuoteView（ホーム）
 |------|------|-------------|
 | 手動テスト | 上記 Step 7 | 本ドキュメント |
 | 自動生成 | 毎日 0:00 JST に Claude で格言生成 | [cloud-functions-setup.md](./cloud-functions-setup.md) |
-| 実機テスト | 全画面チェック | [07-testing-checklist.md](./07-testing-checklist.md) |
+| 実機テスト | 全画面チェック | [07-testing-checklist.md](../phases/07-testing-checklist.md) |
 
 ---
 

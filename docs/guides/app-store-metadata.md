@@ -51,6 +51,22 @@ AIが紡ぐ一句を、今日だけ読める——明日にはもう見られま
 格言,名言,AI,毎日,シェア, 𝕏,Twitter,おもしろ,通勤,一句,格言メーカー,生成AI
 ```
 
+## マーケティング URL
+
+App Store に表示される「アプリの紹介サイト」用（[Apple ヘルプ](https://developer.apple.com/jp/help/app-store-connect/reference/platform-version-information/)）。任意だが推奨。
+
+```
+https://ijumori.github.io/ppoi/
+```
+
+| 項目 | 用途 | URL |
+|------|------|-----|
+| **マーケティング URL** | アプリ紹介・機能説明 | `https://ijumori.github.io/ppoi/` |
+| サポート URL | 不具合・問い合わせ | GitHub Issues（下記） |
+| プライバシーポリシー URL | 法務 | `legal/privacy-policy.html` |
+
+> ランディングページ: `docs/index.html`（GitHub Pages の `/docs` 公開で自動反映）
+
 ## サポート URL
 
 ```

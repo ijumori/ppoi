@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		07D1325DD8DA9A76FB2B7A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2B94E0769FBF39153271C5 /* Assets.xcassets */; };
+		0DBDFD7FCFCE40F704155E71 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A14D291841BE4165B207D9 /* Quote.swift */; };
+		0DE29D84DB286135B186A40A /* AdMobConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B995C5E74125775BE8BDB /* AdMobConfig.swift */; };
+		16400909D3C81202D8B95355 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89015E8D2D903E966ED6C1C0 /* NotificationService.swift */; };
 		1CF62DE569E44E690070E0A8 /* SharePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2983B4A85E736D2AAF0695F1 /* SharePreviewView.swift */; };
 		23D77FF1270F0C8BDF6A846D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4562785C1B80CEC9C926C082 /* GoogleService-Info.plist */; };
 		27927917E5BF789D39657283 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8DEC05962BCB1FFB6ED0B3 /* AppTheme.swift */; };
 		3C2C7BB82E3B17FD0420AFD5 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 773222A9BF038F22B2468A43 /* FirebaseAppCheck */; };
 		3FA48DA650605866E1220910 /* SecurityGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3126C00621087A315C8F3 /* SecurityGuard.swift */; };
-		490539A333DDC397B5193EFA /* FirebaseBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33E846383CDB2214AA46F5B /* FirebaseBootstrap.swift */; };
-		593E8BD115D0967F39A6ED5A /* FirestoreQuoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFC5958499A36F9E1A6E7B3 /* FirestoreQuoteRepository.swift */; };
+		4D34207FCF7ABEE2A2C85FD1 /* ShareImageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B12EA70D5A6FEC5732CE4 /* ShareImageSpec.swift */; };
 		5E661A54DA6D69BA2B456379 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12366567DCABE2230E36064 /* SettingsView.swift */; };
 		65D531CEECE49D641885C0E4 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D4E441E5CD4361296EF5C7 /* QuoteView.swift */; };
 		67CDCA37DF7016399EE9B201 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D425574337D98F126E997B31 /* OnboardingView.swift */; };
@@ -23,68 +25,66 @@
 		7ADB89160F188F6A8945354D /* PPOIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D8E6A99300F6695F1011A8 /* PPOIApp.swift */; };
 		7B846251038820F4DD1E8D99 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 872C270942B4BAD826A8B4FD /* PrivacyInfo.xcprivacy */; };
 		7CAFF5EB213D3D115B31EE43 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 63CADF8F9BC9456177AF044E /* GoogleMobileAds */; };
-		81817C1BC964C90AF4338761 /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2A74F46D6DDB925AA0D89 /* UserDefaultsStore.swift */; };
-		832FFC411E3CCFAE1EAF719D /* AdMobCompliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE54F95593BAD01808B2951F /* AdMobCompliance.swift */; };
+		80A246980DF4C07B775DE66D /* QuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2AA05EE3B9B02E08086CD /* QuoteService.swift */; };
+		85BDB01AB43B744CAD1CB505 /* AdMobCompliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708397E0B484F088A6525778 /* AdMobCompliance.swift */; };
+		877837B38AFFFA35F9108E2D /* FirestoreQuoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47074C53B9067EEFA5723DEB /* FirestoreQuoteRepository.swift */; };
 		8F083628FD02CD2C2109EF59 /* NetworkSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129E0A18303028FBA82BBC6 /* NetworkSecurity.swift */; };
 		91EBEE0A53A9197A132332A9 /* ClipboardGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5761243E6FD31A543F916323 /* ClipboardGuard.swift */; };
 		9AA181139A10B7F894E3EF03 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8596BCF1978FD9FF0E21A31 /* QuoteViewModel.swift */; };
-		AAFC794AEFBEF5893729278A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94436FEE2E7A3909212A659 /* NotificationService.swift */; };
-		AB45A7B302E4BD45C71064CD /* ShareImageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E4AE3F2B8D21A306868A0 /* ShareImageSpec.swift */; };
 		ABC515D48EF8C07FD16B7362 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAD9927031E844CEEB55CC /* KeychainStore.swift */; };
 		B2DDD37F7B8E4C6DA32027FD /* AdMobConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECB37C104E698AF34C57C0C8 /* AdMobConfig.plist */; };
+		B38A82B8B7D72135F29F7F32 /* FirebaseBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239199C965EC3B0F0883A45D /* FirebaseBootstrap.swift */; };
 		B3AAD54BE3631EF7FED92FEB /* SecureQuoteCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741BED2309AC34CE51CC877 /* SecureQuoteCache.swift */; };
 		BC2EA1BA5D439AF465CCEF8E /* SecurityBlockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC0AF79376EBAB6250631A /* SecurityBlockedView.swift */; };
 		BE16E45804404936A13914D2 /* ShareInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D67C5A3B7757CB658FC79C /* ShareInputView.swift */; };
-		C419404DF4C7F8E45E84043F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036762A5D3199A6387C7FC74 /* Quote.swift */; };
 		C45B71C7361E759B73E92F79 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D34EF85C18777E38ED96B8 /* RootView.swift */; };
 		D2522ACFFB851B4D78E9A13F /* ShareCardExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A01B180ECCAFFD86CA03DC /* ShareCardExportView.swift */; };
 		D32B1F715850F7CED26D0A6E /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE0DA3BF78E327EA8549303 /* InterstitialAdManager.swift */; };
+		D5CD63F646FC48EC3DC3CB7A /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032690C7BC7103662C23EBD3 /* UserDefaultsStore.swift */; };
 		D77D307690E4F4871C38D61C /* InputSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21D593F06C501F4B6377DA7 /* InputSanitizer.swift */; };
 		D869F6CA23B8EB4485A8B863 /* AdMobConfig.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = 55CE50EB4B1959DC99A644C2 /* AdMobConfig.plist.example */; };
 		F147770A444AB900B4AA188B /* SecureLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5D8D84E2A91F483408B27 /* SecureLogger.swift */; };
-		F3A7023B0BCD78EF89265C50 /* AdMobConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D375BF77BFD77C1ABFB0BB /* AdMobConfig.swift */; };
-		FBA60806BA42D8E97B2B2BE0 /* QuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D44590A2151F63B7BBD04F /* QuoteService.swift */; };
 		FC1ADA05F7E33D94940B3041 /* ShareImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5333C7F5668B3A528610929 /* ShareImageRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		036762A5D3199A6387C7FC74 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		032690C7BC7103662C23EBD3 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 		0616FC6F54125F00726DEA76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		12F3126C00621087A315C8F3 /* SecurityGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityGuard.swift; sourceTree = "<group>"; };
 		1D7B92BEE30CCABC685EBFEA /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		2129E0A18303028FBA82BBC6 /* NetworkSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSecurity.swift; sourceTree = "<group>"; };
+		239199C965EC3B0F0883A45D /* FirebaseBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBootstrap.swift; sourceTree = "<group>"; };
 		2741BED2309AC34CE51CC877 /* SecureQuoteCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureQuoteCache.swift; sourceTree = "<group>"; };
 		2983B4A85E736D2AAF0695F1 /* SharePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePreviewView.swift; sourceTree = "<group>"; };
 		3ABAD9927031E844CEEB55CC /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		3D2B94E0769FBF39153271C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3ED2A74F46D6DDB925AA0D89 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
-		43D44590A2151F63B7BBD04F /* QuoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteService.swift; sourceTree = "<group>"; };
 		4562785C1B80CEC9C926C082 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		46B5D8D84E2A91F483408B27 /* SecureLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLogger.swift; sourceTree = "<group>"; };
+		47074C53B9067EEFA5723DEB /* FirestoreQuoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreQuoteRepository.swift; sourceTree = "<group>"; };
 		4D8DEC05962BCB1FFB6ED0B3 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
-		51D375BF77BFD77C1ABFB0BB /* AdMobConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobConfig.swift; sourceTree = "<group>"; };
 		54D8E6A99300F6695F1011A8 /* PPOIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOIApp.swift; sourceTree = "<group>"; };
 		55CE50EB4B1959DC99A644C2 /* AdMobConfig.plist.example */ = {isa = PBXFileReference; path = AdMobConfig.plist.example; sourceTree = "<group>"; };
 		5761243E6FD31A543F916323 /* ClipboardGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardGuard.swift; sourceTree = "<group>"; };
+		708397E0B484F088A6525778 /* AdMobCompliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobCompliance.swift; sourceTree = "<group>"; };
 		82D4E441E5CD4361296EF5C7 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		872C270942B4BAD826A8B4FD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		8A2E4AE3F2B8D21A306868A0 /* ShareImageSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageSpec.swift; sourceTree = "<group>"; };
+		89015E8D2D903E966ED6C1C0 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8BE0DA3BF78E327EA8549303 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
 		907611180B0FD929890D3880 /* PPOI.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PPOI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE54F95593BAD01808B2951F /* AdMobCompliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobCompliance.swift; sourceTree = "<group>"; };
+		97A14D291841BE4165B207D9 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		C1A01B180ECCAFFD86CA03DC /* ShareCardExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardExportView.swift; sourceTree = "<group>"; };
+		C5F2AA05EE3B9B02E08086CD /* QuoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteService.swift; sourceTree = "<group>"; };
 		C8D67C5A3B7757CB658FC79C /* ShareInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInputView.swift; sourceTree = "<group>"; };
-		C94436FEE2E7A3909212A659 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		CA2B12EA70D5A6FEC5732CE4 /* ShareImageSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageSpec.swift; sourceTree = "<group>"; };
 		D21D593F06C501F4B6377DA7 /* InputSanitizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSanitizer.swift; sourceTree = "<group>"; };
 		D2D34EF85C18777E38ED96B8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D425574337D98F126E997B31 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D8596BCF1978FD9FF0E21A31 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		DDCC0AF79376EBAB6250631A /* SecurityBlockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityBlockedView.swift; sourceTree = "<group>"; };
-		E33E846383CDB2214AA46F5B /* FirebaseBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBootstrap.swift; sourceTree = "<group>"; };
+		E78B995C5E74125775BE8BDB /* AdMobConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobConfig.swift; sourceTree = "<group>"; };
 		ECB37C104E698AF34C57C0C8 /* AdMobConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = AdMobConfig.plist; sourceTree = "<group>"; };
 		F12366567DCABE2230E36064 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F5333C7F5668B3A528610929 /* ShareImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageRenderer.swift; sourceTree = "<group>"; };
-		FAFC5958499A36F9E1A6E7B3 /* FirestoreQuoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreQuoteRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +133,16 @@
 			path = PPOI;
 			sourceTree = "<group>";
 		};
+		33B5FF292E3CC50EB0D60416 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				6AD8D91C0CD0277D9D2F8D22 /* Ads */,
+				7DFDB1F06A35661C971541AD /* Firebase */,
+				B85F69A0E531C8F22765C54D /* Notifications */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
 		366D537DA279D34CC2DBCBA3 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +172,23 @@
 			path = DesignSystem;
 			sourceTree = "<group>";
 		};
+		55E8C07544A95A9A62C40E93 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				032690C7BC7103662C23EBD3 /* UserDefaultsStore.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		6AD8D91C0CD0277D9D2F8D22 /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				708397E0B484F088A6525778 /* AdMobCompliance.swift */,
+				E78B995C5E74125775BE8BDB /* AdMobConfig.swift */,
+			);
+			path = Ads;
+			sourceTree = "<group>";
+		};
 		70E5496C4406420220377672 /* Ads */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,18 +206,31 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9E2CE54CD00BF24A6D020FDC /* Services */ = {
+		7DFDB1F06A35661C971541AD /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				BE54F95593BAD01808B2951F /* AdMobCompliance.swift */,
-				51D375BF77BFD77C1ABFB0BB /* AdMobConfig.swift */,
-				E33E846383CDB2214AA46F5B /* FirebaseBootstrap.swift */,
-				FAFC5958499A36F9E1A6E7B3 /* FirestoreQuoteRepository.swift */,
-				C94436FEE2E7A3909212A659 /* NotificationService.swift */,
-				43D44590A2151F63B7BBD04F /* QuoteService.swift */,
-				3ED2A74F46D6DDB925AA0D89 /* UserDefaultsStore.swift */,
+				239199C965EC3B0F0883A45D /* FirebaseBootstrap.swift */,
 			);
-			path = Services;
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		81C0F911664E1AFE314B4BF2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C5F2AA05EE3B9B02E08086CD /* QuoteService.swift */,
+				914D5B6A2610BC145BCC75F8 /* Models */,
+				A09C43AFA30B3797F6494E19 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		914D5B6A2610BC145BCC75F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				97A14D291841BE4165B207D9 /* Quote.swift */,
+				CA2B12EA70D5A6FEC5732CE4 /* ShareImageSpec.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9F3FA51CDBF94DB540FF35BC /* Settings */ = {
@@ -201,6 +241,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		A09C43AFA30B3797F6494E19 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				47074C53B9067EEFA5723DEB /* FirestoreQuoteRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		B771FB9A5B84B903E4E64553 /* Quote */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +256,14 @@
 				D8596BCF1978FD9FF0E21A31 /* QuoteViewModel.swift */,
 			);
 			path = Quote;
+			sourceTree = "<group>";
+		};
+		B85F69A0E531C8F22765C54D /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				89015E8D2D903E966ED6C1C0 /* NotificationService.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		CAB745F8484AFC5F3A5D5B09 /* Features */ = {
@@ -222,21 +278,13 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
-		E20515D2F90F63148604A394 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				036762A5D3199A6387C7FC74 /* Quote.swift */,
-				8A2E4AE3F2B8D21A306868A0 /* ShareImageSpec.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		E661D3B5D8F856164FF08FDB /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				E20515D2F90F63148604A394 /* Models */,
+				81C0F911664E1AFE314B4BF2 /* Data */,
+				33B5FF292E3CC50EB0D60416 /* Infrastructure */,
+				55E8C07544A95A9A62C40E93 /* Persistence */,
 				EA46553072321D3AFFC7F009 /* Security */,
-				9E2CE54CD00BF24A6D020FDC /* Services */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -347,22 +395,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				832FFC411E3CCFAE1EAF719D /* AdMobCompliance.swift in Sources */,
-				F3A7023B0BCD78EF89265C50 /* AdMobConfig.swift in Sources */,
+				85BDB01AB43B744CAD1CB505 /* AdMobCompliance.swift in Sources */,
+				0DE29D84DB286135B186A40A /* AdMobConfig.swift in Sources */,
 				27927917E5BF789D39657283 /* AppTheme.swift in Sources */,
 				7476FAFE2462043448F500D8 /* BannerAdView.swift in Sources */,
 				91EBEE0A53A9197A132332A9 /* ClipboardGuard.swift in Sources */,
-				490539A333DDC397B5193EFA /* FirebaseBootstrap.swift in Sources */,
-				593E8BD115D0967F39A6ED5A /* FirestoreQuoteRepository.swift in Sources */,
+				B38A82B8B7D72135F29F7F32 /* FirebaseBootstrap.swift in Sources */,
+				877837B38AFFFA35F9108E2D /* FirestoreQuoteRepository.swift in Sources */,
 				D77D307690E4F4871C38D61C /* InputSanitizer.swift in Sources */,
 				D32B1F715850F7CED26D0A6E /* InterstitialAdManager.swift in Sources */,
 				ABC515D48EF8C07FD16B7362 /* KeychainStore.swift in Sources */,
 				8F083628FD02CD2C2109EF59 /* NetworkSecurity.swift in Sources */,
-				AAFC794AEFBEF5893729278A /* NotificationService.swift in Sources */,
+				16400909D3C81202D8B95355 /* NotificationService.swift in Sources */,
 				67CDCA37DF7016399EE9B201 /* OnboardingView.swift in Sources */,
 				7ADB89160F188F6A8945354D /* PPOIApp.swift in Sources */,
-				C419404DF4C7F8E45E84043F /* Quote.swift in Sources */,
-				FBA60806BA42D8E97B2B2BE0 /* QuoteService.swift in Sources */,
+				0DBDFD7FCFCE40F704155E71 /* Quote.swift in Sources */,
+				80A246980DF4C07B775DE66D /* QuoteService.swift in Sources */,
 				65D531CEECE49D641885C0E4 /* QuoteView.swift in Sources */,
 				9AA181139A10B7F894E3EF03 /* QuoteViewModel.swift in Sources */,
 				C45B71C7361E759B73E92F79 /* RootView.swift in Sources */,
@@ -373,10 +421,10 @@
 				5E661A54DA6D69BA2B456379 /* SettingsView.swift in Sources */,
 				D2522ACFFB851B4D78E9A13F /* ShareCardExportView.swift in Sources */,
 				FC1ADA05F7E33D94940B3041 /* ShareImageRenderer.swift in Sources */,
-				AB45A7B302E4BD45C71064CD /* ShareImageSpec.swift in Sources */,
+				4D34207FCF7ABEE2A2C85FD1 /* ShareImageSpec.swift in Sources */,
 				BE16E45804404936A13914D2 /* ShareInputView.swift in Sources */,
 				1CF62DE569E44E690070E0A8 /* SharePreviewView.swift in Sources */,
-				81817C1BC964C90AF4338761 /* UserDefaultsStore.swift in Sources */,
+				D5CD63F646FC48EC3DC3CB7A /* UserDefaultsStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

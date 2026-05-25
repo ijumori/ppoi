@@ -4,7 +4,7 @@
 #
 # 再 Upload 前: ターゲット PPOI の CURRENT_PROJECT_VERSION を +1 すること
 # （Info.plist だけでは ASC のビルド番号は変わらない）
-# 手順: docs/08-app-store-release.md §8.7
+# 手順: docs/phases/08-app-store-release.md §8.7
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -33,7 +33,7 @@ echo "==> Export & Upload to App Store Connect"
 xcodebuild \
   -exportArchive \
   -archivePath "$ARCHIVE_PATH" \
-  -exportOptionsPlist ExportOptions.plist \
+  -exportOptionsPlist config/ios/ExportOptions.plist \
   -exportPath "$EXPORT_PATH" \
   -allowProvisioningUpdates
 

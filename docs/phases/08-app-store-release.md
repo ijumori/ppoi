@@ -53,7 +53,7 @@ App Store Connect → **App Privacy** で以下を参考に申告:
 
 | サイズ | 必須 | 元ネタ |
 |--------|------|--------|
-| 6.7"（iPhone 15 Pro Max 等） | ✅ 必須 | 実機スクショ or `docs/images/` |
+| 6.7"（iPhone 15 Pro Max 等） | ✅ 必須 | 実機スクショ or `docs/design/` |
 | 6.5" | 推奨 | 同上 |
 | 5.5" | 任意 | 同上 |
 
@@ -97,7 +97,7 @@ App Store Connect → **App Privacy** で以下を参考に申告:
 | 4 | iPhone に **TestFlight** アプリをインストール、Apple ID を ASC と揃える | 準備完了 |
 | 5 | ビルド **1** が **テスト可能** になるまで待つ（24〜48h） | 黄色警告・審査待ちが消える |
 | 6 | TestFlight で **っぽい格言** → **インストール** | ホーム画面にアイコン |
-| 7 | 実機チェック（格言・共有・設定） | `docs/07-testing-checklist.md` 相当 |
+| 7 | 実機チェック（格言・共有・設定） | `docs/phases/07-testing-checklist.md` 相当 |
 | 8 | §8.4〜8.6 完了後、**審査に提出** | App Store タブから提出 |
 
 ---
@@ -169,7 +169,7 @@ App Store Connect → **App Privacy** で以下を参考に申告:
 再 Upload 手順:
 
 1. `CURRENT_PROJECT_VERSION` を未使用の整数に **+1**
-2. `./scripts/testflight-upload.sh` または Xcode Archive → Upload
+2. `./scripts/ios/testflight-upload.sh` または Xcode Archive → Upload
 3. ASC で新しい **(n)** が **終了** → コンプライアンス → 内部テストに追加
 
 ---
@@ -178,12 +178,12 @@ App Store Connect → **App Privacy** で以下を参考に申告:
 
 ```bash
 cd "/Users/takahironishii/マイドライブ（ijumorimori@gmail.com）/04.Dev/PPOI"
-./scripts/testflight-upload.sh
+./scripts/ios/testflight-upload.sh
 ```
 
 | 項目 | 内容 |
 |------|------|
-| スクリプト | `scripts/testflight-upload.sh` |
+| スクリプト | `scripts/ios/testflight-upload.sh` |
 | 設定 | `ExportOptions.plist`（`app-store-connect` + upload） |
 | Team | `NXFZ5AUX62` |
 | デバイス | iPhone のみ（`TARGETED_DEVICE_FAMILY = 1`） |
@@ -224,7 +224,7 @@ cd "/Users/takahironishii/マイドライブ（ijumorimori@gmail.com）/04.Dev/P
 | Debug | テスト広告（`TEST AD`） |
 | **Release（TestFlight / 本番）** | **本番 AdMob ID** |
 
-> TestFlight 中も **本番広告を自分でクリックしない**（[admob-policy-compliance.md](./admob-policy-compliance.md)）
+> TestFlight 中も **本番広告を自分でクリックしない**（[admob-policy-compliance.md](../guides/admob-policy-compliance.md)）
 
 ---
 

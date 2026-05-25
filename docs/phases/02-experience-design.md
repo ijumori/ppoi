@@ -98,7 +98,7 @@
 | ビジュアル | 選択中テーマのプレビュー（初回はダーク・プレミア） |
 | CTA | 次へ |
 
-**イメージ図**: `docs/images/onboarding-screen1-today-only.png`
+**イメージ図**: `docs/design/onboarding-screen1-today-only.png`
 
 ### 画面2 — 考察してシェアする
 
@@ -109,7 +109,7 @@
 | ビジュアル | 共有カード画像 + 𝕏 投稿イメージ |
 | CTA | 通知を許可する → システムダイアログ |
 
-**イメージ図**: `docs/images/onboarding-screen2-share-vortex.png`
+**イメージ図**: `docs/design/onboarding-screen2-share-vortex.png`
 
 **確定**: ✅
 
@@ -121,8 +121,8 @@
 
 | 画面 | ファイル |
 |------|----------|
-| ホーム（テーマC） | `docs/images/home-screen-dark-premium.png` |
-| 𝕏共有カード | `docs/images/share-card-x-post.png` |
+| ホーム（テーマC） | `docs/design/home-screen-dark-premium.png` |
+| 𝕏共有カード | `docs/design/share-card-x-post.png` |
 
 - ホーム: 「考察してシェアする」ボタン、下部バナー広告枠
 - 共有カード: 格言 + 考察 + 日付 + #っぽい格言（文字数節約用）
@@ -142,7 +142,7 @@
 - **設定画面**でいつでも切替可能
 - **デフォルト**: C（ダーク・プレミア）
 - **共有画像**も選択中テーマに合わせて生成
-- イメージ図: `docs/images/visual-directions-abc.png`
+- イメージ図: `docs/design/visual-directions-abc.png`
 
 **確定**: ✅
 

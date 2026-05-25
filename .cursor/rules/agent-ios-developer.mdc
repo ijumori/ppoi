@@ -41,5 +41,5 @@ PPOI/
 
 ## 参照
 
-- 要件: `docs/01-requirements.md`
-- 手順: `docs/00-development-process.md`
+- 要件: `docs/phases/01-requirements.md`
+- 手順: `docs/phases/00-development-process.md`

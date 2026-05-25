@@ -88,7 +88,7 @@
 | 7.3 | バナーがコンテンツと重ならない | ✅ | ⬜ | |
 | 7.4 | インタースティシャルは共有後のみ | ✅ | ⬜ | |
 
-詳細: [admob-policy-compliance.md](./admob-policy-compliance.md)
+詳細: [admob-policy-compliance.md](../guides/admob-policy-compliance.md)
 
 ---
 

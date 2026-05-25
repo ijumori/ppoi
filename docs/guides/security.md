@@ -168,7 +168,7 @@ match /{document=**} {
 }
 ```
 
-ファイル: `firestore.rules`
+ファイル: `config/firebase/firestore.rules`
 
 ### D2: App Check Enforcement
 
@@ -283,7 +283,7 @@ SecureLogger を全コードベースに導入済み（Phase B3 と統合）。
 | `PPOI/Core/Security/ClipboardGuard.swift` | B6: クリップボード自動クリア |
 | `PPOI/Core/Security/NetworkSecurity.swift` | C1: SSL Pinning URLSession |
 | `PPOI/Core/Security/InputSanitizer.swift` | 入力サニタイズ |
-| `firestore.rules` | D1: Firestore セキュリティルール |
+| `config/firebase/firestore.rules` | D1: Firestore セキュリティルール |
 
 ---
 
