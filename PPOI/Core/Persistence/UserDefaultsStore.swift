@@ -8,13 +8,27 @@ final class UserDefaultsStore {
         static let notificationEnabled = "notificationEnabled"
         static let notificationHour = "notificationHour"
         static let fontVariant = "fontVariant"
+        static let favorites = "favorites"
+        static let currentStreak = "currentStreak"
+        static let lastSeenDate = "lastSeenDate"
     }
 
+    /// お気に入り保存件数の上限（UserDefaults 肥大化防止）
+    private static let favoritesLimit = 100
+
     private let defaults: UserDefaults
+
+    /// お気に入り格言（新しい順）。UI 連動のため stored プロパティで保持
+    private(set) var favorites: [Quote]
+
+    /// 連続閲覧日数
+    private(set) var currentStreak: Int
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         SecureQuoteCache.clearLegacyUserDefaults(defaults)
+        favorites = Self.loadFavorites(from: defaults)
+        currentStreak = defaults.integer(forKey: Key.currentStreak)
     }
 
     var hasCompletedOnboarding: Bool {
@@ -58,6 +72,69 @@ final class UserDefaultsStore {
 
     func cachedQuote(for date: String) -> Quote? {
         SecureQuoteCache.load(for: date)
+    }
+
+    // MARK: - お気に入り（ローカルのみ）
+
+    func isFavorite(_ quote: Quote) -> Bool {
+        favorites.contains { $0.id == quote.id }
+    }
+
+    func toggleFavorite(_ quote: Quote) {
+        if let index = favorites.firstIndex(where: { $0.id == quote.id }) {
+            favorites.remove(at: index)
+        } else {
+            favorites.insert(quote, at: 0)
+            if favorites.count > Self.favoritesLimit {
+                favorites = Array(favorites.prefix(Self.favoritesLimit))
+            }
+        }
+        persistFavorites()
+    }
+
+    func removeFavorites(at offsets: IndexSet) {
+        favorites.remove(atOffsets: offsets)
+        persistFavorites()
+    }
+
+    private func persistFavorites() {
+        let data = try? JSONEncoder().encode(favorites)
+        defaults.set(data, forKey: Key.favorites)
+    }
+
+    private static func loadFavorites(from defaults: UserDefaults) -> [Quote] {
+        guard let data = defaults.data(forKey: Key.favorites),
+              let list = try? JSONDecoder().decode([Quote].self, from: data)
+        else { return [] }
+        return list
+    }
+
+    // MARK: - ストリーク（連続閲覧日数）
+
+    /// 今日の閲覧を記録し、連続日数を更新する（同日複数回は不変）
+    func registerTodayVisit() {
+        let today = DateFormatter.jstDate.string(from: Date())
+        let last = defaults.string(forKey: Key.lastSeenDate)
+
+        if last == today { return }
+
+        if let last, Self.isConsecutive(previous: last, today: today) {
+            currentStreak += 1
+        } else {
+            currentStreak = 1
+        }
+
+        defaults.set(today, forKey: Key.lastSeenDate)
+        defaults.set(currentStreak, forKey: Key.currentStreak)
+    }
+
+    /// previous の翌日が today なら連続とみなす（JST 基準）
+    private static func isConsecutive(previous: String, today: String) -> Bool {
+        guard let previousDate = DateFormatter.jstDate.date(from: previous) else { return false }
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo") ?? .current
+        guard let nextDate = calendar.date(byAdding: .day, value: 1, to: previousDate) else { return false }
+        return DateFormatter.jstDate.string(from: nextDate) == today
     }
 }
 

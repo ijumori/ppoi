@@ -21,5 +21,7 @@ final class QuoteViewModel {
         } catch {
             quote = store.cachedQuote(for: DateFormatter.jstDate.string(from: Date())) ?? .placeholder
         }
+
+        store.registerTodayVisit()
     }
 }
