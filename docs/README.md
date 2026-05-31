@@ -22,6 +22,7 @@
 | [redesign/phase-01-planning.md](redesign/phase-01-planning.md) | 企画（ペルソナ/課題/競合/収益/MVP） |
 | [redesign/phase-02-requirements-design.md](redesign/phase-02-requirements-design.md) | 要件・設計（機能要件/画面/遷移図/データモデル/API/WBS） |
 | [redesign/v1.1-design.md](redesign/v1.1-design.md) | v1.1 詳細設計（創作明示/お気に入り/ストリーク） |
+| [redesign/v1.2-design.md](redesign/v1.2-design.md) | v1.2 詳細設計（今日の格言ウィジェット） |
 | [redesign/checklist.md](redesign/checklist.md) | 開発リリースチェックリスト（Phase 01〜08） |
 
 ## ガイド（セットアップ・運用）

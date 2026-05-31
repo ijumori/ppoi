@@ -49,6 +49,7 @@ targets:
         product: FirebaseAppCheck
       - package: GoogleMobileAds
         product: GoogleMobileAds
+      - target: PPOIWidget
     info:
       path: PPOI/Resources/Info.plist
       properties:
@@ -68,6 +69,7 @@ targets:
         TARGETED_DEVICE_FAMILY: "1"
         PRODUCT_BUNDLE_IDENTIFIER: com.takahiro.ppoi
         GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_ENTITLEMENTS: PPOI/Resources/PPOI.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         CODE_SIGN_STYLE: Automatic
@@ -103,6 +105,26 @@ targets:
         Debug:
           SWIFT_OPTIMIZATION_LEVEL: "-Onone"
           SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+
+  PPOIWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: PPOIWidget
+        excludes:
+          - "**/.DS_Store"
+          - "**/Info.plist"
+      - path: PPOI/Core/Persistence/SharedQuoteStore.swift
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: "1"
+        PRODUCT_BUNDLE_IDENTIFIER: com.takahiro.ppoi.PPOIWidget
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: PPOIWidget/Info.plist
+        CODE_SIGN_ENTITLEMENTS: PPOIWidget/PPOIWidget.entitlements
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: NXFZ5AUX62
+        SWIFT_VERSION: "5.0"
 
   PPOIScreenshotTests:
     type: bundle.unit-test

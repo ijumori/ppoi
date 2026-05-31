@@ -1,4 +1,5 @@
 import Foundation
+import WidgetKit
 
 @Observable
 final class QuoteViewModel {
@@ -23,5 +24,13 @@ final class QuoteViewModel {
         }
 
         store.registerTodayVisit()
+        syncWidget()
+    }
+
+    /// 取得済みの今日の格言を App Group へ書き出し、ウィジェットを更新する
+    private func syncWidget() {
+        guard let quote else { return }
+        SharedQuoteStore.save(date: quote.date, text: quote.text)
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
