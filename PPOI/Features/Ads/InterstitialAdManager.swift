@@ -30,6 +30,8 @@ final class InterstitialAdManager: NSObject {
     }
 
     func showIfReady() {
+        guard !StoreManager.shared.isPurchased else { return }
+
         guard let interstitial else {
             preload()
             return
@@ -46,6 +48,7 @@ final class InterstitialAdManager: NSObject {
 
     /// 共有シート閉鎖後に呼ぶ（未ロードなら短い遅延で再試行）
     func showAfterShare() {
+        guard !StoreManager.shared.isPurchased else { return }
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(600))
             if interstitial != nil {

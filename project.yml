@@ -147,6 +147,7 @@ schemes:
         PPOI: all
     run:
       config: Debug
+      storeKitConfiguration: PPOI.storekit
     test:
       targets:
         - PPOIScreenshotTests
