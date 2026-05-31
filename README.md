@@ -29,7 +29,8 @@ PPOI/                    # iOS アプリ（SwiftUI）
 └── Resources/
 
 docs/
-├── phases/              # 00〜08 開発フェーズ
+├── phases/              # 00〜08 開発フェーズ（v1 出荷版）
+├── redesign/            # 企画・要件の再設計（次バージョン検討）
 ├── guides/              # Firebase, AdMob, セキュリティ, リリース
 ├── design/              # UI 参照画像
 ├── screenshots/         # App Store 素材
@@ -54,6 +55,7 @@ fastlane/                # App Store メタデータ
 - [開発手順](docs/phases/00-development-process.md)
 - [要件定義](docs/phases/01-requirements.md)
 - [TestFlight / リリース](docs/phases/08-app-store-release.md)
+- [再設計（企画・要件）](docs/redesign/00-overview.md)
 
 ## Bundle ID
 

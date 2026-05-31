@@ -14,6 +14,16 @@
 | [phases/07-testing-checklist.md](phases/07-testing-checklist.md) | 実機テスト |
 | [phases/08-app-store-release.md](phases/08-app-store-release.md) | App Store / TestFlight |
 
+## 再設計（企画・要件 / 次バージョン検討）
+
+| ファイル | 内容 |
+|----------|------|
+| [redesign/00-overview.md](redesign/00-overview.md) | 全体像・再設計ゴール・v1 との関係 |
+| [redesign/phase-01-planning.md](redesign/phase-01-planning.md) | 企画（ペルソナ/課題/競合/収益/MVP） |
+| [redesign/phase-02-requirements-design.md](redesign/phase-02-requirements-design.md) | 要件・設計（機能要件/画面/遷移図/データモデル/API/WBS） |
+| [redesign/v1.1-design.md](redesign/v1.1-design.md) | v1.1 詳細設計（創作明示/お気に入り/ストリーク） |
+| [redesign/checklist.md](redesign/checklist.md) | 開発リリースチェックリスト（Phase 01〜08） |
+
 ## ガイド（セットアップ・運用）
 
 | ファイル | 内容 |
