@@ -115,6 +115,7 @@
 - **再設計**: 企画・要件をガイド準拠でゼロベース再構築（ペルソナ/競合/収益/MVP/WBS）
 - **v1.1**: ✅ 実装済 — 創作明示 / お気に入り / ストリーク（`docs/redesign/v1.1-design.md`）
 - **v1.2**: ✅ 実装済 — 今日の格言ウィジェット（`docs/redesign/v1.2-design.md`）
-- **v2.0**: ⬜ 未着手 — 買い切り課金（W5〜W8）
-- **要対応**: Mac で `xcodegen generate` → ビルド/実機確認（ウィジェットは App Groups の有効化が前提）
+- **v2.0**: ✅ 実装済 — 買い切り課金 StoreKit 2（`docs/redesign/v2.0-design.md`）
+- **WBS**: W1〜W8 全タスク実装完了
+- **要対応（Mac/ASC）**: `xcodegen generate` → ビルド/実機・Sandbox確認 / App Groups `group.com.takahiro.ppoi` 有効化 / IAP `com.takahiro.ppoi.premium`(¥400) 作成
 - **更新日**: 2026-06-01

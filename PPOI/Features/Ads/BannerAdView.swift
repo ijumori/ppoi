@@ -3,21 +3,27 @@ import SwiftUI
 import UIKit
 
 struct BannerAdView: View {
-    var body: some View {
-        VStack(spacing: 0) {
-            #if DEBUG
-            if AdMobCompliance.isTestMode {
-                Text("TEST AD — クリック禁止（開発用）")
-                    .font(.caption2.weight(.bold))
-                    .foregroundStyle(.orange)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 2)
-                    .background(Color.orange.opacity(0.15))
-            }
-            #endif
+    @Environment(StoreManager.self) private var store
 
-            BannerAdRepresentable()
-                .frame(height: 50)
+    var body: some View {
+        if store.isPurchased {
+            EmptyView()
+        } else {
+            VStack(spacing: 0) {
+                #if DEBUG
+                if AdMobCompliance.isTestMode {
+                    Text("TEST AD — クリック禁止（開発用）")
+                        .font(.caption2.weight(.bold))
+                        .foregroundStyle(.orange)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 2)
+                        .background(Color.orange.opacity(0.15))
+                }
+                #endif
+
+                BannerAdRepresentable()
+                    .frame(height: 50)
+            }
         }
     }
 }

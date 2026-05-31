@@ -131,4 +131,5 @@ struct QuoteView: View {
 #Preview {
     QuoteView()
         .environment(AppState())
+        .environment(StoreManager.shared)
 }

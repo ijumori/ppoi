@@ -1,0 +1,32 @@
+{
+  "identifier" : "PPOI-StoreKit-Config",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "400",
+      "familyShareable" : false,
+      "internalID" : "PREMIUM0001",
+      "localizations" : [
+        {
+          "description" : "広告を除去し、全機能を解放する買い切りプラン。",
+          "displayName" : "っぽい格言 プレミアム",
+          "locale" : "ja_JP"
+        }
+      ],
+      "productID" : "com.takahiro.ppoi.premium",
+      "referenceName" : "Premium (Ad Removal)",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "ja_JP",
+    "_storefront" : "JPN",
+    "_storeKitErrors" : []
+  },
+  "subscriptionGroups" : [],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

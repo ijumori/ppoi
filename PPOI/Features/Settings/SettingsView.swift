@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(AppState.self) private var appState
+    @Environment(StoreManager.self) private var store
     @Environment(\.dismiss) private var dismiss
 
     private let notificationService = NotificationService()
@@ -54,6 +55,22 @@ struct SettingsView: View {
                         FavoritesView()
                     } label: {
                         Label("お気に入り", systemImage: "heart")
+                    }
+                }
+
+                Section("プレミアム") {
+                    if store.isPurchased {
+                        Label("購入済み（広告なし）", systemImage: "checkmark.seal.fill")
+                            .foregroundStyle(.green)
+                    } else {
+                        NavigationLink {
+                            PaywallView()
+                        } label: {
+                            Label("広告を除去（買い切り）", systemImage: "crown")
+                        }
+                        Button("購入を復元") {
+                            Task { await store.restore() }
+                        }
                     }
                 }
             }
@@ -134,4 +151,5 @@ private struct SettingsSelectionRowButtonStyle: ButtonStyle {
 #Preview {
     SettingsView()
         .environment(AppState())
+        .environment(StoreManager.shared)
 }

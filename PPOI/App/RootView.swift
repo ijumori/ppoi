@@ -28,11 +28,13 @@ struct RootView: View {
             }
         }
         .environment(appState)
+        .environment(StoreManager.shared)
         .preferredColorScheme(appState.store.selectedTheme == .darkPremium ? .dark : nil)
         .animation(.easeInOut(duration: 0.3), value: appState.hasCompletedOnboarding)
         .onAppear {
             performSecurityCheck()
             observeScreenCapture()
+            StoreManager.shared.start()
         }
         .onReceive(
             NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)
