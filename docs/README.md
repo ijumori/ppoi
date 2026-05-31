@@ -23,6 +23,7 @@
 | [redesign/phase-02-requirements-design.md](redesign/phase-02-requirements-design.md) | 要件・設計（機能要件/画面/遷移図/データモデル/API/WBS） |
 | [redesign/v1.1-design.md](redesign/v1.1-design.md) | v1.1 詳細設計（創作明示/お気に入り/ストリーク） |
 | [redesign/v1.2-design.md](redesign/v1.2-design.md) | v1.2 詳細設計（今日の格言ウィジェット） |
+| [redesign/v2.0-design.md](redesign/v2.0-design.md) | v2.0 詳細設計（買い切り課金） |
 | [redesign/checklist.md](redesign/checklist.md) | 開発リリースチェックリスト（Phase 01〜08） |
 
 ## ガイド（セットアップ・運用）

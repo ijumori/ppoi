@@ -33,8 +33,7 @@
 ## Phase 05 — 開発
 - ✅ アーキテクチャに従い実装（SwiftUI + MVVM、Features/Core）
 - ✅ セキュリティ・メモリ管理を考慮（`docs/guides/security.md`）
-- ✅ 再設計 WBS W1〜W4 実装（v1.1 / v1.2）
-- ⬜ W5〜W8（買い切り課金、v2.0）
+- ✅ 再設計 WBS W1〜W8 実装（v1.1 / v1.2 / v2.0）
 - 🟡 実機ビルド未検証（Mac で `xcodegen generate` → ビルド要）
 
 ## Phase 06 — テスト
@@ -46,7 +45,8 @@
 - ✅ スクリーンショット・メタデータ準備完了（`fastlane/` / `docs/guides/app-store-metadata.md`）
 - ✅ プライバシー情報・プライバシーポリシーページ用意（`docs/legal/`、GitHub Pages公開）
 - 🟡 App Privacy（データ収集申告） — Firebase Console / ASC 設定確認
-- ⬜ 課金導入時：App内課金の審査メタデータ（W5着手時）
+- ⬜ App内課金 `com.takahiro.ppoi.premium`(¥400) を ASC 作成・審査メタデータ登録（v2.0）
+- ⬜ App Groups `group.com.takahiro.ppoi` を App ID で有効化（v1.2 ウィジェット）
 
 ## Phase 08 — 運用
 - ⬜ Analytics 設定（Firebase Analytics / App Store Connect 計測）
@@ -56,9 +56,10 @@
 - ⬜ ユーザー離脱ポイントのファネル分析
 
 ## 次アクション（優先順）
-1. ✅ Phase 01 の収益モデル・ペルソナ・MVP を承認（2026-05-31）。
-2. v1.1 スコープ（W1〜W3）の詳細設計 → [`v1.1-design.md`](v1.1-design.md)。次は実装着手。
-3. Phase 08 の Analytics/Crashlytics を運用開始前に導入。
+1. ✅ Phase 01 の承認、v1.1/v1.2/v2.0（W1〜W8）実装完了。
+2. ⬜ Mac で `xcodegen generate` → ビルド/実機・Sandbox 確認（最優先）。
+3. ⬜ ASC: IAP `com.takahiro.ppoi.premium`、App Groups `group.com.takahiro.ppoi` の設定。
+4. ⬜ Phase 08 の Analytics/Crashlytics 導入、ASO 戦略策定。
 
 ## 変更履歴
 
