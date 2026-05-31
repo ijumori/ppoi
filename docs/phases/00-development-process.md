@@ -117,5 +117,5 @@
 - **v1.2**: ✅ 実装済 — 今日の格言ウィジェット（`docs/redesign/v1.2-design.md`）
 - **v2.0**: ✅ 実装済 — 買い切り課金 StoreKit 2（`docs/redesign/v2.0-design.md`）
 - **WBS**: W1〜W8 全タスク実装完了
-- **要対応（Mac/ASC）**: `xcodegen generate` → ビルド/実機・Sandbox確認 / App Groups `group.com.takahiro.ppoi` 有効化 / IAP `com.takahiro.ppoi.premium`(¥400) 作成
+- **要対応（Mac/ASC）**: `xcodegen generate` → ビルド/実機・Sandbox確認 / App Groups `group.com.takahiro.ppoi` 有効化 / IAP `com.takahiro.ppoi.premium`(¥400) 作成 → 詳細は [`docs/redesign/next-steps.md`](../redesign/next-steps.md)
 - **更新日**: 2026-06-01
