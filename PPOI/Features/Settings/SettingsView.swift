@@ -48,6 +48,14 @@ struct SettingsView: View {
                     }
                     .pickerStyle(.menu)
                 }
+
+                Section {
+                    NavigationLink {
+                        FavoritesView()
+                    } label: {
+                        Label("お気に入り", systemImage: "heart")
+                    }
+                }
             }
             .navigationTitle("設定")
             .navigationBarTitleDisplayMode(.inline)

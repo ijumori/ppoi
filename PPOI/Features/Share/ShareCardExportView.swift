@@ -54,7 +54,7 @@ struct ShareCardExportView: View {
                         .font(.system(size: 28, weight: .semibold))
                         .foregroundStyle(colors.accent)
                     Spacer()
-                    Text("っぽい格言")
+                    Text("っぽい格言・AI創作")
                         .font(.system(size: 24))
                         .foregroundStyle(colors.accent.opacity(0.75))
                 }

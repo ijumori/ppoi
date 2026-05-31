@@ -21,6 +21,12 @@ struct QuoteView: View {
                                 .font(.caption)
                                 .foregroundStyle(colors.accent)
 
+                            if appState.store.currentStreak >= 2 {
+                                Label("\(appState.store.currentStreak)日連続", systemImage: "flame.fill")
+                                    .font(.caption.weight(.semibold))
+                                    .foregroundStyle(colors.accent)
+                            }
+
                             Text("今日の「っぽい格言」")
                                 .font(.title3.weight(.semibold))
                                 .foregroundStyle(colors.accent.opacity(0.9))
@@ -32,6 +38,10 @@ struct QuoteView: View {
                                 .padding(.horizontal, 24)
                                 .opacity(viewModel.appeared ? 1 : 0)
                                 .animation(.easeIn(duration: 0.6), value: viewModel.appeared)
+
+                            Text("AIが紡ぐ創作格言")
+                                .font(.caption2)
+                                .foregroundStyle(colors.accent.opacity(0.6))
                         }
                     } else if viewModel.isLoading {
                         ProgressView()
@@ -57,6 +67,17 @@ struct QuoteView: View {
                 }
             }
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    if let quote = viewModel.quote {
+                        Button {
+                            appState.store.toggleFavorite(quote)
+                        } label: {
+                            Image(systemName: appState.store.isFavorite(quote) ? "heart.fill" : "heart")
+                                .foregroundStyle(colors.accent)
+                        }
+                        .accessibilityLabel(appState.store.isFavorite(quote) ? "お気に入り解除" : "お気に入りに追加")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         viewModel.showSettings = true

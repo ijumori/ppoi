@@ -39,6 +39,12 @@ struct OnboardingView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
 
+            Text("※ AIが作る、それっぽい創作です。実在の名言ではありません。")
+                .font(.footnote)
+                .foregroundStyle(colors.primaryText.opacity(0.55))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 32)
+
             Spacer()
 
             Button {
