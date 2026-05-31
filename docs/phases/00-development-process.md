@@ -105,10 +105,16 @@
 
 ## 現在の進捗
 
-- **フェーズ**: Phase 8 — リリース準備
+- **フェーズ**: Phase 8 — リリース準備 + 次バージョン開発
 - **Phase 1〜7**: ✅ 完了
 - **Phase 8**: TestFlight **1.0.0 (1)** Upload済・輸出コンプライアンス **審査待ち**
-- **次**: ビルド **テスト可能** → iPhone TestFlight インストール → §8.4〜8.6 → 審査提出
 - **8.3 Pages**: ✅ https://ijumori.github.io/ppoi/legal/privacy-policy.html
-- **成果物**: `docs/phases/08-app-store-release.md`, `docs/legal/`, `docs/guides/app-store-metadata.md`
-- **更新日**: 2026-05-20
+
+### 再設計・次バージョン（`docs/redesign/`）
+
+- **再設計**: 企画・要件をガイド準拠でゼロベース再構築（ペルソナ/競合/収益/MVP/WBS）
+- **v1.1**: ✅ 実装済 — 創作明示 / お気に入り / ストリーク（`docs/redesign/v1.1-design.md`）
+- **v1.2**: ✅ 実装済 — 今日の格言ウィジェット（`docs/redesign/v1.2-design.md`）
+- **v2.0**: ⬜ 未着手 — 買い切り課金（W5〜W8）
+- **要対応**: Mac で `xcodegen generate` → ビルド/実機確認（ウィジェットは App Groups の有効化が前提）
+- **更新日**: 2026-06-01
