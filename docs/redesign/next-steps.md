@@ -1,8 +1,8 @@
 # 残作業・引き継ぎ（Mac / Apple Developer 必須）
 
 > 企画・要件の再設計と機能実装（WBS W1〜W8 = v1.1 / v1.2 / v2.0）はコードレベルで完了済み。
-> **以降はすべて Mac / Apple Developer / App Store Connect が必要**で、Windows 環境では実行できない。ここが本当の停止点。
-> 最終更新: 2026-06-01 / 対象ブランチ: `main`
+> Mac 環境で xcodegen → シミュレータビルド・Firestore 連携確認済み。Cloud Functions デプロイ済み。
+> 最終更新: 2026-06-04 / 対象ブランチ: `main`
 
 ## ここまでの完了状況
 
@@ -11,15 +11,20 @@
 - v1.2: 今日の格言ウィジェット（`v1.2-design.md`）
 - v2.0: 買い切り課金 StoreKit 2（`v2.0-design.md`）
 - すべて `main` にマージ・GitHub へ push 済み
+- xcodegen generate → シミュレータビルド成功（PPOIWidget 含む）
+- Firestore 格言データ投入（11件 seed、2026-06-04〜06-14）
+- Cloud Functions デプロイ済み（毎日 0:00 JST 自動生成 + 手動エンドポイント）
+- Firebase Blaze プラン移行・シークレット設定済み
 
 ## 残作業（優先順）
 
-### 1. ビルド/実機確認（最優先）
-- `xcodegen generate` でプロジェクト再生成（新規ファイル・新ターゲット PPOIWidget を取り込み）
-- Xcode でビルド → iPhone 実機 / Sandbox で動作確認
+### 1. ビルド/実機確認 — シミュレータ完了、実機は App Groups 待ち
+- ✅ `xcodegen generate` でプロジェクト再生成済み
+- ✅ シミュレータビルド・Firestore 連携確認済み（格言表示OK）
+- ⬜ iPhone 実機 / Sandbox で動作確認（App Groups 有効化後）
 - 確認対象: お気に入り、ストリーク、創作明示、ウィジェット、課金（購入/復元/広告非表示）
 
-### 2. Apple Developer: App Groups 有効化（ウィジェット前提）
+### 2. Apple Developer: App Groups 有効化（実機ビルドのブロッカー）
 - App ID に **App Groups** ケイパビリティを有効化し `group.com.takahiro.ppoi` を作成
 - Xcode 自動署名で App / Widget 両ターゲットに割当
 - 未設定だとウィジェットとアプリ間で今日の格言が共有されない
@@ -29,10 +34,12 @@
 - 審査用メタデータ（表示名・説明・スクショ）を登録
 - Sandbox で購入・復元を検証
 
-### 4. 運用（リリース後）
-- Firebase Analytics / App Store Connect で計測
-- Firebase Crashlytics 導入
-- ASO 戦略（キーワード・スクショ A/B）
+### 4. 運用 — Cloud Functions デプロイ済み
+- ✅ Cloud Functions: 毎日 0:00 JST に Claude で格言自動生成 → Firestore 保存
+- ✅ Firestore seed データ投入済み（11件、2026-06-04〜06-14）
+- ⬜ Firebase Analytics / App Store Connect で計測
+- ⬜ Firebase Crashlytics 導入
+- ⬜ ASO 戦略（キーワード・スクショ A/B）
 
 ## 関連ドキュメント
 

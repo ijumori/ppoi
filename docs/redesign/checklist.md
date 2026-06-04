@@ -22,7 +22,7 @@
 - ✅ Apple Developer 登録済み
 - ✅ Xcode最新版・Bundle ID 設定済み（`com.takahiro.ppoi`）
 - ✅ パッケージマネージャ設定済み（SPM: Firebase / GoogleMobileAds）
-- ⬜ WidgetKit 用 App Group 設定（W4 着手時）
+- 🟡 WidgetKit 用 App Group 設定（Apple Developer Portal で有効化が必要）
 
 ## Phase 04 — デザイン
 - ✅ HIG準拠・ダークモード対応
@@ -34,7 +34,8 @@
 - ✅ アーキテクチャに従い実装（SwiftUI + MVVM、Features/Core）
 - ✅ セキュリティ・メモリ管理を考慮（`docs/guides/security.md`）
 - ✅ 再設計 WBS W1〜W8 実装（v1.1 / v1.2 / v2.0）
-- 🟡 実機ビルド未検証（Mac で `xcodegen generate` → ビルド要）
+- ✅ シミュレータビルド・Firestore データ取得確認済み
+- 🟡 実機ビルドは App Groups 有効化後に検証
 
 ## Phase 06 — テスト
 - 🟡 UnitTest / UITest 実装（拡充余地あり）
@@ -49,6 +50,9 @@
 - ⬜ App Groups `group.com.takahiro.ppoi` を App ID で有効化（v1.2 ウィジェット）
 
 ## Phase 08 — 運用
+- ✅ Cloud Functions 自動配信セットアップ（毎日 0:00 JST に Claude で格言生成）
+- ✅ Firestore 格言データ投入（11件 seed 済み + 自動生成で継続）
+- ✅ Firebase Blaze プラン移行済み
 - ⬜ Analytics 設定（Firebase Analytics / App Store Connect 計測）
 - ⬜ Crashlytics 設定
 - 🟡 ASO戦略（キーワード・スクショA/B）— 初期メタデータあり、戦略は要策定
@@ -57,12 +61,16 @@
 
 ## 次アクション（優先順）
 1. ✅ Phase 01 の承認、v1.1/v1.2/v2.0（W1〜W8）実装完了。
-2. ⬜ Mac で `xcodegen generate` → ビルド/実機・Sandbox 確認（最優先）。
-3. ⬜ ASC: IAP `com.takahiro.ppoi.premium`、App Groups `group.com.takahiro.ppoi` の設定。
-4. ⬜ Phase 08 の Analytics/Crashlytics 導入、ASO 戦略策定。
+2. ✅ `xcodegen generate` → シミュレータビルド・Firestore 連携確認完了。
+3. ✅ Cloud Functions デプロイ・Firestore 格言データ投入完了。
+4. ⬜ Apple Developer: App Groups `group.com.takahiro.ppoi` 有効化（実機ビルドのブロッカー）。
+5. ⬜ ASC: 年齢レーティング・App Privacy・カテゴリ設定。
+6. ⬜ ASC: IAP `com.takahiro.ppoi.premium`（¥400）作成。
+7. ⬜ 実機テスト → 審査再提出。
 
 ## 変更履歴
 
 | 日付 | 内容 |
 |------|------|
+| 2026-06-04 | Firestore投入・Cloud Functions・シミュレータ確認を反映 |
 | 2026-05-31 | チェックリスト作成（Phase01-08、v1実績+再設計視点） |

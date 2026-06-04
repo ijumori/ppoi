@@ -16,22 +16,28 @@
 		27927917E5BF789D39657283 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8DEC05962BCB1FFB6ED0B3 /* AppTheme.swift */; };
 		3C2C7BB82E3B17FD0420AFD5 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 773222A9BF038F22B2468A43 /* FirebaseAppCheck */; };
 		3FA48DA650605866E1220910 /* SecurityGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3126C00621087A315C8F3 /* SecurityGuard.swift */; };
+		41599B81F10892508CF80ABB /* SharedQuoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4439C1AA10684941D7D93C3E /* SharedQuoteStore.swift */; };
 		4D34207FCF7ABEE2A2C85FD1 /* ShareImageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B12EA70D5A6FEC5732CE4 /* ShareImageSpec.swift */; };
 		530018EBB479EE1F0CF7429E /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3900BBD69D3D51ADE7449DA8 /* ScreenshotExportTests.swift */; };
 		5E661A54DA6D69BA2B456379 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12366567DCABE2230E36064 /* SettingsView.swift */; };
 		65D531CEECE49D641885C0E4 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D4E441E5CD4361296EF5C7 /* QuoteView.swift */; };
 		67CDCA37DF7016399EE9B201 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D425574337D98F126E997B31 /* OnboardingView.swift */; };
 		68DD63FD087328DC6555A777 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C0E0B81DD81B866FA76C732C /* FirebaseFirestore */; };
+		6A4DDCDE73D70F190700FAC2 /* PPOIWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 97C2BB1018151F2611C15818 /* PPOIWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7476FAFE2462043448F500D8 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7B92BEE30CCABC685EBFEA /* BannerAdView.swift */; };
 		7ADB89160F188F6A8945354D /* PPOIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D8E6A99300F6695F1011A8 /* PPOIApp.swift */; };
 		7B846251038820F4DD1E8D99 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 872C270942B4BAD826A8B4FD /* PrivacyInfo.xcprivacy */; };
 		7CAFF5EB213D3D115B31EE43 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 63CADF8F9BC9456177AF044E /* GoogleMobileAds */; };
 		80A246980DF4C07B775DE66D /* QuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2AA05EE3B9B02E08086CD /* QuoteService.swift */; };
+		84C48E0F0FF38110672C6AAB /* SharedQuoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4439C1AA10684941D7D93C3E /* SharedQuoteStore.swift */; };
+		8508E9A0565035FF4748481E /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136966B4C4FEA96E0D519B54 /* PaywallView.swift */; };
 		85BDB01AB43B744CAD1CB505 /* AdMobCompliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708397E0B484F088A6525778 /* AdMobCompliance.swift */; };
 		877837B38AFFFA35F9108E2D /* FirestoreQuoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47074C53B9067EEFA5723DEB /* FirestoreQuoteRepository.swift */; };
+		8CFC090D554A301CD18AB701 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3FF2498FB65E86DDE506CE /* FavoritesView.swift */; };
 		8F083628FD02CD2C2109EF59 /* NetworkSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129E0A18303028FBA82BBC6 /* NetworkSecurity.swift */; };
 		91EBEE0A53A9197A132332A9 /* ClipboardGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5761243E6FD31A543F916323 /* ClipboardGuard.swift */; };
 		9AA181139A10B7F894E3EF03 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8596BCF1978FD9FF0E21A31 /* QuoteViewModel.swift */; };
+		A506E5993C5C26370738C196 /* PPOIWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0E26FAAF3E15912F09DB89 /* PPOIWidget.swift */; };
 		ABC515D48EF8C07FD16B7362 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAD9927031E844CEEB55CC /* KeychainStore.swift */; };
 		B2DDD37F7B8E4C6DA32027FD /* AdMobConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECB37C104E698AF34C57C0C8 /* AdMobConfig.plist */; };
 		B38A82B8B7D72135F29F7F32 /* FirebaseBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239199C965EC3B0F0883A45D /* FirebaseBootstrap.swift */; };
@@ -44,11 +50,19 @@
 		D5CD63F646FC48EC3DC3CB7A /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032690C7BC7103662C23EBD3 /* UserDefaultsStore.swift */; };
 		D77D307690E4F4871C38D61C /* InputSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21D593F06C501F4B6377DA7 /* InputSanitizer.swift */; };
 		D869F6CA23B8EB4485A8B863 /* AdMobConfig.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = 55CE50EB4B1959DC99A644C2 /* AdMobConfig.plist.example */; };
+		DC377DBEC6CFD02070A94BFC /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3661297910F52D526EC3A0F /* StoreManager.swift */; };
 		F147770A444AB900B4AA188B /* SecureLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5D8D84E2A91F483408B27 /* SecureLogger.swift */; };
 		FC1ADA05F7E33D94940B3041 /* ShareImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5333C7F5668B3A528610929 /* ShareImageRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		ADDB6BB3592E3E8F990AE35F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A00336A35CE37449FE641411 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A75C288429942C05F0696F38;
+			remoteInfo = PPOIWidget;
+		};
 		E0E0014EA841190CF9FBE937 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A00336A35CE37449FE641411 /* Project object */;
@@ -58,10 +72,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8A8CE0A28BEC9E10272D3571 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6A4DDCDE73D70F190700FAC2 /* PPOIWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		032690C7BC7103662C23EBD3 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 		0616FC6F54125F00726DEA76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		12F3126C00621087A315C8F3 /* SecurityGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityGuard.swift; sourceTree = "<group>"; };
+		136966B4C4FEA96E0D519B54 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		1D7B92BEE30CCABC685EBFEA /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		2129E0A18303028FBA82BBC6 /* NetworkSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSecurity.swift; sourceTree = "<group>"; };
 		239199C965EC3B0F0883A45D /* FirebaseBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBootstrap.swift; sourceTree = "<group>"; };
@@ -71,6 +100,7 @@
 		3ABAD9927031E844CEEB55CC /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		3D2B94E0769FBF39153271C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		409527B251AE78247E2895D2 /* PPOIScreenshotTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PPOIScreenshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4439C1AA10684941D7D93C3E /* SharedQuoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedQuoteStore.swift; sourceTree = "<group>"; };
 		4562785C1B80CEC9C926C082 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		46B5D8D84E2A91F483408B27 /* SecureLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLogger.swift; sourceTree = "<group>"; };
 		47074C53B9067EEFA5723DEB /* FirestoreQuoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreQuoteRepository.swift; sourceTree = "<group>"; };
@@ -78,6 +108,7 @@
 		54D8E6A99300F6695F1011A8 /* PPOIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOIApp.swift; sourceTree = "<group>"; };
 		55CE50EB4B1959DC99A644C2 /* AdMobConfig.plist.example */ = {isa = PBXFileReference; path = AdMobConfig.plist.example; sourceTree = "<group>"; };
 		5761243E6FD31A543F916323 /* ClipboardGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardGuard.swift; sourceTree = "<group>"; };
+		580FF6E734D87844E9A9C0D4 /* PPOIWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PPOIWidget.entitlements; sourceTree = "<group>"; };
 		708397E0B484F088A6525778 /* AdMobCompliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobCompliance.swift; sourceTree = "<group>"; };
 		82D4E441E5CD4361296EF5C7 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		872C270942B4BAD826A8B4FD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -85,8 +116,12 @@
 		8BE0DA3BF78E327EA8549303 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
 		907611180B0FD929890D3880 /* PPOI.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PPOI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A14D291841BE4165B207D9 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		97C2BB1018151F2611C15818 /* PPOIWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = PPOIWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D3FF2498FB65E86DDE506CE /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		AB0E26FAAF3E15912F09DB89 /* PPOIWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOIWidget.swift; sourceTree = "<group>"; };
 		C1A01B180ECCAFFD86CA03DC /* ShareCardExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardExportView.swift; sourceTree = "<group>"; };
 		C5F2AA05EE3B9B02E08086CD /* QuoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteService.swift; sourceTree = "<group>"; };
+		C7276A7511EED7B31013D399 /* PPOI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PPOI.entitlements; sourceTree = "<group>"; };
 		C8D67C5A3B7757CB658FC79C /* ShareInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInputView.swift; sourceTree = "<group>"; };
 		CA2B12EA70D5A6FEC5732CE4 /* ShareImageSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageSpec.swift; sourceTree = "<group>"; };
 		D21D593F06C501F4B6377DA7 /* InputSanitizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSanitizer.swift; sourceTree = "<group>"; };
@@ -97,6 +132,7 @@
 		E78B995C5E74125775BE8BDB /* AdMobConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobConfig.swift; sourceTree = "<group>"; };
 		ECB37C104E698AF34C57C0C8 /* AdMobConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = AdMobConfig.plist; sourceTree = "<group>"; };
 		F12366567DCABE2230E36064 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F3661297910F52D526EC3A0F /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		F5333C7F5668B3A528610929 /* ShareImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +150,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23430E2A6510C397E129A710 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				9D3FF2498FB65E86DDE506CE /* FavoritesView.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
 		2753EACBFE2AB3F2B9E83C82 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +205,7 @@
 			children = (
 				2ED4E3E40BFDC1BA7D003932 /* PPOI */,
 				8AA9AC35A9C833EB6E76E897 /* PPOIScreenshotTests */,
+				C0D9AB6AAE02587C458175CE /* PPOIWidget */,
 				7B40310CAF70FD934921AC47 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -173,6 +218,7 @@
 				3D2B94E0769FBF39153271C5 /* Assets.xcassets */,
 				4562785C1B80CEC9C926C082 /* GoogleService-Info.plist */,
 				0616FC6F54125F00726DEA76 /* Info.plist */,
+				C7276A7511EED7B31013D399 /* PPOI.entitlements */,
 				872C270942B4BAD826A8B4FD /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
@@ -189,6 +235,7 @@
 		55E8C07544A95A9A62C40E93 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				4439C1AA10684941D7D93C3E /* SharedQuoteStore.swift */,
 				032690C7BC7103662C23EBD3 /* UserDefaultsStore.swift */,
 			);
 			path = Persistence;
@@ -217,6 +264,7 @@
 			children = (
 				907611180B0FD929890D3880 /* PPOI.app */,
 				409527B251AE78247E2895D2 /* PPOIScreenshotTests.xctest */,
+				97C2BB1018151F2611C15818 /* PPOIWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -289,16 +337,35 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		C0D9AB6AAE02587C458175CE /* PPOIWidget */ = {
+			isa = PBXGroup;
+			children = (
+				580FF6E734D87844E9A9C0D4 /* PPOIWidget.entitlements */,
+				AB0E26FAAF3E15912F09DB89 /* PPOIWidget.swift */,
+			);
+			path = PPOIWidget;
+			sourceTree = "<group>";
+		};
 		CAB745F8484AFC5F3A5D5B09 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				70E5496C4406420220377672 /* Ads */,
+				23430E2A6510C397E129A710 /* Favorites */,
 				FA7BEA4E9F52733EA348CB33 /* Onboarding */,
+				FDEB694F5A9E8ED1C4726D52 /* Purchase */,
 				B771FB9A5B84B903E4E64553 /* Quote */,
 				9F3FA51CDBF94DB540FF35BC /* Settings */,
 				2CD6FC4B53645295394D82B8 /* Share */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		CF7B089B036893738B1F8D18 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				F3661297910F52D526EC3A0F /* StoreManager.swift */,
+			);
+			path = Purchase;
 			sourceTree = "<group>";
 		};
 		E661D3B5D8F856164FF08FDB /* Core */ = {
@@ -307,6 +374,7 @@
 				81C0F911664E1AFE314B4BF2 /* Data */,
 				33B5FF292E3CC50EB0D60416 /* Infrastructure */,
 				55E8C07544A95A9A62C40E93 /* Persistence */,
+				CF7B089B036893738B1F8D18 /* Purchase */,
 				EA46553072321D3AFFC7F009 /* Security */,
 			);
 			path = Core;
@@ -335,9 +403,34 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		FDEB694F5A9E8ED1C4726D52 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				136966B4C4FEA96E0D519B54 /* PaywallView.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A75C288429942C05F0696F38 /* PPOIWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7CD2ECFBD20F644CED32D3 /* Build configuration list for PBXNativeTarget "PPOIWidget" */;
+			buildPhases = (
+				0ACC55C106BE2CA12E085C74 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PPOIWidget;
+			packageProductDependencies = (
+			);
+			productName = PPOIWidget;
+			productReference = 97C2BB1018151F2611C15818 /* PPOIWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		EE2D9D76F039026784AF5EB7 /* PPOIScreenshotTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E69E443860C8729EAA89AB7C /* Build configuration list for PBXNativeTarget "PPOIScreenshotTests" */;
@@ -363,10 +456,12 @@
 				66022C46AC37DA89A02B0DB6 /* Sources */,
 				324A7484163708FDC6F5B035 /* Resources */,
 				7FAF1A042B91441C7C3CEB3C /* Frameworks */,
+				8A8CE0A28BEC9E10272D3571 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				472A38DD7646B099D88C5000 /* PBXTargetDependency */,
 			);
 			name = PPOI;
 			packageProductDependencies = (
@@ -387,6 +482,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					A75C288429942C05F0696F38 = {
+						DevelopmentTeam = NXFZ5AUX62;
+						ProvisioningStyle = Automatic;
+					};
 					EE2D9D76F039026784AF5EB7 = {
 						DevelopmentTeam = NXFZ5AUX62;
 					};
@@ -416,6 +515,7 @@
 			targets = (
 				FF6EEA01DFC2EAE5FA9B39E4 /* PPOI */,
 				EE2D9D76F039026784AF5EB7 /* PPOIScreenshotTests */,
+				A75C288429942C05F0696F38 /* PPOIWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -436,6 +536,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0ACC55C106BE2CA12E085C74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A506E5993C5C26370738C196 /* PPOIWidget.swift in Sources */,
+				84C48E0F0FF38110672C6AAB /* SharedQuoteStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66022C46AC37DA89A02B0DB6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -445,6 +554,7 @@
 				27927917E5BF789D39657283 /* AppTheme.swift in Sources */,
 				7476FAFE2462043448F500D8 /* BannerAdView.swift in Sources */,
 				91EBEE0A53A9197A132332A9 /* ClipboardGuard.swift in Sources */,
+				8CFC090D554A301CD18AB701 /* FavoritesView.swift in Sources */,
 				B38A82B8B7D72135F29F7F32 /* FirebaseBootstrap.swift in Sources */,
 				877837B38AFFFA35F9108E2D /* FirestoreQuoteRepository.swift in Sources */,
 				D77D307690E4F4871C38D61C /* InputSanitizer.swift in Sources */,
@@ -454,6 +564,7 @@
 				16400909D3C81202D8B95355 /* NotificationService.swift in Sources */,
 				67CDCA37DF7016399EE9B201 /* OnboardingView.swift in Sources */,
 				7ADB89160F188F6A8945354D /* PPOIApp.swift in Sources */,
+				8508E9A0565035FF4748481E /* PaywallView.swift in Sources */,
 				0DBDFD7FCFCE40F704155E71 /* Quote.swift in Sources */,
 				80A246980DF4C07B775DE66D /* QuoteService.swift in Sources */,
 				65D531CEECE49D641885C0E4 /* QuoteView.swift in Sources */,
@@ -469,6 +580,8 @@
 				4D34207FCF7ABEE2A2C85FD1 /* ShareImageSpec.swift in Sources */,
 				BE16E45804404936A13914D2 /* ShareInputView.swift in Sources */,
 				1CF62DE569E44E690070E0A8 /* SharePreviewView.swift in Sources */,
+				41599B81F10892508CF80ABB /* SharedQuoteStore.swift in Sources */,
+				DC377DBEC6CFD02070A94BFC /* StoreManager.swift in Sources */,
 				D5CD63F646FC48EC3DC3CB7A /* UserDefaultsStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +597,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		472A38DD7646B099D88C5000 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A75C288429942C05F0696F38 /* PPOIWidget */;
+			targetProxy = ADDB6BB3592E3E8F990AE35F /* PBXContainerItemProxy */;
+		};
 		82FED242FC9598BF8187281C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FF6EEA01DFC2EAE5FA9B39E4 /* PPOI */;
@@ -492,6 +610,26 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		62C53CB542C29825B48EFBA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PPOIWidget/PPOIWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NXFZ5AUX62;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PPOIWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.takahiro.ppoi.PPOIWidget;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
 		72DC9721FFF0566B7190B6CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -500,6 +638,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = PPOI/Resources/PPOI.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
@@ -533,6 +672,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = PPOI/Resources/PPOI.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
@@ -560,6 +700,26 @@
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		C17E3B57BEF40DCB30FEDAA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PPOIWidget/PPOIWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NXFZ5AUX62;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PPOIWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.takahiro.ppoi.PPOIWidget;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -759,6 +919,15 @@
 			buildConfigurations = (
 				72DC9721FFF0566B7190B6CC /* Debug */,
 				B8CDCDDB6367F26776700983 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FA7CD2ECFBD20F644CED32D3 /* Build configuration list for PBXNativeTarget "PPOIWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62C53CB542C29825B48EFBA5 /* Debug */,
+				C17E3B57BEF40DCB30FEDAA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
