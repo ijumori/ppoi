@@ -60,6 +60,7 @@ targets:
           - UIInterfaceOrientationPortrait
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: false
+        NSUserTrackingUsageDescription: "広告の表示内容をあなたの興味に合わせるために使用します。許可しなくても、アプリは通常どおり利用できます。"
         UIRequiresFullScreen: true
         ITSAppUsesNonExemptEncryption: false
         # E3: Disable third-party keyboards (prevents keyloggers)

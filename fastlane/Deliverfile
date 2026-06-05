@@ -5,5 +5,18 @@ username "ijumorimori@gmail.com"
 skip_binary_upload true
 force true
 overwrite_screenshots true
-submit_for_review false
+submit_for_review true
 automatic_release false
+
+# Build number to submit
+build_number "5"
+
+# Submission compliance information
+submission_information({
+  export_compliance_uses_encryption: false,
+  add_id_info_uses_idfa: true,
+  add_id_info_serves_ads: true,
+  add_id_info_tracks_install: false,
+  add_id_info_tracks_action: false,
+  add_id_info_limits_tracking: true
+})

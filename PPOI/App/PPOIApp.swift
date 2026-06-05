@@ -31,12 +31,9 @@ struct PPOIApp: App {
         SecurityGuard.denyDebuggerAttachment()
 
         FirebaseBootstrap.configureIfNeeded()
-        AdMobCompliance.configureForLaunch()
-        GADMobileAds.sharedInstance().start { _ in
-            Task { @MainActor in
-                InterstitialAdManager.shared.preload()
-            }
-        }
+
+        // AdMob SDK initialization is deferred to after ATT dialog
+        // (see .task modifier in body)
 
         // B2: Set file protection level to Complete for the app's data directory
         setFileProtection()
@@ -45,6 +42,10 @@ struct PPOIApp: App {
     var body: some Scene {
         WindowGroup {
             RootView(appState: appState)
+                .task {
+                    // ATT dialog must appear after scene is active
+                    await TrackingPermission.requestAndInitializeAds()
+                }
         }
     }
 
