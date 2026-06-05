@@ -58,6 +58,15 @@ struct SettingsView: View {
                     }
                 }
 
+                Section("情報") {
+                    Link(destination: URL(string: "https://ijumori.github.io/ppoi/legal/privacy-policy.html")!) {
+                        Label("プライバシーポリシー", systemImage: "hand.raised")
+                    }
+                    Link(destination: URL(string: "https://ijumori.github.io/ppoi/legal/terms-of-use.html")!) {
+                        Label("利用規約", systemImage: "doc.text")
+                    }
+                }
+
                 Section("プレミアム") {
                     if store.isPurchased {
                         Label("購入済み（広告なし）", systemImage: "checkmark.seal.fill")
