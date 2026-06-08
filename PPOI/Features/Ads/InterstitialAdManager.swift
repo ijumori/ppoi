@@ -7,6 +7,7 @@ final class InterstitialAdManager: NSObject {
 
     private var interstitial: GADInterstitialAd?
     private var isLoading = false
+    private var showAfterShareTask: Task<Void, Never>?
 
     func preload() {
         guard !isLoading, interstitial == nil else { return }
@@ -51,14 +52,17 @@ final class InterstitialAdManager: NSObject {
     /// 共有シート閉鎖後に呼ぶ（未ロードなら短い遅延で再試行）
     func showAfterShare() {
         guard !StoreManager.shared.isPurchased else { return }
-        Task { @MainActor in
+        showAfterShareTask?.cancel()
+        showAfterShareTask = Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(600))
+            guard !Task.isCancelled else { return }
             guard UIApplication.shared.applicationState == .active else { return }
             if interstitial != nil {
                 showIfReady()
             } else {
                 preload()
                 try? await Task.sleep(for: .seconds(2))
+                guard !Task.isCancelled else { return }
                 guard UIApplication.shared.applicationState == .active else { return }
                 showIfReady()
             }

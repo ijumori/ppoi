@@ -19,7 +19,6 @@ final class QuoteViewModel {
         do {
             let fetched = try await quoteService.fetchTodayQuote()
             quote = fetched
-            store.cacheQuote(fetched)
         } catch {
             quote = store.cachedQuote(for: DateFormatter.jstDate.string(from: Date())) ?? .placeholder
         }

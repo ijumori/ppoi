@@ -1,0 +1,73 @@
+lane :submit_build7 do
+  api_key = app_store_connect_api_key(
+    key_id: "QYPK2U3FZ6",
+    issuer_id: "70caad3c-77d8-4702-b9cc-24779b235dc5",
+    key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_QYPK2U3FZ6.p8")
+  )
+
+  app_id = "6771264998"
+
+  # Get app
+  app = Spaceship::ConnectAPI::App.get(app_id: app_id)
+  UI.message("App: #{app.name}")
+
+  # Get edit version
+  version = app.get_edit_app_store_version
+  UI.message("Version: #{version.version_string} state=#{version.app_store_state}")
+
+  # Find Build 7 using direct API call
+  resp = Spaceship::ConnectAPI.get_builds(
+    filter: { app: app_id, version: "7" }
+  )
+  build = resp.to_models.first
+  UI.user_error!("Build 7 not found!") unless build
+  UI.message("Build 7: id=#{build.id} processing=#{build.processing_state}")
+
+  # Select build
+  if version.build.nil?
+    UI.message("Selecting Build 7...")
+    version.select_build(build_id: build.id)
+    UI.success("Build 7 selected!")
+  else
+    UI.message("Build already selected: #{version.build.version}")
+  end
+
+  # Cancel any unresolved submissions
+  subs = Spaceship::ConnectAPI.get_review_submissions(
+    app_id: app_id,
+    filter: { state: "READY_FOR_REVIEW,WAITING_FOR_REVIEW,IN_REVIEW,UNRESOLVED_ISSUES" }
+  ).to_models
+  subs.each do |s|
+    UI.message("Existing submission: #{s.id} state=#{s.state}")
+    if s.state == "UNRESOLVED_ISSUES"
+      Spaceship::ConnectAPI.patch_review_submission(
+        review_submission_id: s.id,
+        attributes: { canceled: true }
+      )
+      UI.message("Canceled.")
+    end
+  end
+
+  # Create review submission
+  UI.message("Creating review submission...")
+  sub_resp = Spaceship::ConnectAPI.post_review_submission(
+    app_id: app_id,
+    platform: "IOS"
+  )
+  sub = sub_resp.to_models.first
+  UI.message("Submission created: #{sub.id}")
+
+  # Add version item
+  Spaceship::ConnectAPI.post_review_submission_item(
+    review_submission_id: sub.id,
+    app_store_version_id: version.id
+  )
+  UI.message("Version item added.")
+
+  # Submit for review
+  Spaceship::ConnectAPI.patch_review_submission(
+    review_submission_id: sub.id,
+    attributes: { submitted: true }
+  )
+  UI.success("🎉 SUBMITTED FOR APP STORE REVIEW!")
+end

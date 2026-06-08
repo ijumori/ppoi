@@ -63,7 +63,6 @@ struct ShareCardExportView: View {
             }
         }
         .frame(width: ShareImageSpec.width, height: ShareImageSpec.height)
-        .clipShape(RoundedRectangle(cornerRadius: 0))
     }
 
     @ViewBuilder

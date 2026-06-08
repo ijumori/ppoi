@@ -3,12 +3,14 @@ import SwiftUI
 
 @Observable
 final class AppState {
-    var store = UserDefaultsStore()
+    var store: UserDefaultsStore
 
     var hasCompletedOnboarding: Bool
 
     init() {
-        hasCompletedOnboarding = UserDefaultsStore().hasCompletedOnboarding
+        let defaults = UserDefaultsStore()
+        store = defaults
+        hasCompletedOnboarding = defaults.hasCompletedOnboarding
     }
 
     func finishOnboarding(requestNotification: Bool) {
@@ -32,8 +34,8 @@ struct PPOIApp: App {
 
         FirebaseBootstrap.configureIfNeeded()
 
-        // AdMob SDK initialization is deferred to after ATT dialog
-        // (see .task modifier in body)
+        // AdMob SDK initialization is deferred to .task in body
+        // (UMP consent must run after scene is active)
 
         // B2: Set file protection level to Complete for the app's data directory
         setFileProtection()
@@ -43,7 +45,6 @@ struct PPOIApp: App {
         WindowGroup {
             RootView(appState: appState)
                 .task {
-                    // ATT dialog must appear after scene is active
                     await TrackingPermission.requestAndInitializeAds()
                 }
         }

@@ -14,7 +14,7 @@ struct FavoritesView: View {
             } else {
                 ForEach(appState.store.favorites) { quote in
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(displayDate(quote.date))
+                        Text(quote.displayDate)
                             .font(.caption)
                             .foregroundStyle(.secondary)
                         Text(quote.text)
@@ -31,11 +31,6 @@ struct FavoritesView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
-    /// "yyyy-MM-dd" を "yyyy年M月d日" に整形（失敗時はそのまま）
-    private func displayDate(_ raw: String) -> String {
-        guard let date = DateFormatter.jstDate.date(from: raw) else { return raw }
-        return DateFormatter.jstDisplay.string(from: date)
-    }
 }
 
 #Preview {

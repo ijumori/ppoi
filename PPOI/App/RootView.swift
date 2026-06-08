@@ -112,7 +112,9 @@ struct RootView: View {
     }
 
     private func updateCapturedState() {
-        isCaptured = UIScreen.main.isCaptured
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first(where: { $0 is UIWindowScene }) as? UIWindowScene
+        isCaptured = windowScene?.screen.isCaptured ?? false
     }
 }
 
