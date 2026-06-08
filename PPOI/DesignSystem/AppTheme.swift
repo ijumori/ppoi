@@ -4,6 +4,7 @@ enum AppTheme: String, CaseIterable, Identifiable {
     case minimal
     case pop
     case darkPremium
+    case zenGold
 
     var id: String { rawValue }
 
@@ -12,8 +13,12 @@ enum AppTheme: String, CaseIterable, Identifiable {
         case .minimal: "和風ミニマル"
         case .pop: "モダン・ポップ"
         case .darkPremium: "ダーク・プレミア"
+        case .zenGold: "禅・ゴールド"
         }
     }
+
+    /// ストリーク報酬で解放されるテーマ
+    var isStreakReward: Bool { self == .zenGold }
 
     var colors: ThemeColors {
         switch self {
@@ -44,6 +49,18 @@ enum AppTheme: String, CaseIterable, Identifiable {
                 accent: Color(hex: 0xC9A962),
                 button: Color(hex: 0xC9A962),
                 gradient: nil
+            )
+        case .zenGold:
+            ThemeColors(
+                background: Color(hex: 0x1A1520),
+                primaryText: Color(hex: 0xF0E6D2),
+                accent: Color(hex: 0xD4AF37),
+                button: Color(hex: 0xD4AF37),
+                gradient: LinearGradient(
+                    colors: [Color(hex: 0x1A1520), Color(hex: 0x2D1B3D)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
             )
         }
     }

@@ -11,6 +11,10 @@ final class UserDefaultsStore {
         static let favorites = "favorites"
         static let currentStreak = "currentStreak"
         static let lastSeenDate = "lastSeenDate"
+        static let totalShareCount = "totalShareCount"
+        static let lastReviewPromptDate = "lastReviewPromptDate"
+        static let hasUnlockedStreakTheme = "hasUnlockedStreakTheme"
+        static let hasEarnedMasterTitle = "hasEarnedMasterTitle"
     }
 
     /// お気に入り保存件数の上限（UserDefaults 肥大化防止）
@@ -74,6 +78,22 @@ final class UserDefaultsStore {
         SecureQuoteCache.load(for: date)
     }
 
+    // MARK: - シェア回数
+
+    var totalShareCount: Int {
+        get { defaults.integer(forKey: Key.totalShareCount) }
+        set { defaults.set(newValue, forKey: Key.totalShareCount) }
+    }
+
+    func recordShare() {
+        totalShareCount += 1
+    }
+
+    var lastReviewPromptDate: String? {
+        get { defaults.string(forKey: Key.lastReviewPromptDate) }
+        set { defaults.set(newValue, forKey: Key.lastReviewPromptDate) }
+    }
+
     // MARK: - お気に入り（ローカルのみ）
 
     func isFavorite(_ quote: Quote) -> Bool {
@@ -109,6 +129,35 @@ final class UserDefaultsStore {
         return list
     }
 
+    // MARK: - ストリーク報酬
+
+    /// 7日連続で禅・ゴールドテーマ解放（一度解放したら永続）
+    var hasUnlockedStreakTheme: Bool {
+        get { defaults.bool(forKey: Key.hasUnlockedStreakTheme) }
+        set { defaults.set(newValue, forKey: Key.hasUnlockedStreakTheme) }
+    }
+
+    /// 30日連続で「格言マスター」称号獲得（永続）
+    var hasEarnedMasterTitle: Bool {
+        get { defaults.bool(forKey: Key.hasEarnedMasterTitle) }
+        set { defaults.set(newValue, forKey: Key.hasEarnedMasterTitle) }
+    }
+
+    /// ストリーク達成に応じて報酬を解放し、新規解放があれば true を返す
+    @discardableResult
+    func checkAndUnlockStreakRewards() -> StreakReward? {
+        if currentStreak >= 30, !hasEarnedMasterTitle {
+            hasEarnedMasterTitle = true
+            if !hasUnlockedStreakTheme { hasUnlockedStreakTheme = true }
+            return .masterTitle
+        }
+        if currentStreak >= 7, !hasUnlockedStreakTheme {
+            hasUnlockedStreakTheme = true
+            return .streakTheme
+        }
+        return nil
+    }
+
     // MARK: - ストリーク（連続閲覧日数）
 
     /// 今日の閲覧を記録し、連続日数を更新する（同日複数回は不変）
@@ -136,6 +185,13 @@ final class UserDefaultsStore {
         guard let nextDate = calendar.date(byAdding: .day, value: 1, to: previousDate) else { return false }
         return DateFormatter.jstDate.string(from: nextDate) == today
     }
+}
+
+enum StreakReward {
+    /// 7日連続 → 禅・ゴールドテーマ解放
+    case streakTheme
+    /// 30日連続 → 格言マスター称号
+    case masterTitle
 }
 
 enum FontVariant: String, CaseIterable, Identifiable {

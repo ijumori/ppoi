@@ -92,8 +92,8 @@ enum ShareTextBuilder {
     static func build(reflection: String) -> String {
         let trimmed = InputSanitizer.sanitizeReflection(reflection)
         if trimmed.isEmpty {
-            return "#っぽい格言"
+            return "明日には消える一句\n#っぽい格言"
         }
-        return "私の考察：\(trimmed)\n#っぽい格言"
+        return "私の考察：\(trimmed)\n\n明日には消える一句\n#っぽい格言"
     }
 }

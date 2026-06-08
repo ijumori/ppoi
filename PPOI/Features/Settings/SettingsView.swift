@@ -19,11 +19,25 @@ struct SettingsView: View {
             Form {
                 Section("表示テーマ") {
                     ForEach(AppTheme.allCases) { theme in
-                        selectionRow(
-                            title: theme.label,
-                            isSelected: selectedTheme == theme
-                        ) {
-                            selectedTheme = theme
+                        if theme.isStreakReward, !appState.store.hasUnlockedStreakTheme {
+                            HStack {
+                                Text(theme.label)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Text("7日連続で解放")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                Image(systemName: "lock.fill")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } else {
+                            selectionRow(
+                                title: theme.label,
+                                isSelected: selectedTheme == theme
+                            ) {
+                                selectedTheme = theme
+                            }
                         }
                     }
                 }
@@ -55,6 +69,19 @@ struct SettingsView: View {
                         FavoritesView()
                     } label: {
                         Label("お気に入り", systemImage: "heart")
+                    }
+                    NavigationLink {
+                        ArchiveView()
+                    } label: {
+                        Label("過去の格言", systemImage: "book")
+                    }
+                }
+
+                Section {
+                    Button {
+                        InviteManager.invite(quote: nil)
+                    } label: {
+                        Label("友達に教える", systemImage: "person.badge.plus")
                     }
                 }
 
