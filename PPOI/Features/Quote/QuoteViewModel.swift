@@ -1,6 +1,7 @@
 import Foundation
 import WidgetKit
 
+@MainActor
 @Observable
 final class QuoteViewModel {
     var quote: Quote?

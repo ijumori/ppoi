@@ -17,7 +17,7 @@ enum ShareImageRenderer {
         )
 
         let renderer = ImageRenderer(content: view)
-        renderer.scale = UIScreen.main.scale
+        renderer.scale = 3.0
         return renderer.uiImage
     }
 }
@@ -29,7 +29,8 @@ enum ShareActivityPresenter {
         items: [Any],
         onComplete: ((Bool) -> Void)? = nil
     ) {
-        guard let presenter = ViewControllerFinder.topMost() else { return }
+        guard let presenter = ViewControllerFinder.topMost(),
+              presenter.presentedViewController == nil else { return }
 
         let controller = UIActivityViewController(
             activityItems: items,
@@ -95,19 +96,4 @@ enum ShareTextBuilder {
         }
         return "私の考察：\(trimmed)\n#っぽい格言"
     }
-}
-
-struct ShareSheet: UIViewControllerRepresentable {
-    let items: [Any]
-    var onComplete: ((Bool) -> Void)?
-
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        controller.completionWithItemsHandler = { _, completed, _, _ in
-            onComplete?(completed)
-        }
-        return controller
-    }
-
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }

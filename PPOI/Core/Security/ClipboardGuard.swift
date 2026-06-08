@@ -8,10 +8,11 @@ enum ClipboardGuard {
     /// Schedule pasteboard clearing after a delay.
     /// Call this after share activities complete.
     static func scheduleClipboardClear() {
+        let changeCountAtShare = UIPasteboard.general.changeCount
         DispatchQueue.main.asyncAfter(deadline: .now() + clearDelay) {
-            // Only clear if the content was set by our app
-            // (check via localOnly expiration approach)
             let pasteboard = UIPasteboard.general
+            // Only clear if the clipboard hasn't been changed since our share
+            guard pasteboard.changeCount == changeCountAtShare else { return }
             if pasteboard.hasStrings || pasteboard.hasImages {
                 pasteboard.items = []
                 SecureLogger.debug("Clipboard cleared after share", category: .security)

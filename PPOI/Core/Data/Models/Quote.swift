@@ -6,6 +6,12 @@ struct Quote: Identifiable, Equatable, Codable {
     let text: String
     let tone: QuoteTone
 
+    /// "yyyy-MM-dd" → "yyyy年M月d日" に変換。失敗時はそのまま返す。
+    var displayDate: String {
+        guard let parsed = DateFormatter.jstDate.date(from: date) else { return date }
+        return DateFormatter.jstDisplay.string(from: parsed)
+    }
+
     static let placeholder = Quote(
         id: "placeholder",
         date: DateFormatter.jstDate.string(from: Date()),

@@ -23,7 +23,7 @@ struct ShareInputView: View {
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
                     .onChange(of: reflection) { _, newValue in
-                        reflection = InputSanitizer.sanitizeReflection(newValue)
+                        reflection = InputSanitizer.limitReflection(newValue)
                     }
 
                 Spacer()

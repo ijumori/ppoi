@@ -33,7 +33,7 @@ struct RootView: View {
         .animation(.easeInOut(duration: 0.3), value: appState.hasCompletedOnboarding)
         .onAppear {
             performSecurityCheck()
-            observeScreenCapture()
+            updateCapturedState()
             StoreManager.shared.start()
         }
         .onReceive(
@@ -46,6 +46,11 @@ struct RootView: View {
         ) { _ in
             isInBackground = false
             performSecurityCheck()
+        }
+        .onReceive(
+            NotificationCenter.default.publisher(for: UIScreen.capturedDidChangeNotification)
+        ) { _ in
+            updateCapturedState()
         }
     }
 
@@ -106,16 +111,8 @@ struct RootView: View {
         #endif
     }
 
-    private func observeScreenCapture() {
+    private func updateCapturedState() {
         isCaptured = UIScreen.main.isCaptured
-
-        NotificationCenter.default.addObserver(
-            forName: UIScreen.capturedDidChangeNotification,
-            object: nil,
-            queue: .main
-        ) { _ in
-            isCaptured = UIScreen.main.isCaptured
-        }
     }
 }
 

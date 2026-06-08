@@ -1,21 +1,15 @@
-import AppTrackingTransparency
 import GoogleMobileAds
+import UIKit
 import UserMessagingPlatform
 
 enum TrackingPermission {
-    /// ATT + UMP同意 → AdMob SDK初期化の完全フロー。
-    /// Apple要件: ATTダイアログはシーンが activeになった後に呼ぶ必要がある。
+    /// UMP同意 → AdMob SDK初期化フロー。
     @MainActor
     static func requestAndInitializeAds() async {
         // 1. UMP: 同意情報を更新（GDPR/ePrivacy対応）
         await requestUMPConsent()
 
-        // 2. ATT: トラッキング許可をリクエスト（iOS 14.5+）
-        if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
-            _ = await ATTrackingManager.requestTrackingAuthorization()
-        }
-
-        // 3. AdMob SDK初期化（ATT/UMP結果に関わらず広告は表示可能）
+        // 2. AdMob SDK初期化
         AdMobCompliance.configureForLaunch()
         await withCheckedContinuation { continuation in
             GADMobileAds.sharedInstance().start { _ in
@@ -45,9 +39,13 @@ enum TrackingPermission {
                     return
                 }
 
-                // 同意フォームが必要なら表示
+                let rootVC = UIApplication.shared.connectedScenes
+                    .compactMap { $0 as? UIWindowScene }
+                    .flatMap(\.windows)
+                    .first { $0.isKeyWindow }?
+                    .rootViewController
                 UMPConsentForm.loadAndPresentIfRequired(
-                    from: nil
+                    from: rootVC
                 ) { formError in
                     if let formError {
                         SecureLogger.error("UMP form error: \(formError.localizedDescription)", category: .ads)

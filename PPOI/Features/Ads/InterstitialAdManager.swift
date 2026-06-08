@@ -31,13 +31,15 @@ final class InterstitialAdManager: NSObject {
 
     func showIfReady() {
         guard !StoreManager.shared.isPurchased else { return }
+        guard UIApplication.shared.applicationState == .active else { return }
 
         guard let interstitial else {
             preload()
             return
         }
 
-        guard let presenter = topPresenter() else {
+        guard let presenter = topPresenter(),
+              presenter.presentedViewController == nil else {
             preload()
             return
         }
@@ -51,11 +53,13 @@ final class InterstitialAdManager: NSObject {
         guard !StoreManager.shared.isPurchased else { return }
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(600))
+            guard UIApplication.shared.applicationState == .active else { return }
             if interstitial != nil {
                 showIfReady()
             } else {
                 preload()
                 try? await Task.sleep(for: .seconds(2))
+                guard UIApplication.shared.applicationState == .active else { return }
                 showIfReady()
             }
         }

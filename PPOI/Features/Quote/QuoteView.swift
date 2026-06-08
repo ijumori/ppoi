@@ -17,7 +17,7 @@ struct QuoteView: View {
 
                     if let quote = viewModel.quote {
                         VStack(spacing: 16) {
-                            Text(displayDate)
+                            Text(quote.displayDate)
                                 .font(.caption)
                                 .foregroundStyle(colors.accent)
 
@@ -123,9 +123,6 @@ struct QuoteView: View {
         return .system(size: 32, weight: .medium, design: design)
     }
 
-    private var displayDate: String {
-        DateFormatter.jstDisplay.string(from: Date())
-    }
 }
 
 #Preview {

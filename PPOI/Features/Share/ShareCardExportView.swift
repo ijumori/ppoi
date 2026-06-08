@@ -17,7 +17,7 @@ struct ShareCardExportView: View {
             cardBackground
 
             VStack(spacing: 0) {
-                Text(DateFormatter.jstDisplay.string(from: Date()))
+                Text(quote.displayDate)
                     .font(.system(size: 32, weight: .medium))
                     .foregroundStyle(colors.accent)
                     .padding(.top, 40)

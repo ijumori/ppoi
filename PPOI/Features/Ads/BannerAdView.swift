@@ -39,7 +39,9 @@ private struct BannerAdRepresentable: UIViewRepresentable {
         return banner
     }
 
-    func updateUIView(_ uiView: GADBannerView, context: Context) {}
+    func updateUIView(_ uiView: GADBannerView, context: Context) {
+        uiView.rootViewController = UIApplication.shared.topViewController
+    }
 }
 
 extension UIApplication {
