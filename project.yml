@@ -9,9 +9,9 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.0"
-    TARGETED_DEVICE_FAMILY: "1"
-    MARKETING_VERSION: "1.1.0"
-    CURRENT_PROJECT_VERSION: "9"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    MARKETING_VERSION: "1.2.0"
+    CURRENT_PROJECT_VERSION: "10"
     DEVELOPMENT_TEAM: NXFZ5AUX62
     # E2: Enable position-independent executables (ASLR)
     GCC_GENERATE_POSITION_DEPENDENT_CODE: NO
@@ -35,6 +35,8 @@ targets:
         excludes:
           - "**/.DS_Store"
           - "**/GoogleService-Info.plist.example"
+          - "**/* (1)/**"
+          - "**/* (1)*"
     resources:
       - path: PPOI/Resources/GoogleService-Info.plist
         optional: true
@@ -58,15 +60,22 @@ targets:
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: false
-        UIRequiresFullScreen: true
+        UIRequiresFullScreen: false
+        LSApplicationQueriesSchemes:
+          - twitter
         ITSAppUsesNonExemptEncryption: false
         # E3: Disable third-party keyboards (prevents keyloggers)
         UIApplicationSupportsThirdPartyKeyboards: false
     settings:
       base:
-        TARGETED_DEVICE_FAMILY: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
         PRODUCT_BUNDLE_IDENTIFIER: com.takahiro.ppoi
         GENERATE_INFOPLIST_FILE: YES
         CODE_SIGN_ENTITLEMENTS: PPOI/Resources/PPOI.entitlements
@@ -117,7 +126,7 @@ targets:
       - path: PPOI/Core/Persistence/SharedQuoteStore.swift
     settings:
       base:
-        TARGETED_DEVICE_FAMILY: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
         PRODUCT_BUNDLE_IDENTIFIER: com.takahiro.ppoi.PPOIWidget
         GENERATE_INFOPLIST_FILE: NO
         INFOPLIST_FILE: PPOIWidget/Info.plist
@@ -135,7 +144,7 @@ targets:
       - target: PPOI
     settings:
       base:
-        TARGETED_DEVICE_FAMILY: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: YES
         PRODUCT_BUNDLE_IDENTIFIER: com.takahiro.ppoi.screenshottests
         TEST_HOST: "$(BUILT_PRODUCTS_DIR)/PPOI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PPOI"

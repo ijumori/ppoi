@@ -5,6 +5,9 @@ enum AppTheme: String, CaseIterable, Identifiable {
     case pop
     case darkPremium
     case zenGold
+    // Premium-only themes
+    case midnight
+    case sakura
 
     var id: String { rawValue }
 
@@ -14,11 +17,16 @@ enum AppTheme: String, CaseIterable, Identifiable {
         case .pop: "モダン・ポップ"
         case .darkPremium: "ダーク・プレミア"
         case .zenGold: "禅・ゴールド"
+        case .midnight: "ミッドナイト・ブルー"
+        case .sakura: "桜・ブロッサム"
         }
     }
 
     /// ストリーク報酬で解放されるテーマ
     var isStreakReward: Bool { self == .zenGold }
+
+    /// プレミアム購入で解放されるテーマ
+    var isPremiumOnly: Bool { self == .midnight || self == .sakura }
 
     var colors: ThemeColors {
         switch self {
@@ -60,6 +68,30 @@ enum AppTheme: String, CaseIterable, Identifiable {
                     colors: [Color(hex: 0x1A1520), Color(hex: 0x2D1B3D)],
                     startPoint: .top,
                     endPoint: .bottom
+                )
+            )
+        case .midnight:
+            ThemeColors(
+                background: Color(hex: 0x0D1B2A),
+                primaryText: Color(hex: 0xE0E1DD),
+                accent: Color(hex: 0x778DA9),
+                button: Color(hex: 0x415A77),
+                gradient: LinearGradient(
+                    colors: [Color(hex: 0x0D1B2A), Color(hex: 0x1B2838)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
+        case .sakura:
+            ThemeColors(
+                background: Color(hex: 0xFFF0F5),
+                primaryText: Color(hex: 0x3D2B3D),
+                accent: Color(hex: 0xD4739D),
+                button: Color(hex: 0xC75B8F),
+                gradient: LinearGradient(
+                    colors: [Color(hex: 0xFFF0F5), Color(hex: 0xFFE4EE)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
                 )
             )
         }

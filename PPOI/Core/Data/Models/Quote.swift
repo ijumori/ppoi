@@ -1,10 +1,11 @@
 import Foundation
 
-struct Quote: Identifiable, Equatable, Codable {
+struct Quote: Identifiable, Equatable, Codable, Hashable {
     let id: String
     let date: String
     let text: String
     let tone: QuoteTone
+    var interpretation: String?
 
     /// "yyyy-MM-dd" → "yyyy年M月d日" に変換。失敗時はそのまま返す。
     var displayDate: String {

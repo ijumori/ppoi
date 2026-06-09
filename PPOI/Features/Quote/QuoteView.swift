@@ -5,6 +5,8 @@ struct QuoteView: View {
     @State private var viewModel = QuoteViewModel()
     @State private var streakRewardAlert: StreakReward?
     @State private var showShareReward = false
+    @State private var favoriteScale: CGFloat = 1.0
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var theme: AppTheme { appState.store.selectedTheme }
     private var colors: ThemeColors { theme.colors }
@@ -14,7 +16,7 @@ struct QuoteView: View {
             ZStack {
                 backgroundView
 
-                VStack(spacing: 32) {
+                VStack(spacing: 24) {
                     Spacer()
 
                     if let quote = viewModel.quote {
@@ -22,6 +24,7 @@ struct QuoteView: View {
                             Text(quote.displayDate)
                                 .font(.caption)
                                 .foregroundStyle(colors.accent)
+                                .accessibilityLabel("\(quote.displayDate)の格言")
 
                             if appState.store.currentStreak >= 2 {
                                 HStack(spacing: 8) {
@@ -38,6 +41,7 @@ struct QuoteView: View {
                                             .clipShape(Capsule())
                                     }
                                 }
+                                .accessibilityLabel("\(appState.store.currentStreak)日連続閲覧\(appState.store.hasEarnedMasterTitle ? "、格言マスター" : "")")
                             }
 
                             Text("今日の「っぽい格言」")
@@ -49,8 +53,13 @@ struct QuoteView: View {
                                 .foregroundStyle(colors.primaryText)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 24)
+                                .blur(radius: viewModel.appeared ? 0 : 8)
                                 .opacity(viewModel.appeared ? 1 : 0)
-                                .animation(.easeIn(duration: 0.6), value: viewModel.appeared)
+                                .animation(
+                                    reduceMotion ? .none : .easeOut(duration: 0.8),
+                                    value: viewModel.appeared
+                                )
+                                .accessibilityLabel(quote.text)
 
                             Text("AIが紡ぐ創作格言")
                                 .font(.caption2)
@@ -58,16 +67,22 @@ struct QuoteView: View {
 
                             VoteView(date: quote.date, accentColor: colors.accent)
                                 .padding(.top, 8)
+
+                            if let interpretation = quote.interpretation {
+                                InterpretationView(text: interpretation, colors: colors)
+                                    .padding(.horizontal, 24)
+                            }
                         }
                     } else if viewModel.isLoading {
                         ProgressView()
                             .tint(colors.accent)
+                            .accessibilityLabel("格言を読み込み中")
                     }
 
                     Spacer()
 
                     VStack(spacing: 8) {
-                        Button(action: performQuickShare) {
+                        Button(action: performXShare) {
                             HStack(spacing: 6) {
                                 Text("𝕏")
                                     .font(.body.weight(.black))
@@ -75,17 +90,20 @@ struct QuoteView: View {
                                     .font(.body)
                             }
                         }
+                        .sensoryFeedback(.impact(flexibility: .soft), trigger: showShareReward)
                         .foregroundStyle(theme == .minimal ? .white : colors.background)
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(colors.button)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .accessibilityLabel("Xでシェアする")
 
                         Button("考察を添えてシェア") {
                             viewModel.showShareSheet = true
                         }
                         .font(.caption)
                         .foregroundStyle(colors.accent.opacity(0.7))
+                        .accessibilityLabel("考察を添えてシェアする")
                     }
                     .padding(.horizontal, 24)
 
@@ -108,28 +126,31 @@ struct QuoteView: View {
                     if let quote = viewModel.quote {
                         Button {
                             appState.store.toggleFavorite(quote)
+                            if !reduceMotion {
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                                    favoriteScale = 1.3
+                                }
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.5).delay(0.15)) {
+                                    favoriteScale = 1.0
+                                }
+                            }
                         } label: {
                             Image(systemName: appState.store.isFavorite(quote) ? "heart.fill" : "heart")
                                 .foregroundStyle(colors.accent)
+                                .scaleEffect(favoriteScale)
                         }
+                        .sensoryFeedback(.impact(flexibility: .soft), trigger: appState.store.isFavorite(quote))
                         .accessibilityLabel(appState.store.isFavorite(quote) ? "お気に入り解除" : "お気に入りに追加")
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    HStack(spacing: 16) {
-                        Button {
-                            InviteManager.invite(quote: viewModel.quote)
-                        } label: {
-                            Image(systemName: "person.badge.plus")
-                                .foregroundStyle(colors.accent)
-                        }
-                        Button {
-                            viewModel.showSettings = true
-                        } label: {
-                            Image(systemName: "gearshape")
-                                .foregroundStyle(colors.accent)
-                        }
+                    Button {
+                        InviteManager.invite(quote: viewModel.quote)
+                    } label: {
+                        Image(systemName: "person.badge.plus")
+                            .foregroundStyle(colors.accent)
                     }
+                    .accessibilityLabel("友達に教える")
                 }
             }
             .sheet(isPresented: $viewModel.showShareSheet) {
@@ -145,9 +166,6 @@ struct QuoteView: View {
                         }
                     )
                 }
-            }
-            .sheet(isPresented: $viewModel.showSettings) {
-                SettingsView()
             }
         }
         .task {
@@ -193,30 +211,21 @@ struct QuoteView: View {
         return .system(size: 32, weight: .medium, design: design)
     }
 
-    /// 1タップシェア：考察なしで即座にシェアシートを表示
-    private func performQuickShare() {
+    /// X直接シェア：twitter:// → web intent → UIActivityViewController
+    private func performXShare() {
         guard let quote = viewModel.quote else { return }
-        let text = ShareTextBuilder.build(reflection: "")
-        var items: [Any] = [text]
-
-        if let image = ShareImageRenderer.render(
+        let text = XShareService.buildShareText(quote: quote)
+        let image = ShareImageRenderer.render(
             quote: quote,
             reflection: "",
             theme: theme,
             fontVariant: appState.store.fontVariant
-        ) {
-            items.append(image)
-        }
-
-        ShareActivityPresenter.present(items: items) { completed in
-            if completed {
-                appState.store.recordShare()
-                InterstitialAdManager.shared.showAfterShare()
-                showShareReward = true
-            }
-        }
+        )
+        XShareService.shareToX(text: text, image: image)
+        appState.store.recordShare()
+        InterstitialAdManager.shared.showAfterShare()
+        showShareReward = true
     }
-
 }
 
 #Preview {

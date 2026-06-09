@@ -49,6 +49,7 @@ final class FirestoreQuoteRepository: QuoteRepository {
             throw QuoteRepositoryError.documentNotFound(date: date)
         }
 
-        return Quote(id: date, date: date, text: text, tone: tone)
+        let interpretation = data["interpretation"] as? String
+        return Quote(id: date, date: date, text: text, tone: tone, interpretation: interpretation)
     }
 }

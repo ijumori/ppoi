@@ -7,7 +7,6 @@ struct SettingsView: View {
 
     private let notificationService = NotificationService()
 
-    /// 設定画面内の表示用（完了時に store へ反映）
     @State private var selectedTheme: AppTheme = .darkPremium
     @State private var fontVariant: FontVariant = .serif
     @State private var notificationHour: Int = 12
@@ -19,26 +18,7 @@ struct SettingsView: View {
             Form {
                 Section("表示テーマ") {
                     ForEach(AppTheme.allCases) { theme in
-                        if theme.isStreakReward, !appState.store.hasUnlockedStreakTheme {
-                            HStack {
-                                Text(theme.label)
-                                    .foregroundStyle(.secondary)
-                                Spacer()
-                                Text("7日連続で解放")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                Image(systemName: "lock.fill")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
-                        } else {
-                            selectionRow(
-                                title: theme.label,
-                                isSelected: selectedTheme == theme
-                            ) {
-                                selectedTheme = theme
-                            }
-                        }
+                        themeRow(theme)
                     }
                 }
 
@@ -55,6 +35,8 @@ struct SettingsView: View {
 
                 Section("通知") {
                     Toggle("プッシュ通知", isOn: $notificationEnabled)
+                        .accessibilityLabel("プッシュ通知")
+                        .accessibilityHint(notificationEnabled ? "オン" : "オフ")
 
                     Picker("通知時刻", selection: $notificationHour) {
                         ForEach(6..<23, id: \.self) { hour in
@@ -62,52 +44,7 @@ struct SettingsView: View {
                         }
                     }
                     .pickerStyle(.menu)
-                }
-
-                Section {
-                    NavigationLink {
-                        FavoritesView()
-                    } label: {
-                        Label("お気に入り", systemImage: "heart")
-                    }
-                    NavigationLink {
-                        ArchiveView()
-                    } label: {
-                        Label("過去の格言", systemImage: "book")
-                    }
-                }
-
-                Section {
-                    Button {
-                        InviteManager.invite(quote: nil)
-                    } label: {
-                        Label("友達に教える", systemImage: "person.badge.plus")
-                    }
-                }
-
-                Section("情報") {
-                    Link(destination: URL(string: "https://ijumori.github.io/ppoi/legal/privacy-policy.html")!) {
-                        Label("プライバシーポリシー", systemImage: "hand.raised")
-                    }
-                    Link(destination: URL(string: "https://ijumori.github.io/ppoi/legal/terms-of-use.html")!) {
-                        Label("利用規約", systemImage: "doc.text")
-                    }
-                }
-
-                Section("プレミアム") {
-                    if store.isPurchased {
-                        Label("購入済み（広告なし）", systemImage: "checkmark.seal.fill")
-                            .foregroundStyle(.green)
-                    } else {
-                        NavigationLink {
-                            PaywallView()
-                        } label: {
-                            Label("広告を除去（買い切り）", systemImage: "crown")
-                        }
-                        Button("購入を復元") {
-                            Task { await store.restore() }
-                        }
-                    }
+                    .accessibilityLabel("通知時刻: \(notificationHour)時")
                 }
             }
             .navigationTitle("設定")
@@ -117,6 +54,7 @@ struct SettingsView: View {
                     Button("完了") {
                         applyAndDismiss()
                     }
+                    .accessibilityLabel("設定を保存して閉じる")
                 }
             }
             .onAppear {
@@ -126,6 +64,44 @@ struct SettingsView: View {
                 notificationHour = appState.store.notificationHour
                 notificationEnabled = appState.store.notificationEnabled
                 didLoad = true
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func themeRow(_ theme: AppTheme) -> some View {
+        if theme.isStreakReward, !appState.store.hasUnlockedStreakTheme {
+            HStack {
+                Text(theme.label)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text("7日連続で解放")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Image(systemName: "lock.fill")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .accessibilityLabel("\(theme.label)、7日連続閲覧で解放")
+        } else if theme.isPremiumOnly, !store.isPurchased {
+            HStack {
+                Text(theme.label)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text("プレミアム限定")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Image(systemName: "crown.fill")
+                    .font(.caption)
+                    .foregroundStyle(.orange)
+            }
+            .accessibilityLabel("\(theme.label)、プレミアム限定")
+        } else {
+            selectionRow(
+                title: theme.label,
+                isSelected: selectedTheme == theme
+            ) {
+                selectedTheme = theme
             }
         }
     }
@@ -150,6 +126,8 @@ struct SettingsView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(SettingsSelectionRowButtonStyle())
+        .accessibilityLabel(title)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
     private func applyAndDismiss() {
@@ -172,7 +150,6 @@ struct SettingsView: View {
     }
 }
 
-/// 設定リスト行 — 押下中に背景ハイライト
 private struct SettingsSelectionRowButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

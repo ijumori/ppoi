@@ -23,7 +23,10 @@ struct ShareRewardView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(radius: 10)
         .transition(.scale.combined(with: .opacity))
+        .sensoryFeedback(.success, trigger: shareCount)
         .onTapGesture { onDismiss() }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("シェア完了！累計\(shareCount)回。\(title.name)")
         .task {
             try? await Task.sleep(for: .seconds(2.5))
             onDismiss()

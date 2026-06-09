@@ -24,6 +24,8 @@ struct BannerAdView: View {
                 BannerAdRepresentable()
                     .frame(height: 50)
             }
+            .accessibilityLabel("広告")
+            .accessibilityHint("プレミアムで除去できます")
         }
     }
 }

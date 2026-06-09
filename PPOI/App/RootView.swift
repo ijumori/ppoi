@@ -57,7 +57,7 @@ struct RootView: View {
     @ViewBuilder
     private var contentView: some View {
         if appState.hasCompletedOnboarding {
-            QuoteView()
+            MainTabView()
         } else {
             OnboardingView()
         }

@@ -7,6 +7,7 @@ struct VoteView: View {
     @State private var counts = VoteCounts()
     @State private var selectedReaction: Reaction?
     @State private var didLoad = false
+    @State private var animatingReaction: Reaction?
 
     private let service = VoteService()
 
@@ -43,6 +44,7 @@ struct VoteView: View {
             VStack(spacing: 2) {
                 Text(reaction.emoji)
                     .font(.title2)
+                    .scaleEffect(animatingReaction == reaction ? 1.4 : 1.0)
                 Text("\(counts.count(for: reaction))")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
@@ -57,6 +59,9 @@ struct VoteView: View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .buttonStyle(.plain)
+        .sensoryFeedback(.impact(flexibility: .soft), trigger: selectedReaction)
+        .accessibilityLabel("\(reaction.emoji)リアクション、\(counts.count(for: reaction))票")
+        .accessibilityAddTraits(selectedReaction == reaction ? .isSelected : [])
     }
 
     private func castVote(_ reaction: Reaction) {
@@ -70,6 +75,14 @@ struct VoteView: View {
         updateLocalCount(reaction, delta: 1)
         selectedReaction = reaction
         saveLocalVote(reaction)
+
+        // Scale animation
+        withAnimation(.spring(response: 0.25, dampingFraction: 0.5)) {
+            animatingReaction = reaction
+        }
+        withAnimation(.spring(response: 0.25, dampingFraction: 0.5).delay(0.2)) {
+            animatingReaction = nil
+        }
 
         Task {
             await service.vote(date: date, reaction: reaction, previousReaction: previous)

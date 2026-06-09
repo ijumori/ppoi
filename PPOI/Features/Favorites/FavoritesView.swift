@@ -21,6 +21,8 @@ struct FavoritesView: View {
                             .font(.body)
                     }
                     .padding(.vertical, 4)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("\(quote.displayDate)の格言、\(quote.text)")
                 }
                 .onDelete { offsets in
                     appState.store.removeFavorites(at: offsets)

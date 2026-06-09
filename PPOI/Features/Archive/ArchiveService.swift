@@ -20,7 +20,8 @@ final class ArchiveService {
                       let toneRaw = data["tone"] as? String,
                       let tone = QuoteTone(rawValue: toneRaw)
                 else { return nil }
-                return Quote(id: doc.documentID, date: doc.documentID, text: text, tone: tone)
+                let interpretation = data["interpretation"] as? String
+                return Quote(id: doc.documentID, date: doc.documentID, text: text, tone: tone, interpretation: interpretation)
             }
         } catch {
             return []
