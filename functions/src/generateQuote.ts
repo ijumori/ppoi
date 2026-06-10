@@ -2,11 +2,15 @@ import Anthropic from "@anthropic-ai/sdk";
 import * as admin from "firebase-admin";
 
 type QuoteTone = "humorous" | "serious";
+type QuoteCategory = "life" | "work" | "philosophy" | "humor" | "love" | "growth";
 
 interface GeneratedQuote {
   date: string;
   text: string;
   tone: QuoteTone;
+  interpretation: string;
+  category: QuoteCategory;
+  question: string;
 }
 
 /** JST の今日の日付 yyyy-MM-dd */
@@ -47,23 +51,36 @@ function buildPrompt(tone: QuoteTone): string {
       ? "ユーモア全振り。笑える・ネタ系。大喜利のネタになるような「っぽい格言」。"
       : "シリアスっぽい。本物の格言に紛れ込むような、深みのある「っぽい格言」。";
 
-  return `あなたは「っぽい格言」生成AIです。
+  return `あなたは「っぽい格言」生成AIです。以下のJSON形式で出力してください。
 
 ## ルール
-- 日本語で1文のみ（20〜40文字程度）
-- ${toneGuide}
-- 既存の有名格言の言い回しを混ぜてもよい
-- 正解がない、解釈が分かれる余白を残す
-- 出力は格言本文のみ（説明・引用符・番号不要）`;
+- text: 日本語で1文のみ（20〜40文字程度）。${toneGuide}
+- interpretation: その格言の3〜4文の深読み・解説（100〜150文字）
+- category: 以下の6つから最も適切なものを選択
+  - "life"（人生・日常）
+  - "work"（仕事・努力）
+  - "philosophy"（哲学・真理）
+  - "humor"（ユーモア・笑い）
+  - "love"（愛・人間関係）
+  - "growth"（成長・挑戦）
+- question: その格言を読んだ人への振り返り質問（30〜50文字、「〜ましたか？」「〜ですか？」形式）
+
+## 出力形式（JSONのみ、説明文不要）
+{
+  "text": "格言本文",
+  "interpretation": "解説テキスト",
+  "category": "カテゴリID",
+  "question": "振り返り質問"
+}`;
 }
 
 export async function callClaude(
   client: Anthropic,
   tone: QuoteTone
-): Promise<string> {
+): Promise<{ text: string; interpretation: string; category: QuoteCategory; question: string }> {
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",
-    max_tokens: 200,
+    max_tokens: 600,
     messages: [{ role: "user", content: buildPrompt(tone) }],
   });
 
@@ -72,7 +89,27 @@ export async function callClaude(
     throw new Error("Unexpected Claude response type");
   }
 
-  return block.text.trim().replace(/^["「]|["」]$/g, "");
+  const raw = block.text.trim();
+  // JSON部分だけ抽出（```json ... ``` ブロックに包まれている場合も対応）
+  const jsonMatch = raw.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) throw new Error("No JSON found in Claude response");
+
+  const parsed = JSON.parse(jsonMatch[0]) as {
+    text: string;
+    interpretation: string;
+    category: QuoteCategory;
+    question: string;
+  };
+
+  // sanitize text
+  parsed.text = parsed.text.replace(/^["「]|["」]$/g, "").trim();
+
+  const validCategories: QuoteCategory[] = ["life", "work", "philosophy", "humor", "love", "growth"];
+  if (!validCategories.includes(parsed.category)) {
+    parsed.category = tone === "humorous" ? "humor" : "life";
+  }
+
+  return parsed;
 }
 
 export async function generateDailyQuote(
@@ -85,17 +122,27 @@ export async function generateDailyQuote(
 
   if (existing.exists) {
     const data = existing.data()!;
-    return { date, text: data.text, tone: data.tone };
+    return {
+      date,
+      text: data.text,
+      tone: data.tone,
+      interpretation: data.interpretation ?? "",
+      category: data.category ?? "life",
+      question: data.question ?? "",
+    };
   }
 
   const tone = await pickTone(db);
-  const text = await callClaude(client, tone);
+  const { text, interpretation, category, question } = await callClaude(client, tone);
 
   await docRef.set({
     text,
     tone,
+    interpretation,
+    category,
+    question,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
   });
 
-  return { date, text, tone };
+  return { date, text, tone, interpretation, category, question };
 }

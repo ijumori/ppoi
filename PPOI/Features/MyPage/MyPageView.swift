@@ -3,6 +3,10 @@ import SwiftUI
 struct MyPageView: View {
     @Environment(AppState.self) private var appState
     @Environment(StoreManager.self) private var storeManager
+    @Environment(JournalStore.self) private var journalStore
+    @Environment(AchievementStore.self) private var achievementStore
+
+    @State private var newAchievement: Achievement?
 
     private var colors: ThemeColors { appState.store.selectedTheme.colors }
 
@@ -10,6 +14,7 @@ struct MyPageView: View {
         NavigationStack {
             List {
                 statsSection
+                calendarSection
                 achievementsSection
                 contentSection
                 settingsSection
@@ -17,6 +22,25 @@ struct MyPageView: View {
                 infoSection
             }
             .navigationTitle("My Page")
+        }
+        .onAppear {
+            newAchievement = achievementStore.check(
+                store: appState.store,
+                journalStore: journalStore
+            )
+        }
+        .alert(
+            "実績解除！",
+            isPresented: Binding(
+                get: { newAchievement != nil },
+                set: { if !$0 { newAchievement = nil; achievementStore.clearNewlyUnlocked() } }
+            )
+        ) {
+            Button("OK") { newAchievement = nil; achievementStore.clearNewlyUnlocked() }
+        } message: {
+            if let a = newAchievement {
+                Text("「\(a.title)」を達成しました！\n\(a.detail)")
+            }
         }
     }
 
@@ -42,10 +66,16 @@ struct MyPageView: View {
                     value: "\(appState.store.totalShareCount)",
                     label: "シェア回数"
                 )
+                Spacer()
+                statCard(
+                    icon: "pencil",
+                    value: "\(journalStore.totalEntryCount)",
+                    label: "日記件数"
+                )
             }
             .padding(.vertical, 8)
             .accessibilityElement(children: .combine)
-            .accessibilityLabel("連続\(appState.store.currentStreak)日、お気に入り\(appState.store.favorites.count)件、シェア\(appState.store.totalShareCount)回")
+            .accessibilityLabel("連続\(appState.store.currentStreak)日、お気に入り\(appState.store.favorites.count)件、シェア\(appState.store.totalShareCount)回、日記\(journalStore.totalEntryCount)件")
         }
     }
 
@@ -63,35 +93,40 @@ struct MyPageView: View {
         .frame(maxWidth: .infinity)
     }
 
-    // MARK: - Achievements
+    // MARK: - Calendar
 
-    private var achievementsSection: some View {
-        Section("実績") {
-            achievementRow(
-                icon: "flame",
-                title: "7日連続閲覧",
-                detail: "禅・ゴールドテーマ解放",
-                unlocked: appState.store.hasUnlockedStreakTheme
+    private var calendarSection: some View {
+        Section("カレンダー") {
+            CalendarView(
+                visitedDates: appState.store.visitedDates,
+                journaledDates: journalStore.journaledDates()
             )
-            achievementRow(
-                icon: "crown",
-                title: "30日連続閲覧",
-                detail: "格言マスター称号獲得",
-                unlocked: appState.store.hasEarnedMasterTitle
-            )
+            .padding(.vertical, 8)
         }
     }
 
-    private func achievementRow(icon: String, title: String, detail: String, unlocked: Bool) -> some View {
-        HStack(spacing: 12) {
-            Image(systemName: unlocked ? "\(icon).fill" : icon)
+    // MARK: - Achievements
+
+    private var achievementsSection: some View {
+        Section("実績（\(achievementStore.unlocked.count)/\(Achievement.allCases.count)）") {
+            ForEach(Achievement.allCases) { achievement in
+                achievementRow(achievement)
+            }
+        }
+    }
+
+    private func achievementRow(_ achievement: Achievement) -> some View {
+        let unlocked = achievementStore.isUnlocked(achievement)
+        return HStack(spacing: 12) {
+            Image(systemName: unlocked ? "\(achievement.icon).fill" : achievement.icon)
                 .font(.title3)
                 .foregroundStyle(unlocked ? colors.accent : .secondary)
                 .frame(width: 28)
             VStack(alignment: .leading, spacing: 2) {
-                Text(title)
+                Text(achievement.title)
                     .font(.body.weight(.medium))
-                Text(detail)
+                    .foregroundStyle(unlocked ? colors.primaryText : .secondary)
+                Text(achievement.detail)
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -104,13 +139,20 @@ struct MyPageView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .accessibilityLabel("\(title)、\(unlocked ? "達成済み" : "未達成")、\(detail)")
+        .accessibilityLabel("\(achievement.title)、\(unlocked ? "達成済み" : "未達成")、\(achievement.detail)")
     }
 
     // MARK: - Content
 
     private var contentSection: some View {
         Section {
+            NavigationLink {
+                JournalHistoryView()
+            } label: {
+                Label("日記履歴", systemImage: "pencil")
+            }
+            .accessibilityLabel("日記履歴を見る")
+
             NavigationLink {
                 FavoritesView()
             } label: {
@@ -199,4 +241,6 @@ struct MyPageView: View {
     MyPageView()
         .environment(AppState())
         .environment(StoreManager.shared)
+        .environment(JournalStore())
+        .environment(AchievementStore())
 }

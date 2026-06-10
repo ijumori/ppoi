@@ -15,6 +15,8 @@ final class UserDefaultsStore {
         static let lastReviewPromptDate = "lastReviewPromptDate"
         static let hasUnlockedStreakTheme = "hasUnlockedStreakTheme"
         static let hasEarnedMasterTitle = "hasEarnedMasterTitle"
+        static let visitedDates = "visitedDates"
+        static let voteCount = "voteCount"
     }
 
     /// お気に入り保存件数の上限（UserDefaults 肥大化防止）
@@ -28,11 +30,19 @@ final class UserDefaultsStore {
     /// 連続閲覧日数
     private(set) var currentStreak: Int
 
+    /// 閲覧済み日付セット（カレンダービュー用）
+    private(set) var visitedDates: Set<String>
+
+    /// 投票回数（実績トラッキング用）
+    private(set) var voteCount: Int
+
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         SecureQuoteCache.clearLegacyUserDefaults(defaults)
         favorites = Self.loadFavorites(from: defaults)
         currentStreak = defaults.integer(forKey: Key.currentStreak)
+        visitedDates = Self.loadVisitedDates(from: defaults)
+        voteCount = defaults.integer(forKey: Key.voteCount)
     }
 
     var hasCompletedOnboarding: Bool {
@@ -165,6 +175,10 @@ final class UserDefaultsStore {
         let today = DateFormatter.jstDate.string(from: Date())
         let last = defaults.string(forKey: Key.lastSeenDate)
 
+        // 閲覧履歴に追加（カレンダー用）
+        visitedDates.insert(today)
+        persistVisitedDates()
+
         if last == today { return }
 
         if let last, Self.isConsecutive(previous: last, today: today) {
@@ -175,6 +189,26 @@ final class UserDefaultsStore {
 
         defaults.set(today, forKey: Key.lastSeenDate)
         defaults.set(currentStreak, forKey: Key.currentStreak)
+    }
+
+    /// 投票回数をインクリメント
+    func recordVote() {
+        voteCount += 1
+        defaults.set(voteCount, forKey: Key.voteCount)
+    }
+
+    private func persistVisitedDates() {
+        let array = Array(visitedDates)
+        if let data = try? JSONEncoder().encode(array) {
+            defaults.set(data, forKey: Key.visitedDates)
+        }
+    }
+
+    private static func loadVisitedDates(from defaults: UserDefaults) -> Set<String> {
+        guard let data = defaults.data(forKey: Key.visitedDates),
+              let array = try? JSONDecoder().decode([String].self, from: data)
+        else { return [] }
+        return Set(array)
     }
 
     /// previous の翌日が today なら連続とみなす（JST 基準）

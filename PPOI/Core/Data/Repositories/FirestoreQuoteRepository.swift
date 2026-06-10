@@ -50,6 +50,8 @@ final class FirestoreQuoteRepository: QuoteRepository {
         }
 
         let interpretation = data["interpretation"] as? String
-        return Quote(id: date, date: date, text: text, tone: tone, interpretation: interpretation)
+        let category = (data["category"] as? String).flatMap { QuoteCategory(rawValue: $0) }
+        let question = data["question"] as? String
+        return Quote(id: date, date: date, text: text, tone: tone, interpretation: interpretation, category: category, question: question)
     }
 }

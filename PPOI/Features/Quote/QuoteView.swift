@@ -2,6 +2,7 @@ import SwiftUI
 
 struct QuoteView: View {
     @Environment(AppState.self) private var appState
+    @Environment(JournalStore.self) private var journalStore
     @State private var viewModel = QuoteViewModel()
     @State private var streakRewardAlert: StreakReward?
     @State private var showShareReward = false
@@ -72,6 +73,14 @@ struct QuoteView: View {
                                 InterpretationView(text: interpretation, colors: colors)
                                     .padding(.horizontal, 24)
                             }
+
+                            if let question = quote.question {
+                                DailyQuestionView(question: question, colors: colors)
+                                    .padding(.horizontal, 24)
+                            }
+
+                            JournalEntryView(date: quote.date, colors: colors)
+                                .padding(.horizontal, 24)
                         }
                     } else if viewModel.isLoading {
                         ProgressView()

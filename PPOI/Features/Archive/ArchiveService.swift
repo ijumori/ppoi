@@ -21,7 +21,9 @@ final class ArchiveService {
                       let tone = QuoteTone(rawValue: toneRaw)
                 else { return nil }
                 let interpretation = data["interpretation"] as? String
-                return Quote(id: doc.documentID, date: doc.documentID, text: text, tone: tone, interpretation: interpretation)
+                let category = (data["category"] as? String).flatMap { QuoteCategory(rawValue: $0) }
+                let question = data["question"] as? String
+                return Quote(id: doc.documentID, date: doc.documentID, text: text, tone: tone, interpretation: interpretation, category: category, question: question)
             }
         } catch {
             return []

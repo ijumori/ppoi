@@ -6,6 +6,8 @@ struct Quote: Identifiable, Equatable, Codable, Hashable {
     let text: String
     let tone: QuoteTone
     var interpretation: String?
+    var category: QuoteCategory?
+    var question: String?
 
     /// "yyyy-MM-dd" → "yyyy年M月d日" に変換。失敗時はそのまま返す。
     var displayDate: String {

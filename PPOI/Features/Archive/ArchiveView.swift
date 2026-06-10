@@ -7,7 +7,7 @@ struct ArchiveView: View {
     @State private var isLoading = true
 
     /// 無料ユーザーに見せる日数
-    private let freeLimit = 3
+    private let freeLimit = 10
 
     private let service = ArchiveService()
 

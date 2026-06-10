@@ -27,6 +27,8 @@ final class AppState {
 @main
 struct PPOIApp: App {
     @State private var appState = AppState()
+    @State private var journalStore = JournalStore()
+    @State private var achievementStore = AchievementStore()
 
     init() {
         // A2: Deny debugger attachment before any other initialization
@@ -44,6 +46,8 @@ struct PPOIApp: App {
     var body: some Scene {
         WindowGroup {
             RootView(appState: appState)
+                .environment(journalStore)
+                .environment(achievementStore)
                 .task {
                     await TrackingPermission.requestAndInitializeAds()
                 }

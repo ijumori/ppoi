@@ -3,14 +3,17 @@ import SwiftUI
 struct ExploreView: View {
     @Environment(AppState.self) private var appState
     @Environment(StoreManager.self) private var storeManager
+    @Environment(AchievementStore.self) private var achievementStore
 
     @State private var quotes: [Quote] = []
+    @State private var ranking: [RankedQuote] = []
     @State private var isLoading = true
     @State private var searchText = ""
     @State private var selectedCategory: QuoteCategory?
 
     private let service = ArchiveService()
-    private let freeLimit = 3
+    private let rankingService = RankingService()
+    private let freeLimit = 10
 
     var body: some View {
         NavigationStack {
@@ -18,26 +21,38 @@ struct ExploreView: View {
                 if isLoading {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else if filteredQuotes.isEmpty {
-                    ContentUnavailableView.search(text: searchText)
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 0) {
-                            categoryPicker
-                                .padding(.bottom, 8)
-
-                            ForEach(visibleQuotes) { quote in
-                                NavigationLink(value: quote) {
-                                    quoteRow(quote)
-                                }
-                                .buttonStyle(.plain)
-
-                                Divider()
-                                    .padding(.horizontal)
+                            // ランキングセクション（検索・フィルタ未適用時のみ表示）
+                            if searchText.isEmpty && selectedCategory == nil && !ranking.isEmpty {
+                                WeeklyRankingView(ranking: ranking)
+                                    .padding(.vertical, 12)
                             }
 
-                            if !storeManager.isPurchased, filteredQuotes.count > freeLimit {
-                                paywallBanner
+                            categoryPicker
+                                .padding(.bottom, 4)
+
+                            if filteredQuotes.isEmpty {
+                                ContentUnavailableView.search(text: searchText)
+                                    .padding(.top, 40)
+                            } else {
+                                ForEach(visibleQuotes) { quote in
+                                    NavigationLink(value: quote) {
+                                        quoteRow(quote)
+                                    }
+                                    .buttonStyle(.plain)
+                                    .simultaneousGesture(TapGesture().onEnded {
+                                        achievementStore.incrementExploreView()
+                                    })
+
+                                    Divider()
+                                        .padding(.horizontal)
+                                }
+
+                                if !storeManager.isPurchased, filteredQuotes.count > freeLimit {
+                                    paywallBanner
+                                }
                             }
                         }
                     }
@@ -49,7 +64,10 @@ struct ExploreView: View {
                 QuoteDetailView(quote: quote)
             }
             .task {
-                quotes = await service.fetchRecentQuotes(limit: 100)
+                async let quotesTask = service.fetchRecentQuotes(limit: 100)
+                async let rankingTask = rankingService.fetchWeeklyRanking()
+                quotes = await quotesTask
+                ranking = await rankingTask
                 isLoading = false
             }
         }
@@ -58,9 +76,9 @@ struct ExploreView: View {
     private var categoryPicker: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                categoryChip(nil, label: "すべて")
+                categoryChip(nil, label: "すべて", icon: nil)
                 ForEach(QuoteCategory.allCases) { category in
-                    categoryChip(category, label: category.label)
+                    categoryChip(category, label: category.label, icon: category.icon)
                 }
             }
             .padding(.horizontal)
@@ -68,7 +86,7 @@ struct ExploreView: View {
         }
     }
 
-    private func categoryChip(_ category: QuoteCategory?, label: String) -> some View {
+    private func categoryChip(_ category: QuoteCategory?, label: String, icon: String?) -> some View {
         let isSelected = selectedCategory == category
         let colors = appState.store.selectedTheme.colors
         return Button {
@@ -76,13 +94,19 @@ struct ExploreView: View {
                 selectedCategory = category
             }
         } label: {
-            Text(label)
-                .font(.subheadline.weight(isSelected ? .semibold : .regular))
-                .foregroundStyle(isSelected ? colors.background : colors.primaryText)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 7)
-                .background(isSelected ? colors.accent : colors.accent.opacity(0.12))
-                .clipShape(Capsule())
+            HStack(spacing: 4) {
+                if let icon {
+                    Image(systemName: icon)
+                        .font(.caption)
+                }
+                Text(label)
+                    .font(.subheadline.weight(isSelected ? .semibold : .regular))
+            }
+            .foregroundStyle(isSelected ? colors.background : colors.primaryText)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 7)
+            .background(isSelected ? colors.accent : colors.accent.opacity(0.12))
+            .clipShape(Capsule())
         }
         .buttonStyle(.plain)
         .accessibilityLabel("\(label)カテゴリ")
@@ -93,9 +117,15 @@ struct ExploreView: View {
         let colors = appState.store.selectedTheme.colors
         return VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Text(quote.displayDate)
-                    .font(.caption)
-                    .foregroundStyle(colors.accent.opacity(0.7))
+                if let category = quote.category {
+                    Label(category.label, systemImage: category.icon)
+                        .font(.caption2)
+                        .foregroundStyle(colors.accent.opacity(0.7))
+                } else {
+                    Text(quote.displayDate)
+                        .font(.caption)
+                        .foregroundStyle(colors.accent.opacity(0.7))
+                }
                 Spacer()
                 if appState.store.isFavorite(quote) {
                     Image(systemName: "heart.fill")
@@ -107,6 +137,9 @@ struct ExploreView: View {
                 .font(.body)
                 .foregroundStyle(colors.primaryText)
                 .lineLimit(2)
+            Text(quote.displayDate)
+                .font(.caption2)
+                .foregroundStyle(colors.accent.opacity(0.4))
         }
         .padding(.horizontal)
         .padding(.vertical, 12)
@@ -137,7 +170,7 @@ struct ExploreView: View {
     private var filteredQuotes: [Quote] {
         var result = quotes
         if let category = selectedCategory {
-            result = result.filter { $0.tone == category.tone }
+            result = result.filter { $0.category == category }
         }
         if !searchText.isEmpty {
             result = result.filter { $0.text.localizedCaseInsensitiveContains(searchText) }
@@ -157,4 +190,5 @@ struct ExploreView: View {
     ExploreView()
         .environment(AppState())
         .environment(StoreManager.shared)
+        .environment(AchievementStore())
 }

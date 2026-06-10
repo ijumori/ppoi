@@ -7,6 +7,7 @@ struct ShareInputView: View {
     var onShareCompleted: (() -> Void)?
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(JournalStore.self) private var journalStore
     @State private var reflection = ""
     @State private var showPreview = false
 
@@ -46,6 +47,12 @@ struct ShareInputView: View {
             }
             .navigationTitle("考察してシェアする")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                let saved = journalStore.entry(for: quote.date)
+                if reflection.isEmpty && !saved.isEmpty {
+                    reflection = saved
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("キャンセル") { dismiss() }

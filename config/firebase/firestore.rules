@@ -9,15 +9,17 @@ service cloud.firestore {
 
     // Quotes collection: read-only for verified iOS app
     match /quotes/{date} {
-
-      // App Check required: only legitimate iOS app can read
-      // Firebase Console -> App Check -> Firestore: Enforcement MUST be enabled
       allow read: if request.app != null
         && isValidDateKey(date)
         && hasRequiredFields();
 
-      // No client writes allowed — only Cloud Functions or Admin SDK
       allow write: if false;
+    }
+
+    // Votes collection: read + increment writes from verified app
+    match /votes/{date} {
+      allow read: if request.app != null && isValidDateKey(date);
+      allow write: if request.app != null && isValidDateKey(date);
     }
   }
 }

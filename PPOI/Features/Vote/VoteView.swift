@@ -4,6 +4,7 @@ struct VoteView: View {
     let date: String
     let accentColor: Color
 
+    @Environment(AppState.self) private var appState
     @State private var counts = VoteCounts()
     @State private var selectedReaction: Reaction?
     @State private var didLoad = false
@@ -67,6 +68,11 @@ struct VoteView: View {
     private func castVote(_ reaction: Reaction) {
         let previous = selectedReaction
         if previous == reaction { return }
+
+        // Track vote for achievements (only new votes, not reaction changes)
+        if previous == nil {
+            appState.store.recordVote()
+        }
 
         // Optimistic local update
         if let prev = previous {
