@@ -10,7 +10,11 @@ final class QuoteViewModel {
     var showSettings = false
     var appeared = false
 
-    private let quoteService = QuoteService()
+    private let quoteService: QuoteService
+
+    init(quoteService: QuoteService = QuoteService()) {
+        self.quoteService = quoteService
+    }
 
     func loadQuote(store: UserDefaultsStore) async {
         isLoading = true

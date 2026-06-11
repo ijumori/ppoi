@@ -135,6 +135,20 @@ targets:
         DEVELOPMENT_TEAM: NXFZ5AUX62
         SWIFT_VERSION: "5.0"
 
+  PPOITests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: PPOITests
+    dependencies:
+      - target: PPOI
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.takahiro.ppoi.tests
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/PPOI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PPOI"
+
   PPOIScreenshotTests:
     type: bundle.unit-test
     platform: iOS
@@ -159,4 +173,5 @@ schemes:
       storeKitConfiguration: PPOI.storekit
     test:
       targets:
+        - PPOITests
         - PPOIScreenshotTests

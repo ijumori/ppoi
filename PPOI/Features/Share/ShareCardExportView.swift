@@ -142,19 +142,24 @@ struct ShareCardExportView: View {
         return .system(size: quoteFontSize, weight: .medium, design: design)
     }
 
-    /// 文字数に応じてサイズ調整（長いほど少し小さく、短いほど大きく）
     private var quoteFontSize: CGFloat {
-        let count = quote.text.count
-        if !reflection.isEmpty {
-            // 考察付きの場合は全体的にコンパクト
-            switch count {
+        ShareCardExportView.quoteFontSize(
+            textLength: quote.text.count,
+            hasReflection: !reflection.isEmpty
+        )
+    }
+
+    /// 文字数と考察有無からフォントサイズを決定する純粋関数（テスト可能）
+    static func quoteFontSize(textLength: Int, hasReflection: Bool) -> CGFloat {
+        if hasReflection {
+            switch textLength {
             case ...12: return 64
             case ...18: return 56
             case ...26: return 48
             default: return 40
             }
         }
-        switch count {
+        switch textLength {
         case ...12: return 80
         case ...18: return 72
         case ...26: return 64
