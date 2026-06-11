@@ -20,9 +20,9 @@ enum FirebaseBootstrap {
 
     private static func configureAppCheck() {
         #if DEBUG
-        AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
+            AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
         #else
-        AppCheck.setAppCheckProviderFactory(PPOIAppAttestProviderFactory())
+            AppCheck.setAppCheckProviderFactory(PPOIAppAttestProviderFactory())
         #endif
     }
 }

@@ -11,14 +11,14 @@ struct BannerAdView: View {
         } else {
             VStack(spacing: 0) {
                 #if DEBUG
-                if AdMobCompliance.isTestMode {
-                    Text("TEST AD — クリック禁止（開発用）")
-                        .font(.caption2.weight(.bold))
-                        .foregroundStyle(.orange)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 2)
-                        .background(Color.orange.opacity(0.15))
-                }
+                    if AdMobCompliance.isTestMode {
+                        Text("TEST AD — クリック禁止（開発用）")
+                            .font(.caption2.weight(.bold))
+                            .foregroundStyle(.orange)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 2)
+                            .background(Color.orange.opacity(0.15))
+                    }
                 #endif
 
                 BannerAdRepresentable()
@@ -31,7 +31,7 @@ struct BannerAdView: View {
 }
 
 private struct BannerAdRepresentable: UIViewRepresentable {
-    func makeUIView(context: Context) -> GADBannerView {
+    func makeUIView(context _: Context) -> GADBannerView {
         AdMobCompliance.assertSafeConfiguration()
 
         let banner = GADBannerView(adSize: GADAdSizeBanner)
@@ -41,7 +41,7 @@ private struct BannerAdRepresentable: UIViewRepresentable {
         return banner
     }
 
-    func updateUIView(_ uiView: GADBannerView, context: Context) {
+    func updateUIView(_ uiView: GADBannerView, context _: Context) {
         uiView.rootViewController = UIApplication.shared.topViewController
     }
 }

@@ -9,11 +9,11 @@ final class JournalStore {
     static let maxLength = 200
 
     private let defaults: UserDefaults
-    private(set) var entries: [String: String]  // [date: text]
+    private(set) var entries: [String: String] // [date: text]
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        self.entries = Self.load(from: defaults)
+        entries = Self.load(from: defaults)
     }
 
     func entry(for date: String) -> String {
@@ -34,7 +34,9 @@ final class JournalStore {
         Set(entries.keys)
     }
 
-    var totalEntryCount: Int { entries.count }
+    var totalEntryCount: Int {
+        entries.count
+    }
 
     private func persist() {
         if let data = try? JSONEncoder().encode(entries) {

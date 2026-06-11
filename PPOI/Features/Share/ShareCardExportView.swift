@@ -8,10 +8,14 @@ struct ShareCardExportView: View {
     let theme: AppTheme
     let fontVariant: FontVariant
 
-    private var colors: ThemeColors { theme.colors }
+    private var colors: ThemeColors {
+        theme.colors
+    }
 
     /// 格言テキストの折り返し幅（ImageRenderer で明示幅がないと1行になる）
-    private var quoteTextWidth: CGFloat { ShareImageSpec.width * 0.82 }
+    private var quoteTextWidth: CGFloat {
+        ShareImageSpec.width * 0.82
+    }
 
     private static let appStoreURL = "https://apps.apple.com/app/id6771264998"
 

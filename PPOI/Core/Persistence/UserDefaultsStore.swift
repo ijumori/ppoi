@@ -232,7 +232,9 @@ enum FontVariant: String, CaseIterable, Identifiable {
     case serif
     case `default`
 
-    var id: String { rawValue }
+    var id: String {
+        rawValue
+    }
 
     var label: String {
         switch self {

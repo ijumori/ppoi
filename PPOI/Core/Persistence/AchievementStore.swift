@@ -16,8 +16,8 @@ final class AchievementStore {
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        self.unlocked = Self.loadUnlocked(from: defaults)
-        self.exploreViewCount = defaults.integer(forKey: Key.exploreViewCount)
+        unlocked = Self.loadUnlocked(from: defaults)
+        exploreViewCount = defaults.integer(forKey: Key.exploreViewCount)
     }
 
     func isUnlocked(_ achievement: Achievement) -> Bool {
@@ -54,14 +54,14 @@ final class AchievementStore {
 
     private func shouldUnlock(_ a: Achievement, store: UserDefaultsStore, journalStore: JournalStore) -> Bool {
         switch a {
-        case .streakTheme:   return store.hasUnlockedStreakTheme
-        case .masterTitle:   return store.hasEarnedMasterTitle
-        case .firstFavorite: return !store.favorites.isEmpty
-        case .firstShare:    return store.totalShareCount >= 1
-        case .firstJournal:  return journalStore.totalEntryCount >= 1
-        case .explorer:      return exploreViewCount >= 10
-        case .voter7:        return store.voteCount >= 7
-        case .sharer5:       return store.totalShareCount >= 5
+        case .streakTheme: store.hasUnlockedStreakTheme
+        case .masterTitle: store.hasEarnedMasterTitle
+        case .firstFavorite: !store.favorites.isEmpty
+        case .firstShare: store.totalShareCount >= 1
+        case .firstJournal: journalStore.totalEntryCount >= 1
+        case .explorer: exploreViewCount >= 10
+        case .voter7: store.voteCount >= 7
+        case .sharer5: store.totalShareCount >= 5
         }
     }
 

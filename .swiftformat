@@ -1,0 +1,35 @@
+# SwiftFormat configuration for PPOI
+# https://github.com/nicklockwood/SwiftFormat
+
+--swiftversion 5.9
+--indent 4
+--indentcase false
+--trimwhitespace always
+--insertlines disabled
+--removelines disabled
+--allman false
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--closingparen balanced
+--wrapreturntype preserve
+--maxwidth none
+--linebreaks lf
+
+# Enabled rules
+--enable blankLinesBetweenScopes
+--enable consecutiveBlankLines
+--enable redundantSelf
+--enable redundantReturn
+--enable trailingCommas
+--enable void
+--enable isEmpty
+--enable andOperator
+
+# Disabled rules (preserve existing patterns)
+--disable sortImports
+--disable organizeDeclarations
+--disable extensionAccessControl
+
+# Exclude generated/third-party files
+--exclude PPOI.xcodeproj,DerivedData,functions/node_modules

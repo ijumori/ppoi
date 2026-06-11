@@ -83,7 +83,7 @@ enum KeychainStore {
 
         var errorDescription: String? {
             switch self {
-            case .unhandled(let status):
+            case let .unhandled(status):
                 "Keychain error: \(status)"
             }
         }

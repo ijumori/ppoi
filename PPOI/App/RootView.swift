@@ -107,7 +107,7 @@ struct RootView: View {
 
     private func performSecurityCheck() {
         #if !targetEnvironment(simulator)
-        isEnvironmentTrusted = SecurityGuard.isEnvironmentTrusted
+            isEnvironmentTrusted = SecurityGuard.isEnvironmentTrusted
         #endif
     }
 

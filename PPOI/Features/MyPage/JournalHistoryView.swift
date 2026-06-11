@@ -4,7 +4,9 @@ struct JournalHistoryView: View {
     @Environment(AppState.self) private var appState
     @Environment(JournalStore.self) private var journalStore
 
-    private var colors: ThemeColors { appState.store.selectedTheme.colors }
+    private var colors: ThemeColors {
+        appState.store.selectedTheme.colors
+    }
 
     private var sortedEntries: [(date: String, text: String)] {
         journalStore.entries

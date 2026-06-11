@@ -17,7 +17,7 @@ final class NotificationService {
         guard enabled else { return }
 
         // 曜日ごとに異なるメッセージを配信（weekday: 1=日, 2=月, ... 7=土）
-        for weekday in 1...7 {
+        for weekday in 1 ... 7 {
             var dateComponents = DateComponents()
             dateComponents.hour = hour
             dateComponents.minute = 0

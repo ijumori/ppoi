@@ -39,6 +39,12 @@
 | [guides/github-pages-setup.md](guides/github-pages-setup.md) | プライバシーポリシー公開 |
 | [guides/app-store-metadata.md](guides/app-store-metadata.md) | ASC メタデータ |
 
+## リファクタリング
+
+| ファイル | 内容 |
+|----------|------|
+| [refactoring-plan.md](refactoring-plan.md) | コードベース監査と5フェーズ改善計画（2026-06-11） |
+
 ## アセット
 
 | パス | 用途 |

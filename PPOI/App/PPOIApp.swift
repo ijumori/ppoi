@@ -57,17 +57,17 @@ struct PPOIApp: App {
     /// B2: NSFileProtection Complete — data is inaccessible when device is locked
     private func setFileProtection() {
         #if !targetEnvironment(simulator)
-        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
-              let libraryURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first
-        else { return }
+            guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
+                  let libraryURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first
+            else { return }
 
-        let protectedDirectories = [documentsURL, libraryURL]
-        for url in protectedDirectories {
-            try? FileManager.default.setAttributes(
-                [.protectionKey: FileProtectionType.complete],
-                ofItemAtPath: url.path
-            )
-        }
+            let protectedDirectories = [documentsURL, libraryURL]
+            for url in protectedDirectories {
+                try? FileManager.default.setAttributes(
+                    [.protectionKey: FileProtectionType.complete],
+                    ofItemAtPath: url.path
+                )
+            }
         #endif
     }
 }

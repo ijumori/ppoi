@@ -7,7 +7,9 @@ struct CalendarView: View {
 
     @State private var displayDate = Date()
 
-    private var colors: ThemeColors { appState.store.selectedTheme.colors }
+    private var colors: ThemeColors {
+        appState.store.selectedTheme.colors
+    }
     private let columns = Array(repeating: GridItem(.flexible()), count: 7)
     private let weekdayLabels = ["月", "火", "水", "木", "金", "土", "日"]
 
@@ -71,7 +73,7 @@ struct CalendarView: View {
 
     private var dateGrid: some View {
         LazyVGrid(columns: columns, spacing: 4) {
-            ForEach(0..<leadingEmptyCount, id: \.self) { _ in
+            ForEach(0 ..< leadingEmptyCount, id: \.self) { _ in
                 Color.clear.aspectRatio(1, contentMode: .fit)
             }
             ForEach(daysInMonth, id: \.self) { day in
@@ -163,7 +165,7 @@ struct CalendarView: View {
     }
 
     private var daysInMonth: [Int] {
-        Array(jstCalendar.range(of: .day, in: .month, for: displayDate) ?? (1..<31))
+        Array(jstCalendar.range(of: .day, in: .month, for: displayDate) ?? (1 ..< 31))
     }
 
     private var leadingEmptyCount: Int {

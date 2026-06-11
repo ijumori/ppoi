@@ -15,22 +15,22 @@ enum SecureLogger {
 
     static func debug(_ message: String, category: Category = .general) {
         #if DEBUG
-        let logger = Logger(subsystem: subsystem, category: category.rawValue)
-        logger.debug("\(message, privacy: .private)")
+            let logger = Logger(subsystem: subsystem, category: category.rawValue)
+            logger.debug("\(message, privacy: .private)")
         #endif
     }
 
     static func info(_ message: String, category: Category = .general) {
         #if DEBUG
-        let logger = Logger(subsystem: subsystem, category: category.rawValue)
-        logger.info("\(message, privacy: .private)")
+            let logger = Logger(subsystem: subsystem, category: category.rawValue)
+            logger.info("\(message, privacy: .private)")
         #endif
     }
 
     static func error(_ message: String, category: Category = .general) {
         #if DEBUG
-        let logger = Logger(subsystem: subsystem, category: category.rawValue)
-        logger.error("\(message, privacy: .private)")
+            let logger = Logger(subsystem: subsystem, category: category.rawValue)
+            logger.error("\(message, privacy: .private)")
         #endif
     }
 }

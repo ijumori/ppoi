@@ -49,8 +49,8 @@ final class StoreManager {
         do {
             let result = try await product.purchase()
             switch result {
-            case .success(let verification):
-                if case .verified(let transaction) = verification {
+            case let .success(verification):
+                if case let .verified(transaction) = verification {
                     await transaction.finish()
                     isPurchased = true
                 }
@@ -78,9 +78,10 @@ final class StoreManager {
     func refreshPurchasedState() async {
         var purchased = false
         for await result in Transaction.currentEntitlements {
-            if case .verified(let transaction) = result,
+            if case let .verified(transaction) = result,
                transaction.productID == Self.premiumProductID,
-               transaction.revocationDate == nil {
+               transaction.revocationDate == nil
+            {
                 purchased = true
             }
         }
@@ -90,7 +91,7 @@ final class StoreManager {
     private func listenForTransactions() -> Task<Void, Never> {
         Task(priority: .background) {
             for await result in Transaction.updates {
-                if case .verified(let transaction) = result {
+                if case let .verified(transaction) = result {
                     await transaction.finish()
                     await self.refreshPurchasedState()
                 }

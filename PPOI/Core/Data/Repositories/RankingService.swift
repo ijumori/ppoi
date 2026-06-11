@@ -6,7 +6,9 @@ struct RankedQuote: Identifiable {
     let totalVotes: Int
     let topReaction: String
 
-    var id: String { quote.id }
+    var id: String {
+        quote.id
+    }
 }
 
 final class RankingService {
@@ -50,13 +52,13 @@ final class RankingService {
 
             let thinking = data["thinking"] as? Int ?? 0
             let laughing = data["laughing"] as? Int ?? 0
-            let crying   = data["crying"]   as? Int ?? 0
-            let fire     = data["fire"]     as? Int ?? 0
+            let crying = data["crying"] as? Int ?? 0
+            let fire = data["fire"] as? Int ?? 0
             let total = thinking + laughing + crying + fire
 
             let reactions = [
                 ("🤔", thinking), ("😂", laughing),
-                ("🥹", crying),   ("🔥", fire)
+                ("🥹", crying), ("🔥", fire),
             ]
             let top = reactions.max(by: { $0.1 < $1.1 })?.0 ?? "🔥"
 

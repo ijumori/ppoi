@@ -39,7 +39,7 @@ struct SettingsView: View {
                         .accessibilityHint(notificationEnabled ? "オン" : "オフ")
 
                     Picker("通知時刻", selection: $notificationHour) {
-                        ForEach(6..<23, id: \.self) { hour in
+                        ForEach(6 ..< 23, id: \.self) { hour in
                             Text("\(hour):00").tag(hour)
                         }
                     }

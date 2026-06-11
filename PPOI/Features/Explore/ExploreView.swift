@@ -25,7 +25,7 @@ struct ExploreView: View {
                     ScrollView {
                         LazyVStack(spacing: 0) {
                             // ランキングセクション（検索・フィルタ未適用時のみ表示）
-                            if searchText.isEmpty && selectedCategory == nil && !ranking.isEmpty {
+                            if searchText.isEmpty, selectedCategory == nil, !ranking.isEmpty {
                                 WeeklyRankingView(ranking: ranking)
                                     .padding(.vertical, 12)
                             }

@@ -20,7 +20,7 @@ struct ShareInputView: View {
                     .padding(.top)
 
                 TextField("考察を入力（任意）", text: $reflection, axis: .vertical)
-                    .lineLimit(3...6)
+                    .lineLimit(3 ... 6)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
                     .onChange(of: reflection) { _, newValue in
@@ -49,7 +49,7 @@ struct ShareInputView: View {
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 let saved = journalStore.entry(for: quote.date)
-                if reflection.isEmpty && !saved.isEmpty {
+                if reflection.isEmpty, !saved.isEmpty {
                     reflection = saved
                 }
             }

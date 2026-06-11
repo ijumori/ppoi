@@ -8,7 +8,9 @@ struct PaywallView: View {
 
     @State private var showCelebration = false
 
-    private var colors: ThemeColors { appState.store.selectedTheme.colors }
+    private var colors: ThemeColors {
+        appState.store.selectedTheme.colors
+    }
 
     private let benefits: [(icon: String, title: String, detail: String)] = [
         ("rectangle.slash", "広告を完全除去", "バナー・シェア後の全画面広告が消えます"),
@@ -16,7 +18,7 @@ struct PaywallView: View {
         ("books.vertical", "全アーカイブ解放", "過去の全格言をいつでも振り返れます"),
         ("heart.fill", "お気に入り無制限", "保存上限なしで一句をいつでも振り返り"),
         ("lightbulb", "AI解読が無制限", "格言の深い解釈をいつでも確認できます"),
-        ("hand.thumbsup", "個人開発を応援", "アップデートの励みになります")
+        ("hand.thumbsup", "個人開発を応援", "アップデートの励みになります"),
     ]
 
     var body: some View {

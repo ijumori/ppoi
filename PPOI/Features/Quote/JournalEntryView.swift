@@ -23,7 +23,7 @@ struct JournalEntryView: View {
             }
 
             ZStack(alignment: .topLeading) {
-                if text.isEmpty && !isFocused {
+                if text.isEmpty, !isFocused {
                     Text("今日の一句に思うこと…")
                         .font(.subheadline)
                         .foregroundStyle(colors.primaryText.opacity(0.35))

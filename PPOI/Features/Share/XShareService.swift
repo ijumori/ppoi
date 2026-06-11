@@ -9,7 +9,8 @@ enum XShareService {
 
         // 1. Try Twitter app URL scheme
         if let twitterURL = URL(string: "twitter://post?message=\(encodedText)"),
-           UIApplication.shared.canOpenURL(twitterURL) {
+           UIApplication.shared.canOpenURL(twitterURL)
+        {
             UIApplication.shared.open(twitterURL)
             return
         }

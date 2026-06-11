@@ -4,7 +4,9 @@ struct WeeklyRankingView: View {
     @Environment(AppState.self) private var appState
     let ranking: [RankedQuote]
 
-    private var colors: ThemeColors { appState.store.selectedTheme.colors }
+    private var colors: ThemeColors {
+        appState.store.selectedTheme.colors
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {

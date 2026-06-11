@@ -40,7 +40,8 @@ final class InterstitialAdManager: NSObject {
         }
 
         guard let presenter = topPresenter(),
-              presenter.presentedViewController == nil else {
+              presenter.presentedViewController == nil
+        else {
             preload()
             return
         }
@@ -85,11 +86,13 @@ private extension UIViewController {
             return presented.topMostPresented()
         }
         if let navigation = self as? UINavigationController,
-           let visible = navigation.visibleViewController {
+           let visible = navigation.visibleViewController
+        {
             return visible.topMostPresented()
         }
         if let tab = self as? UITabBarController,
-           let selected = tab.selectedViewController {
+           let selected = tab.selectedViewController
+        {
             return selected.topMostPresented()
         }
         return self
@@ -97,7 +100,7 @@ private extension UIViewController {
 }
 
 extension InterstitialAdManager: GADFullScreenContentDelegate {
-    nonisolated func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    nonisolated func adDidDismissFullScreenContent(_: GADFullScreenPresentingAd) {
         Task { @MainActor in
             interstitial = nil
             preload()
@@ -105,8 +108,8 @@ extension InterstitialAdManager: GADFullScreenContentDelegate {
     }
 
     nonisolated func ad(
-        _ ad: GADFullScreenPresentingAd,
-        didFailToPresentFullScreenContentWithError error: Error
+        _: GADFullScreenPresentingAd,
+        didFailToPresentFullScreenContentWithError _: Error
     ) {
         Task { @MainActor in
             interstitial = nil

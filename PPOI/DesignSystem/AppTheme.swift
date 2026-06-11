@@ -9,7 +9,9 @@ enum AppTheme: String, CaseIterable, Identifiable {
     case midnight
     case sakura
 
-    var id: String { rawValue }
+    var id: String {
+        rawValue
+    }
 
     var label: String {
         switch self {
@@ -23,10 +25,14 @@ enum AppTheme: String, CaseIterable, Identifiable {
     }
 
     /// ストリーク報酬で解放されるテーマ
-    var isStreakReward: Bool { self == .zenGold }
+    var isStreakReward: Bool {
+        self == .zenGold
+    }
 
     /// プレミアム購入で解放されるテーマ
-    var isPremiumOnly: Bool { self == .midnight || self == .sakura }
+    var isPremiumOnly: Bool {
+        self == .midnight || self == .sakura
+    }
 
     var colors: ThemeColors {
         switch self {

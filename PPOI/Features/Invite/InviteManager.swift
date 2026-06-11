@@ -6,16 +6,15 @@ enum InviteManager {
     private static let appStoreURL = "https://apps.apple.com/app/id6771264998"
 
     static func invite(quote: Quote?) {
-        var text: String
-        if let quote {
-            text = """
+        var text = if let quote {
+            """
             "\(quote.text)"
 
             このアプリ、なんか良い。
             \(appStoreURL)
             """
         } else {
-            text = """
+            """
             毎日AIが紡ぐ「っぽい格言」、なんか良い。
             \(appStoreURL)
             """

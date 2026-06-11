@@ -23,13 +23,15 @@ struct QuoteEntry: TimelineEntry {
 }
 
 struct QuoteProvider: TimelineProvider {
-    func placeholder(in context: Context) -> QuoteEntry { .preview }
+    func placeholder(in _: Context) -> QuoteEntry {
+        .preview
+    }
 
-    func getSnapshot(in context: Context, completion: @escaping (QuoteEntry) -> Void) {
+    func getSnapshot(in _: Context, completion: @escaping (QuoteEntry) -> Void) {
         completion(currentEntry())
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<QuoteEntry>) -> Void) {
+    func getTimeline(in _: Context, completion: @escaping (Timeline<QuoteEntry>) -> Void) {
         let timeline = Timeline(entries: [currentEntry()], policy: .after(Self.nextJSTMidnight()))
         completion(timeline)
     }

@@ -77,11 +77,13 @@ private extension UIViewController {
             return presented.topMostPresented()
         }
         if let navigation = self as? UINavigationController,
-           let visible = navigation.visibleViewController {
+           let visible = navigation.visibleViewController
+        {
             return visible.topMostPresented()
         }
         if let tab = self as? UITabBarController,
-           let selected = tab.selectedViewController {
+           let selected = tab.selectedViewController
+        {
             return selected.topMostPresented()
         }
         return self

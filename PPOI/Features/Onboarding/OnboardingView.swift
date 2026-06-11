@@ -224,7 +224,7 @@ struct OnboardingView: View {
 
     private var pageIndicator: some View {
         HStack(spacing: 8) {
-            ForEach(0..<totalPages, id: \.self) { index in
+            ForEach(0 ..< totalPages, id: \.self) { index in
                 Circle()
                     .fill(index == page ? colors.accent : colors.accent.opacity(0.3))
                     .frame(width: index == page ? 10 : 6, height: index == page ? 10 : 6)

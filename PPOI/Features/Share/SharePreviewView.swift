@@ -9,7 +9,9 @@ struct SharePreviewView: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    private var colors: ThemeColors { theme.colors }
+    private var colors: ThemeColors {
+        theme.colors
+    }
 
     var body: some View {
         NavigationStack {

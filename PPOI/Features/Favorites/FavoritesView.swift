@@ -32,7 +32,6 @@ struct FavoritesView: View {
         .navigationTitle("お気に入り")
         .navigationBarTitleDisplayMode(.inline)
     }
-
 }
 
 #Preview {

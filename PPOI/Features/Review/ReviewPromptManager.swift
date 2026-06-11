@@ -11,7 +11,8 @@ enum ReviewPromptManager {
         else { return }
 
         if let last = store.lastReviewPromptDate,
-           let lastDate = DateFormatter.jstDate.date(from: last) {
+           let lastDate = DateFormatter.jstDate.date(from: last)
+        {
             var calendar = Calendar(identifier: .gregorian)
             calendar.timeZone = TimeZone(identifier: "Asia/Tokyo") ?? .current
             let days = calendar.dateComponents([.day], from: lastDate, to: Date()).day ?? 0

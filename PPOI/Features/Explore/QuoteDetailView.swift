@@ -4,7 +4,9 @@ struct QuoteDetailView: View {
     let quote: Quote
     @Environment(AppState.self) private var appState
 
-    private var colors: ThemeColors { appState.store.selectedTheme.colors }
+    private var colors: ThemeColors {
+        appState.store.selectedTheme.colors
+    }
 
     var body: some View {
         ScrollView {

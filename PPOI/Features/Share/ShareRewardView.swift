@@ -35,10 +35,10 @@ struct ShareRewardView: View {
 
     private var title: (icon: String, name: String) {
         switch shareCount {
-        case ...4: return ("📖", "格言見習い")
-        case ...14: return ("📣", "格言の伝道師")
-        case ...29: return ("🎓", "格言師範")
-        default: return ("🧙", "格言仙人")
+        case ...4: ("📖", "格言見習い")
+        case ...14: ("📣", "格言の伝道師")
+        case ...29: ("🎓", "格言師範")
+        default: ("🧙", "格言仙人")
         }
     }
 }

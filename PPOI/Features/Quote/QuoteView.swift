@@ -9,8 +9,12 @@ struct QuoteView: View {
     @State private var favoriteScale: CGFloat = 1.0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    private var theme: AppTheme { appState.store.selectedTheme }
-    private var colors: ThemeColors { theme.colors }
+    private var theme: AppTheme {
+        appState.store.selectedTheme
+    }
+    private var colors: ThemeColors {
+        theme.colors
+    }
 
     var body: some View {
         NavigationStack {

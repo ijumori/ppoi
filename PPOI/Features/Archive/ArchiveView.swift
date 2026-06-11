@@ -23,7 +23,7 @@ struct ArchiveView: View {
                 )
             } else {
                 List {
-                    ForEach(Array(visibleQuotes.enumerated()), id: \.element.id) { index, quote in
+                    ForEach(Array(visibleQuotes.enumerated()), id: \.element.id) { _, quote in
                         VStack(alignment: .leading, spacing: 4) {
                             Text(quote.displayDate)
                                 .font(.caption)

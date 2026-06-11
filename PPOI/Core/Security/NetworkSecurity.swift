@@ -9,7 +9,6 @@ import Security
 /// This module provides a secure URLSession for any future custom API calls
 /// with public key pinning support.
 enum NetworkSecurity {
-
     /// Pinned public key hashes (SHA-256, base64-encoded).
     /// Update these when rotating server certificates.
     /// Currently unused as all traffic goes through Firebase SDK,
@@ -43,7 +42,7 @@ final class PinningDelegate: NSObject, URLSessionDelegate {
     }
 
     func urlSession(
-        _ session: URLSession,
+        _: URLSession,
         didReceive challenge: URLAuthenticationChallenge,
         completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void
     ) {
@@ -72,7 +71,7 @@ final class PinningDelegate: NSObject, URLSessionDelegate {
         let certCount = SecTrustGetCertificateCount(serverTrust)
         var matched = false
 
-        for i in 0..<certCount {
+        for i in 0 ..< certCount {
             guard let certificate = SecTrustCopyCertificateChain(serverTrust) as? [SecCertificate],
                   i < certificate.count
             else { continue }

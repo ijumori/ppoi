@@ -16,7 +16,7 @@ enum QuoteRepositoryError: LocalizedError {
             "Firebase が未設定です。GoogleService-Info.plist を配置してください。"
         case .untrustedEnvironment:
             "セキュリティ上、ネットワークから格言を取得できません。キャッシュをご利用ください。"
-        case .documentNotFound(let date):
+        case let .documentNotFound(date):
             "今日（\(date)）の格言がまだ届いていません。"
         }
     }

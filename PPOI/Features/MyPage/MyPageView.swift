@@ -8,7 +8,9 @@ struct MyPageView: View {
 
     @State private var newAchievement: Achievement?
 
-    private var colors: ThemeColors { appState.store.selectedTheme.colors }
+    private var colors: ThemeColors {
+        appState.store.selectedTheme.colors
+    }
 
     var body: some View {
         NavigationStack {

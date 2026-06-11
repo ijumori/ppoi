@@ -24,9 +24,9 @@ enum TrackingPermission {
         parameters.tagForUnderAgeOfConsent = false
 
         #if DEBUG
-        let debugSettings = UMPDebugSettings()
-        debugSettings.testDeviceIdentifiers = ["TEST-DEVICE"]
-        parameters.debugSettings = debugSettings
+            let debugSettings = UMPDebugSettings()
+            debugSettings.testDeviceIdentifiers = ["TEST-DEVICE"]
+            parameters.debugSettings = debugSettings
         #endif
 
         await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in

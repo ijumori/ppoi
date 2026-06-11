@@ -2,12 +2,14 @@ import FirebaseFirestore
 import Foundation
 
 enum Reaction: String, CaseIterable, Identifiable {
-    case thinking  // 🤔
-    case laughing  // 😂
-    case crying    // 🥹
-    case fire      // 🔥
+    case thinking // 🤔
+    case laughing // 😂
+    case crying // 🥹
+    case fire // 🔥
 
-    var id: String { rawValue }
+    var id: String {
+        rawValue
+    }
 
     var emoji: String {
         switch self {
@@ -34,7 +36,9 @@ struct VoteCounts: Equatable {
         }
     }
 
-    var total: Int { thinking + laughing + crying + fire }
+    var total: Int {
+        thinking + laughing + crying + fire
+    }
 }
 
 final class VoteService {
@@ -70,7 +74,7 @@ final class VoteService {
             .document(date)
 
         var updates: [String: Any] = [
-            reaction.rawValue: FieldValue.increment(Int64(1))
+            reaction.rawValue: FieldValue.increment(Int64(1)),
         ]
         if let previous = previousReaction, previous != reaction {
             updates[previous.rawValue] = FieldValue.increment(Int64(-1))
