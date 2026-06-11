@@ -1,6 +1,7 @@
 # リファクタリング計画 — っぽい格言（PPOI）
 
 作成日: 2026-06-11
+更新日: 2026-06-11（Phase 0・1 完了）
 対象: `PPOI/`（Swift 約5,600行・約50ファイル）、`PPOIWidget/`、`functions/`、リポジトリ全体
 
 ## 0. 現状診断（サマリ)
@@ -40,11 +41,11 @@
 
 ### 作業項目
 
-- [ ] `DELETEBOX/` を削除（中身は旧スクリーンショット4枚のみ。Git 履歴に残るので復元可能）
-- [ ] `project.yml` の `"**/* (1)/**"` / `"**/* (1)*"` 除外指定を削除（実ファイルが存在しないことを確認の上）
-- [ ] SwiftFormat または swift-format を導入し、設定ファイル（`.swiftformat`）をコミット。初回一括適用は単独 PR で行う
-- [ ] CI（GitHub Actions）で `xcodegen generate` + ビルド + テストを回すワークフローを追加（以降のフェーズの回帰検知）
-- [ ] `docs/` の索引（`docs/README.md`）に本計画書を追記
+- [x] `DELETEBOX/` を削除（中身は旧スクリーンショット4枚のみ。Git 履歴に残るので復元可能）
+- [~] `project.yml` の `"**/* (1)/**"` / `"**/* (1)*"` 除外指定を削除（Google Drive 同期による実ファイルが存在することを確認→**意図的に保持**）
+- [x] SwiftFormat v0.61.1 を導入し、設定ファイル（`.swiftformat`）をコミット
+- [x] CI（GitHub Actions）で `xcodegen generate` + ビルド + SwiftFormat lint を回すワークフローを追加
+- [x] `docs/` の索引（`docs/README.md`）に本計画書を追記
 
 ### 完了条件
 
@@ -59,15 +60,12 @@
 
 ### 作業項目
 
-- [ ] `PPOITests`（unit-test target）を `project.yml` に追加
-- [ ] `UserDefaultsStore` のテスト: `init(defaults:)` は既に注入可能なので `UserDefaults(suiteName:)` を使い、以下を固定
-  - ストリーク連続判定（`isConsecutive`、JST 跨ぎ、同日再訪問の不変性）
-  - 報酬解放ロジック（7日→テーマ、30日→称号、冪等性）
-  - お気に入りの上限100件トリミング
-- [ ] `QuoteService` のテスト: `QuoteRepository` は既にプロトコルなのでモックを注入し、キャッシュヒット / フォールバック3系統（firebaseNotConfigured / documentNotFound / untrustedEnvironment）を固定
-- [ ] `QuoteViewModel` に `QuoteService` をイニシャライザ注入できるよう変更（現状 `private let quoteService = QuoteService()` で固定生成）し、ロード成功・失敗時のフォールバックをテスト
-- [ ] `ShareCardExportView` のフォントサイズ決定ロジックを純粋関数として切り出してテスト
-- [ ] `functions/` に vitest/jest を導入し、`generateQuote.ts` の `as QuoteTone` キャスト周りとレスポンス抽出（正規表現）の検証を追加
+- [x] `PPOITests`（unit-test target）を `project.yml` に追加
+- [x] `UserDefaultsStore` のテスト（10テスト）: ストリーク連続判定・JST 跨ぎ・同日冪等性・報酬解放 7d/30d・お気に入り上限100件
+- [x] `QuoteService` のテスト（5テスト）: キャッシュヒット / フォールバック3系統（firebaseNotConfigured / documentNotFound / untrustedEnvironment）/ 成功パス。Keychain 汚染防止の `tearDown` 追加
+- [x] `QuoteViewModel` に `QuoteService` をイニシャライザ注入できるよう変更（3テスト）。同 Keychain tearDown 追加
+- [x] `ShareCardExportView.quoteFontSize` を純粋 static 関数として切り出し（14テスト）
+- [x] `functions/` に vitest v2.1.9 を導入し、`generateQuote.ts` のレスポンス抽出・カテゴリ検証・エラーケースを 11 テストで固定
 
 ### 完了条件
 

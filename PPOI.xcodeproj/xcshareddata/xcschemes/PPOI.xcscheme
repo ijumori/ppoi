@@ -44,6 +44,17 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "909C4FEA056E2E3437B734E5"
+               BuildableName = "PPOITests.xctest"
+               BlueprintName = "PPOITests"
+               ReferencedContainer = "container:PPOI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE2D9D76F039026784AF5EB7"
                BuildableName = "PPOIScreenshotTests.xctest"
                BlueprintName = "PPOIScreenshotTests"
