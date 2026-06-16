@@ -22,7 +22,7 @@ PPOI/                    # iOS アプリ（SwiftUI）
 ├── Features/            # 画面（Quote, Share, Settings, Onboarding, Ads）
 ├── Core/
 │   ├── Data/            # モデル・Repository・QuoteService
-│   ├── Persistence/     # UserDefaults
+│   ├── Persistence/     # UserPreferencesStore / FavoritesStore / StreakTracker / RewardUnlocker
 │   ├── Infrastructure/  # Firebase, AdMob, 通知
 │   └── Security/        # App Check, Keychain, ランタイム保護
 ├── DesignSystem/
