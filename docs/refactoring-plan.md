@@ -1,7 +1,7 @@
 # リファクタリング計画 — っぽい格言（PPOI）
 
 作成日: 2026-06-11
-更新日: 2026-06-11（Phase 0・1 完了）
+更新日: 2026-06-16（Phase 0・1・2 完了）
 対象: `PPOI/`（Swift 約5,600行・約50ファイル）、`PPOIWidget/`、`functions/`、リポジトリ全体
 
 ## 0. 現状診断（サマリ)
@@ -84,15 +84,15 @@
 
 ### 作業項目
 
-- [ ] `UserDefaultsStore` を以下に分割（キー名は既存のまま維持）:
+- [x] `UserDefaultsStore` を以下に分割（キー名は既存のまま維持）:
   - `UserPreferencesStore` — onboarding 完了、テーマ、通知、フォント
   - `FavoritesStore` — お気に入り CRUD と上限管理
   - `StreakTracker` — 訪問記録、連続日数、`visitedDates`、日付計算
   - `RewardUnlocker` — ストリーク報酬の判定・解放（`StreakTracker` に依存）
-- [ ] 日付ユーティリティ（JST 固定の `DateFormatter.jstDate`、連続日判定）を `Core/Utilities/JSTDate.swift` に集約
-- [ ] `VoteView.swift:109-121` のローカル投票永続化（`votedDate` / `votedReaction` キー直接アクセス）を `VoteStore`（または `UserPreferencesStore`）に移管
-- [ ] `AppState` / 各 View の参照を新クラスに差し替え。`@Observable` の粒度が細かくなることで不要な再描画も減る
-- [ ] 分割後、`SecureQuoteCache` への委譲（`cacheQuote` / `cachedQuote`）は `QuoteService` 直下に移し、Store 経由の間接参照を解消
+- [x] 日付ユーティリティ（JST 固定の `DateFormatter.jstDate`、連続日判定）を `Core/Utilities/JSTDate.swift` に集約
+- [x] `VoteView.swift:109-121` のローカル投票永続化（`votedDate` / `votedReaction` キー直接アクセス）を `StreakTracker.recordVote()` に移管
+- [x] `AppState` / 各 View の参照を新クラスに差し替え。`@Observable` の粒度が細かくなることで不要な再描画も減る
+- [x] 分割後、`SecureQuoteCache` への委譲（`cacheQuote` / `cachedQuote`）は `QuoteService` 直下に移し、Store 経由の間接参照を解消
 
 ### 完了条件
 
