@@ -88,7 +88,7 @@ struct ExploreView: View {
 
     private func categoryChip(_ category: QuoteCategory?, label: String, icon: String?) -> some View {
         let isSelected = selectedCategory == category
-        let colors = appState.store.selectedTheme.colors
+        let colors = appState.preferences.selectedTheme.colors
         return Button {
             withAnimation(.easeInOut(duration: 0.2)) {
                 selectedCategory = category
@@ -114,7 +114,7 @@ struct ExploreView: View {
     }
 
     private func quoteRow(_ quote: Quote) -> some View {
-        let colors = appState.store.selectedTheme.colors
+        let colors = appState.preferences.selectedTheme.colors
         return VStack(alignment: .leading, spacing: 6) {
             HStack {
                 if let category = quote.category {
@@ -127,7 +127,7 @@ struct ExploreView: View {
                         .foregroundStyle(colors.accent.opacity(0.7))
                 }
                 Spacer()
-                if appState.store.isFavorite(quote) {
+                if appState.favorites.isFavorite(quote) {
                     Image(systemName: "heart.fill")
                         .font(.caption)
                         .foregroundStyle(colors.accent)

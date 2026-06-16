@@ -28,22 +28,4 @@ enum QuoteTone: String, Codable {
     case serious
 }
 
-extension DateFormatter {
-    static let jstDate: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
-        formatter.locale = Locale(identifier: "ja_JP")
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
-
-    static let jstDisplay: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
-        formatter.locale = Locale(identifier: "ja_JP")
-        formatter.dateFormat = "yyyy年M月d日"
-        return formatter
-    }()
-}
+// DateFormatter.jstDate / jstDisplay は Core/Utilities/JSTDate.swift で定義

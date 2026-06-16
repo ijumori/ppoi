@@ -20,13 +20,6 @@ final class QuoteServiceTests: XCTestCase {
         KeychainStore.delete(.quoteCache)
     }
 
-    private func makeDefaults() -> UserDefaults {
-        let name = "com.takahiro.ppoi.tests.\(UUID().uuidString)"
-        let d = UserDefaults(suiteName: name)!
-        d.removePersistentDomain(forName: name)
-        return d
-    }
-
     private var sampleQuote: Quote {
         Quote(id: "2026-06-11", date: "2026-06-11", text: "テスト格言", tone: .serious)
     }
@@ -34,13 +27,10 @@ final class QuoteServiceTests: XCTestCase {
     // MARK: - Cache hit
 
     func test_cacheHit_returnsCachedQuote() async throws {
-        let defaults = makeDefaults()
-        let store = UserDefaultsStore(defaults: defaults)
-        store.cacheQuote(sampleQuote)
+        SecureQuoteCache.save(sampleQuote)
 
         let service = QuoteService(
-            repository: MockRepository(result: .failure(QuoteRepositoryError.documentNotFound(date: "2026-06-11"))),
-            store: store
+            repository: MockRepository(result: .failure(QuoteRepositoryError.documentNotFound(date: "2026-06-11")))
         )
 
         let today = DateFormatter.jstDate.string(from: Date())
@@ -55,8 +45,7 @@ final class QuoteServiceTests: XCTestCase {
 
     func test_firebaseNotConfigured_returnsFallback() async throws {
         let service = QuoteService(
-            repository: MockRepository(result: .failure(QuoteRepositoryError.firebaseNotConfigured)),
-            store: UserDefaultsStore(defaults: makeDefaults())
+            repository: MockRepository(result: .failure(QuoteRepositoryError.firebaseNotConfigured))
         )
         let quote = try await service.fetchTodayQuote()
         XCTAssertFalse(quote.text.isEmpty)
@@ -67,8 +56,7 @@ final class QuoteServiceTests: XCTestCase {
     func test_documentNotFound_returnsFallback() async throws {
         let today = DateFormatter.jstDate.string(from: Date())
         let service = QuoteService(
-            repository: MockRepository(result: .failure(QuoteRepositoryError.documentNotFound(date: today))),
-            store: UserDefaultsStore(defaults: makeDefaults())
+            repository: MockRepository(result: .failure(QuoteRepositoryError.documentNotFound(date: today)))
         )
         let quote = try await service.fetchTodayQuote()
         XCTAssertFalse(quote.text.isEmpty)
@@ -78,8 +66,7 @@ final class QuoteServiceTests: XCTestCase {
 
     func test_untrustedEnvironment_returnsFallback() async throws {
         let service = QuoteService(
-            repository: MockRepository(result: .failure(QuoteRepositoryError.untrustedEnvironment)),
-            store: UserDefaultsStore(defaults: makeDefaults())
+            repository: MockRepository(result: .failure(QuoteRepositoryError.untrustedEnvironment))
         )
         let quote = try await service.fetchTodayQuote()
         XCTAssertFalse(quote.text.isEmpty)
@@ -90,8 +77,7 @@ final class QuoteServiceTests: XCTestCase {
     func test_successfulFetch_returnsQuote() async throws {
         let expected = Quote(id: "2026-06-11", date: "2026-06-11", text: "成功の格言", tone: .humorous)
         let service = QuoteService(
-            repository: MockRepository(result: .success(expected)),
-            store: UserDefaultsStore(defaults: makeDefaults())
+            repository: MockRepository(result: .success(expected))
         )
         let quote = try await service.fetchTodayQuote()
         XCTAssertEqual(quote.text, "成功の格言")

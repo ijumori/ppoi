@@ -16,25 +16,16 @@ final class QuoteViewModelTests: XCTestCase {
         KeychainStore.delete(.quoteCache)
     }
 
-    private func makeDefaults() -> UserDefaults {
-        let name = "com.takahiro.ppoi.tests.\(UUID().uuidString)"
-        let d = UserDefaults(suiteName: name)!
-        d.removePersistentDomain(forName: name)
-        return d
-    }
-
     // MARK: - Success
 
     func test_loadQuote_success_setsQuote() async {
         let expected = Quote(id: "2026-06-11", date: "2026-06-11", text: "テスト格言", tone: .serious)
         let service = QuoteService(
-            repository: MockRepository(result: .success(expected)),
-            store: UserDefaultsStore(defaults: makeDefaults())
+            repository: MockRepository(result: .success(expected))
         )
         let vm = QuoteViewModel(quoteService: service)
-        let store = UserDefaultsStore(defaults: makeDefaults())
 
-        await vm.loadQuote(store: store)
+        await vm.loadQuote()
 
         XCTAssertNotNil(vm.quote)
         XCTAssertEqual(vm.quote?.text, "テスト格言")
@@ -45,13 +36,11 @@ final class QuoteViewModelTests: XCTestCase {
 
     func test_loadQuote_failure_fallsBackToPlaceholder() async {
         let service = QuoteService(
-            repository: MockRepository(result: .failure(QuoteRepositoryError.firebaseNotConfigured)),
-            store: UserDefaultsStore(defaults: makeDefaults())
+            repository: MockRepository(result: .failure(QuoteRepositoryError.firebaseNotConfigured))
         )
         let vm = QuoteViewModel(quoteService: service)
-        let store = UserDefaultsStore(defaults: makeDefaults())
 
-        await vm.loadQuote(store: store)
+        await vm.loadQuote()
 
         XCTAssertNotNil(vm.quote)
         XCTAssertFalse(vm.isLoading)
@@ -63,12 +52,11 @@ final class QuoteViewModelTests: XCTestCase {
         let service = QuoteService(
             repository: MockRepository(result: .success(
                 Quote(id: "x", date: "2026-06-11", text: "格言", tone: .humorous)
-            )),
-            store: UserDefaultsStore(defaults: makeDefaults())
+            ))
         )
         let vm = QuoteViewModel(quoteService: service)
 
-        await vm.loadQuote(store: UserDefaultsStore(defaults: makeDefaults()))
+        await vm.loadQuote()
         XCTAssertFalse(vm.isLoading)
     }
 }

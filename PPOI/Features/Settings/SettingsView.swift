@@ -59,10 +59,10 @@ struct SettingsView: View {
             }
             .onAppear {
                 guard !didLoad else { return }
-                selectedTheme = appState.store.selectedTheme
-                fontVariant = appState.store.fontVariant
-                notificationHour = appState.store.notificationHour
-                notificationEnabled = appState.store.notificationEnabled
+                selectedTheme = appState.preferences.selectedTheme
+                fontVariant = appState.preferences.fontVariant
+                notificationHour = appState.preferences.notificationHour
+                notificationEnabled = appState.preferences.notificationEnabled
                 didLoad = true
             }
         }
@@ -70,7 +70,7 @@ struct SettingsView: View {
 
     @ViewBuilder
     private func themeRow(_ theme: AppTheme) -> some View {
-        if theme.isStreakReward, !appState.store.hasUnlockedStreakTheme {
+        if theme.isStreakReward, !appState.rewards.hasUnlockedStreakTheme {
             HStack {
                 Text(theme.label)
                     .foregroundStyle(.secondary)
@@ -131,10 +131,10 @@ struct SettingsView: View {
     }
 
     private func applyAndDismiss() {
-        appState.store.selectedTheme = selectedTheme
-        appState.store.fontVariant = fontVariant
-        appState.store.notificationHour = notificationHour
-        appState.store.notificationEnabled = notificationEnabled
+        appState.preferences.selectedTheme = selectedTheme
+        appState.preferences.fontVariant = fontVariant
+        appState.preferences.notificationHour = notificationHour
+        appState.preferences.notificationEnabled = notificationEnabled
 
         Task {
             if notificationEnabled {

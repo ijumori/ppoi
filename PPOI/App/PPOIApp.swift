@@ -3,24 +3,23 @@ import SwiftUI
 
 @Observable
 final class AppState {
-    var store: UserDefaultsStore
+    var preferences = UserPreferencesStore()
+    var favorites = FavoritesStore()
+    var streak = StreakTracker()
+    var rewards = RewardUnlocker()
 
-    var hasCompletedOnboarding: Bool
-
-    init() {
-        let defaults = UserDefaultsStore()
-        store = defaults
-        hasCompletedOnboarding = defaults.hasCompletedOnboarding
+    var hasCompletedOnboarding: Bool {
+        get { preferences.hasCompletedOnboarding }
+        set { preferences.hasCompletedOnboarding = newValue }
     }
 
     func finishOnboarding(requestNotification: Bool) {
-        hasCompletedOnboarding = true
-        store.hasCompletedOnboarding = true
-        store.notificationEnabled = requestNotification
+        preferences.hasCompletedOnboarding = true
+        preferences.notificationEnabled = requestNotification
     }
 
     func updateNotificationPermission(granted: Bool) {
-        store.notificationEnabled = granted
+        preferences.notificationEnabled = granted
     }
 }
 

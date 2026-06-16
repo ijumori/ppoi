@@ -5,14 +5,14 @@ struct FavoritesView: View {
 
     var body: some View {
         List {
-            if appState.store.favorites.isEmpty {
+            if appState.favorites.list.isEmpty {
                 ContentUnavailableView(
                     "お気に入りはまだありません",
                     systemImage: "heart",
                     description: Text("ホームでハートを押すと、ここに保存されます。")
                 )
             } else {
-                ForEach(appState.store.favorites) { quote in
+                ForEach(appState.favorites.list) { quote in
                     VStack(alignment: .leading, spacing: 4) {
                         Text(quote.displayDate)
                             .font(.caption)
@@ -25,7 +25,7 @@ struct FavoritesView: View {
                     .accessibilityLabel("\(quote.displayDate)の格言、\(quote.text)")
                 }
                 .onDelete { offsets in
-                    appState.store.removeFavorites(at: offsets)
+                    appState.favorites.remove(at: offsets)
                 }
             }
         }

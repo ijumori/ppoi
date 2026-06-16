@@ -5,8 +5,10 @@ struct QuoteDetailView: View {
     @Environment(AppState.self) private var appState
 
     private var colors: ThemeColors {
-        appState.store.selectedTheme.colors
+        appState.preferences.selectedTheme.colors
     }
+
+
 
     var body: some View {
         ScrollView {
@@ -18,7 +20,7 @@ struct QuoteDetailView: View {
                     .foregroundStyle(colors.accent)
 
                 Text(quote.text)
-                    .font(.system(size: 28, weight: .medium, design: appState.store.fontVariant == .serif ? .serif : .default))
+                    .font(.system(size: 28, weight: .medium, design: appState.preferences.fontVariant == .serif ? Font.Design.serif : .default))
                     .foregroundStyle(colors.primaryText)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
@@ -46,12 +48,12 @@ struct QuoteDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    appState.store.toggleFavorite(quote)
+                    appState.favorites.toggleFavorite(quote)
                 } label: {
-                    Image(systemName: appState.store.isFavorite(quote) ? "heart.fill" : "heart")
+                    Image(systemName: appState.favorites.isFavorite(quote) ? "heart.fill" : "heart")
                         .foregroundStyle(colors.accent)
                 }
-                .accessibilityLabel(appState.store.isFavorite(quote) ? "お気に入り解除" : "お気に入りに追加")
+                .accessibilityLabel(appState.favorites.isFavorite(quote) ? "お気に入り解除" : "お気に入りに追加")
             }
         }
     }

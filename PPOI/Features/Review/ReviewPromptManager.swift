@@ -5,12 +5,12 @@ import UIKit
 @MainActor
 enum ReviewPromptManager {
     /// 3日連続閲覧 かつ シェア1回以上 → レビュー依頼（60日に1回まで）
-    static func requestIfEligible(store: UserDefaultsStore) {
-        guard store.currentStreak >= 3,
-              store.totalShareCount >= 1
+    static func requestIfEligible(preferences: UserPreferencesStore, streak: StreakTracker) {
+        guard streak.currentStreak >= 3,
+              preferences.totalShareCount >= 1
         else { return }
 
-        if let last = store.lastReviewPromptDate,
+        if let last = preferences.lastReviewPromptDate,
            let lastDate = DateFormatter.jstDate.date(from: last)
         {
             var calendar = Calendar(identifier: .gregorian)
@@ -19,7 +19,7 @@ enum ReviewPromptManager {
             if days < 60 { return }
         }
 
-        store.lastReviewPromptDate = DateFormatter.jstDate.string(from: Date())
+        preferences.lastReviewPromptDate = DateFormatter.jstDate.string(from: Date())
 
         guard let scene = UIApplication.shared.connectedScenes
             .first(where: { $0 is UIWindowScene }) as? UIWindowScene

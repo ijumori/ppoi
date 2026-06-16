@@ -16,7 +16,7 @@ final class QuoteViewModel {
         self.quoteService = quoteService
     }
 
-    func loadQuote(store: UserDefaultsStore) async {
+    func loadQuote() async {
         isLoading = true
         defer { isLoading = false }
 
@@ -24,10 +24,9 @@ final class QuoteViewModel {
             let fetched = try await quoteService.fetchTodayQuote()
             quote = fetched
         } catch {
-            quote = store.cachedQuote(for: DateFormatter.jstDate.string(from: Date())) ?? .placeholder
+            quote = SecureQuoteCache.load(for: DateFormatter.jstDate.string(from: Date())) ?? .placeholder
         }
 
-        store.registerTodayVisit()
         syncWidget()
     }
 

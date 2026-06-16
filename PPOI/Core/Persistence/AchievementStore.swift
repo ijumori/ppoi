@@ -26,10 +26,16 @@ final class AchievementStore {
 
     /// 実績解除チェック。新たに解除された場合は newlyUnlocked にセット。
     @discardableResult
-    func check(store: UserDefaultsStore, journalStore: JournalStore) -> Achievement? {
+    func check(
+        preferences: UserPreferencesStore,
+        favorites: FavoritesStore,
+        streak: StreakTracker,
+        rewards: RewardUnlocker,
+        journalStore: JournalStore
+    ) -> Achievement? {
         for achievement in Achievement.allCases {
             guard !unlocked.contains(achievement) else { continue }
-            if shouldUnlock(achievement, store: store, journalStore: journalStore) {
+            if shouldUnlock(achievement, preferences: preferences, favorites: favorites, streak: streak, rewards: rewards, journalStore: journalStore) {
                 unlock(achievement)
                 return achievement
             }
@@ -52,16 +58,23 @@ final class AchievementStore {
         persist()
     }
 
-    private func shouldUnlock(_ a: Achievement, store: UserDefaultsStore, journalStore: JournalStore) -> Bool {
+    private func shouldUnlock(
+        _ a: Achievement,
+        preferences: UserPreferencesStore,
+        favorites: FavoritesStore,
+        streak: StreakTracker,
+        rewards: RewardUnlocker,
+        journalStore: JournalStore
+    ) -> Bool {
         switch a {
-        case .streakTheme: store.hasUnlockedStreakTheme
-        case .masterTitle: store.hasEarnedMasterTitle
-        case .firstFavorite: !store.favorites.isEmpty
-        case .firstShare: store.totalShareCount >= 1
+        case .streakTheme: rewards.hasUnlockedStreakTheme
+        case .masterTitle: rewards.hasEarnedMasterTitle
+        case .firstFavorite: !favorites.list.isEmpty
+        case .firstShare: preferences.totalShareCount >= 1
         case .firstJournal: journalStore.totalEntryCount >= 1
         case .explorer: exploreViewCount >= 10
-        case .voter7: store.voteCount >= 7
-        case .sharer5: store.totalShareCount >= 5
+        case .voter7: streak.voteCount >= 7
+        case .sharer5: preferences.totalShareCount >= 5
         }
     }
 

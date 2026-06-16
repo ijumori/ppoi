@@ -8,7 +8,7 @@ struct CalendarView: View {
     @State private var displayDate = Date()
 
     private var colors: ThemeColors {
-        appState.store.selectedTheme.colors
+        appState.preferences.selectedTheme.colors
     }
     private let columns = Array(repeating: GridItem(.flexible()), count: 7)
     private let weekdayLabels = ["月", "火", "水", "木", "金", "土", "日"]

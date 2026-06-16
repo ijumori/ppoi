@@ -9,7 +9,7 @@ struct PaywallView: View {
     @State private var showCelebration = false
 
     private var colors: ThemeColors {
-        appState.store.selectedTheme.colors
+        appState.preferences.selectedTheme.colors
     }
 
     private let benefits: [(icon: String, title: String, detail: String)] = [

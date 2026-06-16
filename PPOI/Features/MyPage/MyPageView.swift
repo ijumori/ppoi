@@ -9,7 +9,7 @@ struct MyPageView: View {
     @State private var newAchievement: Achievement?
 
     private var colors: ThemeColors {
-        appState.store.selectedTheme.colors
+        appState.preferences.selectedTheme.colors
     }
 
     var body: some View {
@@ -27,7 +27,10 @@ struct MyPageView: View {
         }
         .onAppear {
             newAchievement = achievementStore.check(
-                store: appState.store,
+                preferences: appState.preferences,
+                favorites: appState.favorites,
+                streak: appState.streak,
+                rewards: appState.rewards,
                 journalStore: journalStore
             )
         }
@@ -53,19 +56,19 @@ struct MyPageView: View {
             HStack {
                 statCard(
                     icon: "flame.fill",
-                    value: "\(appState.store.currentStreak)",
+                    value: "\(appState.streak.currentStreak)",
                     label: "連続日数"
                 )
                 Spacer()
                 statCard(
                     icon: "heart.fill",
-                    value: "\(appState.store.favorites.count)",
+                    value: "\(appState.favorites.list.count)",
                     label: "お気に入り"
                 )
                 Spacer()
                 statCard(
                     icon: "square.and.arrow.up",
-                    value: "\(appState.store.totalShareCount)",
+                    value: "\(appState.preferences.totalShareCount)",
                     label: "シェア回数"
                 )
                 Spacer()
@@ -77,7 +80,7 @@ struct MyPageView: View {
             }
             .padding(.vertical, 8)
             .accessibilityElement(children: .combine)
-            .accessibilityLabel("連続\(appState.store.currentStreak)日、お気に入り\(appState.store.favorites.count)件、シェア\(appState.store.totalShareCount)回、日記\(journalStore.totalEntryCount)件")
+            .accessibilityLabel("連続\(appState.streak.currentStreak)日、お気に入り\(appState.favorites.list.count)件、シェア\(appState.preferences.totalShareCount)回、日記\(journalStore.totalEntryCount)件")
         }
     }
 
@@ -100,7 +103,7 @@ struct MyPageView: View {
     private var calendarSection: some View {
         Section("カレンダー") {
             CalendarView(
-                visitedDates: appState.store.visitedDates,
+                visitedDates: appState.streak.visitedDates,
                 journaledDates: journalStore.journaledDates()
             )
             .padding(.vertical, 8)

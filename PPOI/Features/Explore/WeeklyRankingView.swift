@@ -5,7 +5,7 @@ struct WeeklyRankingView: View {
     let ranking: [RankedQuote]
 
     private var colors: ThemeColors {
-        appState.store.selectedTheme.colors
+        appState.preferences.selectedTheme.colors
     }
 
     var body: some View {

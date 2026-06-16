@@ -71,7 +71,7 @@ struct VoteView: View {
 
         // Track vote for achievements (only new votes, not reaction changes)
         if previous == nil {
-            appState.store.recordVote()
+            appState.streak.recordVote()
         }
 
         // Optimistic local update

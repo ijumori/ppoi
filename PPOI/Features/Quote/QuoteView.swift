@@ -10,7 +10,7 @@ struct QuoteView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var theme: AppTheme {
-        appState.store.selectedTheme
+        appState.preferences.selectedTheme
     }
     private var colors: ThemeColors {
         theme.colors
@@ -31,12 +31,12 @@ struct QuoteView: View {
                                 .foregroundStyle(colors.accent)
                                 .accessibilityLabel("\(quote.displayDate)の格言")
 
-                            if appState.store.currentStreak >= 2 {
+                            if appState.streak.currentStreak >= 2 {
                                 HStack(spacing: 8) {
-                                    Label("\(appState.store.currentStreak)日連続", systemImage: "flame.fill")
+                                    Label("\(appState.streak.currentStreak)日連続", systemImage: "flame.fill")
                                         .font(.caption.weight(.semibold))
                                         .foregroundStyle(colors.accent)
-                                    if appState.store.hasEarnedMasterTitle {
+                                    if appState.rewards.hasEarnedMasterTitle {
                                         Text("格言マスター")
                                             .font(.caption2.weight(.bold))
                                             .foregroundStyle(colors.accent)
@@ -46,7 +46,7 @@ struct QuoteView: View {
                                             .clipShape(Capsule())
                                     }
                                 }
-                                .accessibilityLabel("\(appState.store.currentStreak)日連続閲覧\(appState.store.hasEarnedMasterTitle ? "、格言マスター" : "")")
+                                .accessibilityLabel("\(appState.streak.currentStreak)日連続閲覧\(appState.rewards.hasEarnedMasterTitle ? "、格言マスター" : "")")
                             }
 
                             Text("今日の「っぽい格言」")
@@ -127,7 +127,7 @@ struct QuoteView: View {
 
                 if showShareReward {
                     ShareRewardView(
-                        shareCount: appState.store.totalShareCount
+                        shareCount: appState.preferences.totalShareCount
                     ) {
                         withAnimation { showShareReward = false }
                     }
@@ -138,7 +138,7 @@ struct QuoteView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     if let quote = viewModel.quote {
                         Button {
-                            appState.store.toggleFavorite(quote)
+                            appState.favorites.toggleFavorite(quote)
                             if !reduceMotion {
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
                                     favoriteScale = 1.3
@@ -148,12 +148,12 @@ struct QuoteView: View {
                                 }
                             }
                         } label: {
-                            Image(systemName: appState.store.isFavorite(quote) ? "heart.fill" : "heart")
+                            Image(systemName: appState.favorites.isFavorite(quote) ? "heart.fill" : "heart")
                                 .foregroundStyle(colors.accent)
                                 .scaleEffect(favoriteScale)
                         }
-                        .sensoryFeedback(.impact(flexibility: .soft), trigger: appState.store.isFavorite(quote))
-                        .accessibilityLabel(appState.store.isFavorite(quote) ? "お気に入り解除" : "お気に入りに追加")
+                        .sensoryFeedback(.impact(flexibility: .soft), trigger: appState.favorites.isFavorite(quote))
+                        .accessibilityLabel(appState.favorites.isFavorite(quote) ? "お気に入り解除" : "お気に入りに追加")
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -171,9 +171,9 @@ struct QuoteView: View {
                     ShareInputView(
                         quote: quote,
                         theme: theme,
-                        fontVariant: appState.store.fontVariant,
+                        fontVariant: appState.preferences.fontVariant,
                         onShareCompleted: {
-                            appState.store.recordShare()
+                            appState.preferences.recordShare()
                             InterstitialAdManager.shared.showAfterShare()
                             showShareReward = true
                         }
@@ -182,13 +182,14 @@ struct QuoteView: View {
             }
         }
         .task {
-            await viewModel.loadQuote(store: appState.store)
+            await viewModel.loadQuote()
+            appState.streak.registerTodayVisit()
             viewModel.appeared = true
 
-            streakRewardAlert = appState.store.checkAndUnlockStreakRewards()
+            streakRewardAlert = appState.rewards.checkAndUnlockRewards(streak: appState.streak.currentStreak)
 
             try? await Task.sleep(for: .seconds(2))
-            ReviewPromptManager.requestIfEligible(store: appState.store)
+            ReviewPromptManager.requestIfEligible(preferences: appState.preferences, streak: appState.streak)
         }
         .alert(
             streakRewardAlert == .masterTitle ? "格言マスター獲得！" : "新テーマ解放！",
@@ -220,7 +221,7 @@ struct QuoteView: View {
     }
 
     private var quoteFont: Font {
-        let design: Font.Design = appState.store.fontVariant == .serif ? .serif : .default
+        let design: Font.Design = appState.preferences.fontVariant == .serif ? .serif : .default
         return .system(size: 32, weight: .medium, design: design)
     }
 
@@ -232,10 +233,10 @@ struct QuoteView: View {
             quote: quote,
             reflection: "",
             theme: theme,
-            fontVariant: appState.store.fontVariant
+            fontVariant: appState.preferences.fontVariant
         )
         XShareService.shareToX(text: text, image: image)
-        appState.store.recordShare()
+        appState.preferences.recordShare()
         InterstitialAdManager.shared.showAfterShare()
         showShareReward = true
     }

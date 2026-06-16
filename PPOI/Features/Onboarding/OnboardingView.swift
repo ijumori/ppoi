@@ -301,7 +301,7 @@ struct OnboardingView: View {
             let granted = await notificationService.requestAuthorization()
             appState.updateNotificationPermission(granted: granted)
             await notificationService.scheduleDailyNotification(
-                hour: appState.store.notificationHour,
+                hour: appState.preferences.notificationHour,
                 enabled: granted
             )
         }

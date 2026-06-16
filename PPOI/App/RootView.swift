@@ -29,7 +29,7 @@ struct RootView: View {
         }
         .environment(appState)
         .environment(StoreManager.shared)
-        .preferredColorScheme(appState.store.selectedTheme == .darkPremium ? .dark : nil)
+        .preferredColorScheme(appState.preferences.selectedTheme == .darkPremium ? .dark : nil)
         .animation(.easeInOut(duration: 0.3), value: appState.hasCompletedOnboarding)
         .onAppear {
             performSecurityCheck()

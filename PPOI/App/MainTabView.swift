@@ -35,7 +35,7 @@ struct MainTabView: View {
                 }
                 .tag(TabDestination.myPage)
         }
-        .tint(appState.store.selectedTheme.colors.accent)
+        .tint(appState.preferences.selectedTheme.colors.accent)
     }
 
     private var iPadLayout: some View {
@@ -59,7 +59,7 @@ struct MainTabView: View {
                 MyPageView()
             }
         }
-        .tint(appState.store.selectedTheme.colors.accent)
+        .tint(appState.preferences.selectedTheme.colors.accent)
     }
 }
 
