@@ -35,3 +35,8 @@ fastlane/test_output
 # Sensitive logs
 *.log
 crash_reports/
+
+# Google Drive sync duplicates
+*\ (1)/
+*\ (1).*
+fastlane/README.md
