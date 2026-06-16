@@ -116,6 +116,8 @@
 - **v1.1**: ✅ 実装済 — 創作明示 / お気に入り / ストリーク（`docs/redesign/v1.1-design.md`）
 - **v1.2**: ✅ 実装済 — 今日の格言ウィジェット（`docs/redesign/v1.2-design.md`）
 - **v2.0**: ✅ 実装済 — 買い切り課金 StoreKit 2（`docs/redesign/v2.0-design.md`）
+- **v1.3**: ✅ 実装済 — 一句日記 / カレンダー / 実績8種 / 週間ランキング / freeLimit=10 / AI今日の問い
+- **リファクタリング**: Phase 0・1・2 完了 / Phase 3〜5 進行中（`docs/refactoring-plan.md`）
 - **WBS**: W1〜W8 全タスク実装完了
-- **要対応（Mac/ASC）**: `xcodegen generate` → ビルド/実機・Sandbox確認 / App Groups `group.com.takahiro.ppoi` 有効化 / IAP `com.takahiro.ppoi.premium`(¥400) 作成 → 詳細は [`docs/redesign/next-steps.md`](../redesign/next-steps.md)
-- **更新日**: 2026-06-01
+- **要対応（Mac/ASC）**: App Groups `group.com.takahiro.ppoi` 有効化 / IAP `com.takahiro.ppoi.premium`(¥400) 作成 / v1.3 審査提出 → 詳細は [`docs/redesign/next-steps.md`](../redesign/next-steps.md)
+- **更新日**: 2026-06-16

@@ -29,9 +29,11 @@ PO（要件）→ UI/UX（設計）→ iOS Dev（実装）→ QA（テスト）�
 
 ## 現在フェーズ
 
-**運用・改善（v1 リリース準備 + 次バージョン開発）**
+**v1.3.0 (Build 11) — App Store 提出前・リファクタリング進行中**
 
-- v1.0.0: App Store 審査段階（`docs/phases/08-app-store-release.md`）
-- 企画・要件の再設計を実施（`docs/redesign/`）
-- v1.1（創作明示・お気に入り・ストリーク）/ v1.2（今日の格言ウィジェット）実装済み
-- 次: v2.0 買い切り課金（W5〜W8）／実機ビルド確認
+- v1.0 (Build 8): Guideline 4.2 却下（最低限機能）
+- v1.2: 3タブ構成・iPad対応・AI解読・Explore・MyPage 実装済み
+- v1.3: 一句日記 / カレンダー / 実績8種 / 週間ランキング / freeLimit=10 実装済み
+- v2.0: 買い切り課金 StoreKit 2 実装済み
+- リファクタリング: Phase 0・1・2 完了（`docs/refactoring-plan.md`）/ Phase 3〜5 進行中
+- 次アクション: v1.3 を App Store Connect に提出

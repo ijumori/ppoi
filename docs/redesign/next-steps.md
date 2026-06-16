@@ -1,8 +1,8 @@
 # 残作業・引き継ぎ（Mac / Apple Developer 必須）
 
-> 企画・要件の再設計と機能実装（WBS W1〜W8 = v1.1 / v1.2 / v2.0）はコードレベルで完了済み。
+> 企画・要件の再設計と機能実装（WBS W1〜W8 = v1.1 / v1.2 / v2.0 + v1.3）はコードレベルで完了済み。
 > Mac 環境で xcodegen → シミュレータビルド・Firestore 連携確認済み。Cloud Functions デプロイ済み。
-> 最終更新: 2026-06-04 / 対象ブランチ: `main`
+> 最終更新: 2026-06-16 / 対象ブランチ: `main`
 
 ## ここまでの完了状況
 
@@ -10,6 +10,8 @@
 - v1.1: 創作明示 / お気に入り / ストリーク（`v1.1-design.md`）
 - v1.2: 今日の格言ウィジェット（`v1.2-design.md`）
 - v2.0: 買い切り課金 StoreKit 2（`v2.0-design.md`）
+- v1.3: 一句日記 / カレンダー / 実績8種 / 週間ランキング / freeLimit=10 / AI今日の問い（`docs/v1.2-4.2-rejection-strategy.md` 対応）
+- リファクタリング Phase 0・1・2: UserDefaultsStore 分割 / JSTDate 集約 / CI / 43ユニットテスト（`docs/refactoring-plan.md`）
 - すべて `main` にマージ・GitHub へ push 済み
 - xcodegen generate → シミュレータビルド成功（PPOIWidget 含む）
 - Firestore 格言データ投入（11件 seed、2026-06-04〜06-14）

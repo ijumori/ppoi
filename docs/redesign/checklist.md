@@ -38,8 +38,9 @@
 - 🟡 実機ビルドは App Groups 有効化後に検証
 
 ## Phase 06 — テスト
-- 🟡 UnitTest / UITest 実装（拡充余地あり）
+- ✅ UnitTest 43テスト実装済（StreakTracker / FavoritesStore / QuoteService / QuoteViewModel / ShareCard）
 - ✅ TestFlightで実機テスト完了（v1）
+- ✅ GitHub Actions CI でビルド + ユニットテスト自動実行
 - ⬜ 新規機能（お気に入り/ストリーク/ウィジェット）の回帰テスト・実機確認
 
 ## Phase 07 — 申請
@@ -72,5 +73,6 @@
 
 | 日付 | 内容 |
 |------|------|
+| 2026-06-16 | Phase 06 Unit Test を ✅（43テスト + CI）に更新 |
 | 2026-06-04 | Firestore投入・Cloud Functions・シミュレータ確認を反映 |
 | 2026-05-31 | チェックリスト作成（Phase01-08、v1実績+再設計視点） |
