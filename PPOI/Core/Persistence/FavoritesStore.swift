@@ -6,7 +6,16 @@ final class FavoritesStore {
         static let favorites = "favorites"
     }
 
-    private static let limit = 100
+    /// 無料ユーザーの保存上限
+    static let freeLimit = 10
+    /// プレミアムユーザーの保存上限（実質無制限、UserDefaults肥大防止のキャップ）
+    static let premiumLimit = 1000
+
+    enum ToggleResult: Equatable {
+        case added
+        case removed
+        case limitReached(limit: Int, isPremium: Bool)
+    }
 
     private let defaults: UserDefaults
     private(set) var list: [Quote]
@@ -20,16 +29,20 @@ final class FavoritesStore {
         list.contains { $0.id == quote.id }
     }
 
-    func toggleFavorite(_ quote: Quote) {
+    @discardableResult
+    func toggleFavorite(_ quote: Quote, isPremium: Bool) -> ToggleResult {
         if let index = list.firstIndex(where: { $0.id == quote.id }) {
             list.remove(at: index)
-        } else {
-            list.insert(quote, at: 0)
-            if list.count > Self.limit {
-                list = Array(list.prefix(Self.limit))
-            }
+            persist()
+            return .removed
         }
+        let limit = isPremium ? Self.premiumLimit : Self.freeLimit
+        if list.count >= limit {
+            return .limitReached(limit: limit, isPremium: isPremium)
+        }
+        list.insert(quote, at: 0)
         persist()
+        return .added
     }
 
     func remove(at offsets: IndexSet) {

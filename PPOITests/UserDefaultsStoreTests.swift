@@ -159,15 +159,44 @@ final class FavoritesStoreTests: XCTestCase {
         return FavoritesStore(defaults: defaults)
     }
 
-    // MARK: - Favorites: limit
+    private func quote(_ i: Int) -> Quote {
+        Quote(
+            id: "id\(i)",
+            date: "2026-01-\(String(format: "%02d", (i % 28) + 1))",
+            text: "テスト格言\(i)",
+            tone: .serious
+        )
+    }
 
-    func test_favorites_cappedAt100() {
+    // MARK: - Favorites: free limit (10)
+
+    func test_freeUser_blockedAt10() {
         let store = makeStore()
-        for i in 0 ..< 110 {
-            let q = Quote(id: "id\(i)", date: "2026-01-\(String(format: "%02d", (i % 28) + 1))", text: "テスト格言\(i)", tone: .serious)
-            store.toggleFavorite(q)
+        for i in 0 ..< 10 {
+            let result = store.toggleFavorite(quote(i), isPremium: false)
+            XCTAssertEqual(result, .added)
         }
-        XCTAssertLessThanOrEqual(store.list.count, 100)
+        XCTAssertEqual(store.list.count, 10)
+
+        let blocked = store.toggleFavorite(quote(10), isPremium: false)
+        if case let .limitReached(limit, isPremium) = blocked {
+            XCTAssertEqual(limit, FavoritesStore.freeLimit)
+            XCTAssertFalse(isPremium)
+        } else {
+            XCTFail("Expected .limitReached, got \(blocked)")
+        }
+        XCTAssertEqual(store.list.count, 10)
+    }
+
+    // MARK: - Favorites: premium limit (1000)
+
+    func test_premiumUser_canExceed10() {
+        let store = makeStore()
+        for i in 0 ..< 50 {
+            let result = store.toggleFavorite(quote(i), isPremium: true)
+            XCTAssertEqual(result, .added)
+        }
+        XCTAssertEqual(store.list.count, 50)
     }
 
     // MARK: - Favorites: toggle add/remove
@@ -176,10 +205,10 @@ final class FavoritesStoreTests: XCTestCase {
         let store = makeStore()
         let q = Quote(id: "x", date: "2026-06-11", text: "テスト", tone: .serious)
 
-        store.toggleFavorite(q)
+        XCTAssertEqual(store.toggleFavorite(q, isPremium: false), .added)
         XCTAssertTrue(store.isFavorite(q))
 
-        store.toggleFavorite(q)
+        XCTAssertEqual(store.toggleFavorite(q, isPremium: false), .removed)
         XCTAssertFalse(store.isFavorite(q))
     }
 }

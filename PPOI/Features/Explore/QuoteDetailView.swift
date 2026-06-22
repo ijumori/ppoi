@@ -3,6 +3,8 @@ import SwiftUI
 struct QuoteDetailView: View {
     let quote: Quote
     @Environment(AppState.self) private var appState
+    @Environment(StoreManager.self) private var storeManager
+    @State private var showFavoritesPaywall = false
 
     private var colors: ThemeColors {
         appState.preferences.selectedTheme.colors
@@ -48,13 +50,21 @@ struct QuoteDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    appState.favorites.toggleFavorite(quote)
+                    let result = appState.favorites.toggleFavorite(quote, isPremium: storeManager.isPurchased)
+                    if case let .limitReached(_, isPremium) = result, !isPremium {
+                        showFavoritesPaywall = true
+                    }
                 } label: {
                     Image(systemName: appState.favorites.isFavorite(quote) ? "heart.fill" : "heart")
                         .foregroundStyle(colors.accent)
                 }
                 .accessibilityLabel(appState.favorites.isFavorite(quote) ? "お気に入り解除" : "お気に入りに追加")
             }
+        }
+        .sheet(isPresented: $showFavoritesPaywall) {
+            PaywallView()
+                .environment(StoreManager.shared)
+                .environment(appState)
         }
     }
 }
@@ -63,5 +73,6 @@ struct QuoteDetailView: View {
     NavigationStack {
         QuoteDetailView(quote: .placeholder)
             .environment(AppState())
+            .environment(StoreManager.shared)
     }
 }

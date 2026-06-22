@@ -3,10 +3,12 @@ import SwiftUI
 struct QuoteView: View {
     @Environment(AppState.self) private var appState
     @Environment(JournalStore.self) private var journalStore
+    @Environment(StoreManager.self) private var storeManager
     @State private var viewModel = QuoteViewModel()
     @State private var streakRewardAlert: StreakReward?
     @State private var showShareReward = false
     @State private var favoriteScale: CGFloat = 1.0
+    @State private var showFavoritesPaywall = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var theme: AppTheme {
@@ -138,7 +140,11 @@ struct QuoteView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     if let quote = viewModel.quote {
                         Button {
-                            appState.favorites.toggleFavorite(quote)
+                            let result = appState.favorites.toggleFavorite(quote, isPremium: storeManager.isPurchased)
+                            if case let .limitReached(_, isPremium) = result, !isPremium {
+                                showFavoritesPaywall = true
+                                return
+                            }
                             if !reduceMotion {
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
                                     favoriteScale = 1.3
@@ -179,6 +185,11 @@ struct QuoteView: View {
                         }
                     )
                 }
+            }
+            .sheet(isPresented: $showFavoritesPaywall) {
+                PaywallView()
+                    .environment(StoreManager.shared)
+                    .environment(appState)
             }
         }
         .task {
