@@ -6,7 +6,7 @@ enum InviteManager {
     private static let appStoreURL = AppLinks.appStoreURLString
 
     static func invite(quote: Quote?) {
-        var text = if let quote {
+        let text = if let quote {
             """
             "\(quote.text)"
 
