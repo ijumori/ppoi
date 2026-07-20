@@ -38,11 +38,7 @@ struct QuoteDetailView: View {
             }
         }
         .background {
-            if let gradient = colors.gradient {
-                gradient.ignoresSafeArea()
-            } else {
-                colors.background.ignoresSafeArea()
-            }
+            ThemedBackground(colors: colors)
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

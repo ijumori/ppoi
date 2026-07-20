@@ -227,13 +227,8 @@ struct QuoteView: View {
         }
     }
 
-    @ViewBuilder
     private var backgroundView: some View {
-        if let gradient = colors.gradient {
-            gradient.ignoresSafeArea()
-        } else {
-            colors.background.ignoresSafeArea()
-        }
+        ThemedBackground(colors: colors)
     }
 
     private var quoteFont: Font {
