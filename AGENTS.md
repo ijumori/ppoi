@@ -27,6 +27,18 @@ PO（要件）→ UI/UX（設計）→ iOS Dev（実装）→ QA（テスト）�
 
 詳細は [docs/phases/00-development-process.md](docs/phases/00-development-process.md) を参照。
 
+## Claude Code スキル
+
+Cursor ルールと並行して、Claude Code 用のプロジェクトスキルを `.claude/skills/` に用意している。
+
+| スキル | 対応役割 | 用途 |
+|--------|----------|------|
+| `ios-build` | iOS Dev | `xcodegen generate` → ビルド |
+| `ios-test` | QA | ユニット/スクショテスト + Cloud Functions テスト |
+| `ios-release` | Release | ビルド番号 +1 → Archive → ASC アップロード（submit は要確認） |
+
+プロジェクト全体の前提・コマンドは [CLAUDE.md](CLAUDE.md) にまとめている。
+
 ## 現在フェーズ
 
 **v1.3.0 (Build 11) — App Store 提出前・リファクタリング進行中**

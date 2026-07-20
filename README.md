@@ -43,6 +43,9 @@ config/
 functions/               # Cloud Functions
 scripts/ios/             # TestFlight アップロード
 fastlane/                # App Store メタデータ
+
+CLAUDE.md                # Claude Code 向けプロジェクトガイド（ビルド/テスト/リリース/規約）
+.claude/skills/          # Claude Code スキル（ios-build / ios-test / ios-release）
 ```
 
 ## セキュリティ
@@ -51,6 +54,7 @@ fastlane/                # App Store メタデータ
 
 ## ドキュメント
 
+- [CLAUDE.md](CLAUDE.md) — Claude Code 向けプロジェクトガイド（ビルド/テスト/リリース手順・規約）
 - [索引](docs/README.md)
 - [開発手順](docs/phases/00-development-process.md)
 - [要件定義](docs/phases/01-requirements.md)
