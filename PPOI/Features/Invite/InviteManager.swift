@@ -3,7 +3,7 @@ import UIKit
 /// 友達に格言をテキストで送る（個人間共有に特化）
 @MainActor
 enum InviteManager {
-    private static let appStoreURL = "https://apps.apple.com/app/id6771264998"
+    private static let appStoreURL = AppLinks.appStoreURLString
 
     static func invite(quote: Quote?) {
         var text = if let quote {

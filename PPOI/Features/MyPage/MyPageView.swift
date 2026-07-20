@@ -38,7 +38,11 @@ struct MyPageView: View {
             "実績解除！",
             isPresented: Binding(
                 get: { newAchievement != nil },
-                set: { if !$0 { newAchievement = nil; achievementStore.clearNewlyUnlocked() } }
+                set: {
+                    if !$0 {
+                        newAchievement = nil; achievementStore.clearNewlyUnlocked()
+                    }
+                }
             )
         ) {
             Button("OK") { newAchievement = nil; achievementStore.clearNewlyUnlocked() }
@@ -229,12 +233,12 @@ struct MyPageView: View {
 
     private var infoSection: some View {
         Section("情報") {
-            Link(destination: URL(string: "https://ijumori.github.io/ppoi/legal/privacy-policy.html")!) {
+            Link(destination: AppLinks.privacyPolicy) {
                 Label("プライバシーポリシー", systemImage: "hand.raised")
             }
             .accessibilityLabel("プライバシーポリシーを開く")
 
-            Link(destination: URL(string: "https://ijumori.github.io/ppoi/legal/terms-of-use.html")!) {
+            Link(destination: AppLinks.termsOfUse) {
                 Label("利用規約", systemImage: "doc.text")
             }
             .accessibilityLabel("利用規約を開く")

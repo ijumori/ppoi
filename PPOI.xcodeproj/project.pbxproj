@@ -76,6 +76,7 @@
 		BE16E45804404936A13914D2 /* ShareInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D67C5A3B7757CB658FC79C /* ShareInputView.swift */; };
 		C03DF57777A9BDEDCADF5742 /* WeeklyRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDFF7D5562121E8B025EAA6 /* WeeklyRankingView.swift */; };
 		C45B71C7361E759B73E92F79 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D34EF85C18777E38ED96B8 /* RootView.swift */; };
+		C4FA74A62B7F33AC26F35E39 /* AppLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630DD03B15FF74331C1F4A7 /* AppLinks.swift */; };
 		C8EEB6643E79FDC6E8076021 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA161E11E7B93384CCA3629 /* Achievement.swift */; };
 		D2522ACFFB851B4D78E9A13F /* ShareCardExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A01B180ECCAFFD86CA03DC /* ShareCardExportView.swift */; };
 		D32B1F715850F7CED26D0A6E /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE0DA3BF78E327EA8549303 /* InterstitialAdManager.swift */; };
@@ -220,6 +221,7 @@
 		F3661297910F52D526EC3A0F /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		F4C2B43F31563B4393CA3D51 /* Radius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radius.swift; sourceTree = "<group>"; };
 		F5333C7F5668B3A528610929 /* ShareImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageRenderer.swift; sourceTree = "<group>"; };
+		F630DD03B15FF74331C1F4A7 /* AppLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,6 +562,7 @@
 		E661D3B5D8F856164FF08FDB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F630DD03B15FF74331C1F4A7 /* AppLinks.swift */,
 				81C0F911664E1AFE314B4BF2 /* Data */,
 				33B5FF292E3CC50EB0D60416 /* Infrastructure */,
 				55E8C07544A95A9A62C40E93 /* Persistence */,
@@ -765,6 +768,7 @@
 				47E9A8EB0BC70C27FE71E932 /* AchievementStore.swift in Sources */,
 				85BDB01AB43B744CAD1CB505 /* AdMobCompliance.swift in Sources */,
 				0DE29D84DB286135B186A40A /* AdMobConfig.swift in Sources */,
+				C4FA74A62B7F33AC26F35E39 /* AppLinks.swift in Sources */,
 				F33D6DE409BD976205D1BA23 /* AppStrings.swift in Sources */,
 				27927917E5BF789D39657283 /* AppTheme.swift in Sources */,
 				2AEABAAA6A8AF470DF77DBFD /* ArchiveService.swift in Sources */,

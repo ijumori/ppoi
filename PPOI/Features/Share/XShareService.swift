@@ -2,7 +2,7 @@ import UIKit
 
 @MainActor
 enum XShareService {
-    private static let appStoreURL = "https://apps.apple.com/app/id6771264998"
+    private static let appStoreURL = AppLinks.appStoreURLString
 
     static func shareToX(text: String, image: UIImage? = nil) {
         let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? text

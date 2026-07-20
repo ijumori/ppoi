@@ -17,7 +17,7 @@ struct ShareCardExportView: View {
         ShareImageSpec.width * 0.82
     }
 
-    private static let appStoreURL = "https://apps.apple.com/app/id6771264998"
+    private static let appStoreURL = AppLinks.appStoreURLString
 
     var body: some View {
         ZStack {
