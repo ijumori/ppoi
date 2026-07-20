@@ -1,7 +1,7 @@
 # リファクタリング計画 — っぽい格言（PPOI）
 
 作成日: 2026-06-11
-更新日: 2026-06-16（Phase 0・1・2 完了）
+更新日: 2026-07-20（Phase 0・1・2・3 完了）
 対象: `PPOI/`（Swift 約5,600行・約50ファイル）、`PPOIWidget/`、`functions/`、リポジトリ全体
 
 ## 0. 現状診断（サマリ)
@@ -112,22 +112,29 @@
 
 ### 作業項目
 
-- [ ] `DesignSystem/Spacing.swift` を新設（`Spacing.xs=8, s=12, m=16, l=24, xl=32, xxl=48` 等）。41箇所の `.padding(数値)` を順次置換
-- [ ] `DesignSystem/Radius.swift`（cornerRadius 6/8/10/12 の整理）
-- [ ] `InterpretationView` と `DailyQuestionView` のほぼ同一な開閉 UI を `ExpandableCard` コンポーネントに統合
-- [ ] 格言表示のフォント選択ロジック（`fontVariant == .serif ? .serif : .default` が3箇所以上に重複）を `QuoteTextStyle` modifier に集約。`ShareCardExportView` のサイズ決定ロジック（Phase 1 で関数化済み）もここに統合
-- [ ] テーマ背景グラデーション（`QuoteView` / `QuoteDetailView` / `OnboardingView` で重複）を `ThemedBackground` コンポーネントに集約
-- [ ] 文言の一元化: `AppStrings`（enum or String Catalog）を新設し、"AIが紡ぐ創作格言"・"明日には消える一句"・"#っぽい格言" 等の重複ハードコードを解消。**将来ローカライズするなら String Catalog（`.xcstrings`）を採用**（現時点では日本語のみで可）
-- [ ] ストリーク閾値（7 / 30）を `StreakReward` 側の定数に集約し、`SettingsView` の説明文言と単一ソース化
+- [x] `DesignSystem/Spacing.swift` / `Radius.swift` を新設。実在値（spacing 2/4/6/8/12/16/24/32/48、radius 6/8/10/12/16）に 1:1 で対応させ、置換してもピクセルが変わらないスケールにした。**全 41 箇所の一括機械置換はしない**（`.padding(2/6/10)` など非モジュラーな値が混在し、無理に丸めると挙動が変わるため）。各ファイルを別作業で触るタイミングで随時採用する方針に変更
+- [x] `InterpretationView` と `DailyQuestionView` の開閉 UI を `ExpandableCard`（`DesignSystem/ExpandableCard.swift`）に統合。副次的に VStack spacing を 12 に統一し、Interpretation の開示アニメを共通 transition に正規化（微小な視覚差分あり）
+- [x] 格言フォント選択を `FontVariant.fontDesign` / `quoteFont(size:)`（`DesignSystem/QuoteFont.swift`）に集約。`QuoteView` / `QuoteDetailView` / `ShareCardExportView` の 3 箇所を置換
+- [x] テーマ背景グラデーションを `ThemedBackground`（`DesignSystem/ThemedBackground.swift`）に集約。対象は `QuoteView` / `QuoteDetailView`。`OnboardingView` は単色背景のみで挙動が異なるため対象外
+- [x] `AppStrings`（`DesignSystem/AppStrings.swift`）を新設し、"AIが紡ぐ創作格言"・"明日には消える一句"・"#っぽい格言" の重複を解消。**将来ローカライズするなら String Catalog（`.xcstrings`）へ移す**（現時点では日本語のみ）
+- [x] ストリーク閾値（7 / 30）を `StreakReward.streakThemeDays` / `masterTitleDays` に集約。`RewardUnlocker` の比較と `SettingsView` の解放ラベルを定数から導出
 
 ### 完了条件
 
-- 同一文言・同一スタイルの定義箇所が1つになっている
-- 新規画面が DesignSystem の定数だけでレイアウトを組める状態
+- [x] 同一文言・同一スタイルの定義箇所が1つになっている（対象範囲）
+- [x] 新規画面が DesignSystem の定数（Spacing / Radius / AppStrings / ThemedBackground / ExpandableCard）でレイアウトを組める状態
 
 ### リスク
 
-- **低**: 見た目のピクセル差分。フェーズ完了時にスクリーンショットテストで差分確認
+- **低**: 見た目のピクセル差分。各増分で `xcodebuild build` 成功 + `PPOITests` 33/33 pass を確認済み。スクリーンショットテストによる目視差分確認は残（手動）
+
+### 実績（コミット）
+
+- `ExpandableCard` + Spacing/Radius 新設
+- `AppStrings` で文言一元化
+- `ThemedBackground` 抽出
+- `FontVariant` フォントヘルパー集約
+- `StreakReward` 閾値の単一ソース化
 
 ---
 
