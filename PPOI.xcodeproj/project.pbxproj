@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		075DFC4305ACAF49D58B021F /* OnboardingPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E27DD68FB435F21D9F52F7 /* OnboardingPages.swift */; };
 		07D1325DD8DA9A76FB2B7A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2B94E0769FBF39153271C5 /* Assets.xcassets */; };
 		0DBDFD7FCFCE40F704155E71 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A14D291841BE4165B207D9 /* Quote.swift */; };
 		0DE29D84DB286135B186A40A /* AdMobConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B995C5E74125775BE8BDB /* AdMobConfig.swift */; };
@@ -173,6 +174,7 @@
 		708397E0B484F088A6525778 /* AdMobCompliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobCompliance.swift; sourceTree = "<group>"; };
 		7C6CFD57DA8DA68E050021D3 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
 		82D4E441E5CD4361296EF5C7 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		84E27DD68FB435F21D9F52F7 /* OnboardingPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPages.swift; sourceTree = "<group>"; };
 		872C270942B4BAD826A8B4FD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		89015E8D2D903E966ED6C1C0 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8BE0DA3BF78E327EA8549303 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 		FA7BEA4E9F52733EA348CB33 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				84E27DD68FB435F21D9F52F7 /* OnboardingPages.swift */,
 				D425574337D98F126E997B31 /* OnboardingView.swift */,
 			);
 			path = Onboarding;
@@ -797,6 +800,7 @@
 				18A92F12D4A2B28BE43EF1C9 /* MyPageView.swift in Sources */,
 				8F083628FD02CD2C2109EF59 /* NetworkSecurity.swift in Sources */,
 				16400909D3C81202D8B95355 /* NotificationService.swift in Sources */,
+				075DFC4305ACAF49D58B021F /* OnboardingPages.swift in Sources */,
 				67CDCA37DF7016399EE9B201 /* OnboardingView.swift in Sources */,
 				7ADB89160F188F6A8945354D /* PPOIApp.swift in Sources */,
 				8508E9A0565035FF4748481E /* PaywallView.swift in Sources */,
