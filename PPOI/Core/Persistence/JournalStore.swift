@@ -39,8 +39,11 @@ final class JournalStore {
     }
 
     private func persist() {
-        if let data = try? JSONEncoder().encode(entries) {
+        do {
+            let data = try JSONEncoder().encode(entries)
             defaults.set(data, forKey: Key.entries)
+        } catch {
+            SecureLogger.error("journal persist failed: \(error)", category: .general)
         }
     }
 

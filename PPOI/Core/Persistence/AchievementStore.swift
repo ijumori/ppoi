@@ -79,9 +79,11 @@ final class AchievementStore {
     }
 
     private func persist() {
-        let rawValues = unlocked.map(\.rawValue)
-        if let data = try? JSONEncoder().encode(rawValues) {
+        do {
+            let data = try JSONEncoder().encode(unlocked.map(\.rawValue))
             defaults.set(data, forKey: Key.unlocked)
+        } catch {
+            SecureLogger.error("achievements persist failed: \(error)", category: .general)
         }
     }
 

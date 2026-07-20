@@ -29,7 +29,9 @@ final class StreakTracker {
         visitedDates.insert(today)
         persistVisitedDates()
 
-        if last == today { return }
+        if last == today {
+            return
+        }
 
         if let last, Self.isConsecutive(previous: last, today: today) {
             currentStreak += 1
@@ -47,8 +49,11 @@ final class StreakTracker {
     }
 
     private func persistVisitedDates() {
-        if let data = try? JSONEncoder().encode(Array(visitedDates)) {
+        do {
+            let data = try JSONEncoder().encode(Array(visitedDates))
             defaults.set(data, forKey: Key.visitedDates)
+        } catch {
+            SecureLogger.error("visitedDates persist failed: \(error)", category: .general)
         }
     }
 

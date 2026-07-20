@@ -51,8 +51,12 @@ final class FavoritesStore {
     }
 
     private func persist() {
-        let data = try? JSONEncoder().encode(list)
-        defaults.set(data, forKey: Key.favorites)
+        do {
+            let data = try JSONEncoder().encode(list)
+            defaults.set(data, forKey: Key.favorites)
+        } catch {
+            SecureLogger.error("favorites persist failed: \(error)", category: .general)
+        }
     }
 
     private static func load(from defaults: UserDefaults) -> [Quote] {
