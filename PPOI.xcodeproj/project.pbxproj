@@ -85,6 +85,7 @@
 		EADF687CFEAF79F184AFACE4 /* RewardUnlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A84C88E80D5864ED8912A /* RewardUnlocker.swift */; };
 		EFF2C227B3CFBA3BAED1B8B4 /* JSTDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09FCDAB0630E7B7DDBFCD1B /* JSTDate.swift */; };
 		F147770A444AB900B4AA188B /* SecureLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5D8D84E2A91F483408B27 /* SecureLogger.swift */; };
+		F33D6DE409BD976205D1BA23 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803E48325950C9EEBD31F4D /* AppStrings.swift */; };
 		F5625B8E712264FA7000321C /* QuoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB1D3A1F7D77E44E5A7AB04 /* QuoteDetailView.swift */; };
 		F8D190978DB25A3B9E23E0B5 /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCEE96B22C58ACFF145142 /* JournalEntryView.swift */; };
 		FAF29AB05011236DC986471D /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6CFD57DA8DA68E050021D3 /* ArchiveView.swift */; };
@@ -193,6 +194,7 @@
 		C1DBAAB4B23812D36B7A819D /* ArchiveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveService.swift; sourceTree = "<group>"; };
 		C5F2AA05EE3B9B02E08086CD /* QuoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteService.swift; sourceTree = "<group>"; };
 		C7276A7511EED7B31013D399 /* PPOI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PPOI.entitlements; sourceTree = "<group>"; };
+		C803E48325950C9EEBD31F4D /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		C8D67C5A3B7757CB658FC79C /* ShareInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInputView.swift; sourceTree = "<group>"; };
 		CA2B12EA70D5A6FEC5732CE4 /* ShareImageSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageSpec.swift; sourceTree = "<group>"; };
 		CF99969917A32AE6A87EC5BF /* ReviewPromptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptManager.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 		4516D8A87C1AFA8F8AB6BC45 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				C803E48325950C9EEBD31F4D /* AppStrings.swift */,
 				4D8DEC05962BCB1FFB6ED0B3 /* AppTheme.swift */,
 				8F92F84213240D1B9C08F2DE /* ExpandableCard.swift */,
 				F4C2B43F31563B4393CA3D51 /* Radius.swift */,
@@ -756,6 +759,7 @@
 				47E9A8EB0BC70C27FE71E932 /* AchievementStore.swift in Sources */,
 				85BDB01AB43B744CAD1CB505 /* AdMobCompliance.swift in Sources */,
 				0DE29D84DB286135B186A40A /* AdMobConfig.swift in Sources */,
+				F33D6DE409BD976205D1BA23 /* AppStrings.swift in Sources */,
 				27927917E5BF789D39657283 /* AppTheme.swift in Sources */,
 				2AEABAAA6A8AF470DF77DBFD /* ArchiveService.swift in Sources */,
 				FAF29AB05011236DC986471D /* ArchiveView.swift in Sources */,

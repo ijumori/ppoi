@@ -14,6 +14,7 @@ struct QuoteView: View {
     private var theme: AppTheme {
         appState.preferences.selectedTheme
     }
+
     private var colors: ThemeColors {
         theme.colors
     }
@@ -68,7 +69,7 @@ struct QuoteView: View {
                                 )
                                 .accessibilityLabel(quote.text)
 
-                            Text("AIが紡ぐ創作格言")
+                            Text(AppStrings.creativeQuoteCredit)
                                 .font(.caption2)
                                 .foregroundStyle(colors.accent.opacity(0.6))
 
@@ -206,7 +207,11 @@ struct QuoteView: View {
             streakRewardAlert == .masterTitle ? "格言マスター獲得！" : "新テーマ解放！",
             isPresented: Binding(
                 get: { streakRewardAlert != nil },
-                set: { if !$0 { streakRewardAlert = nil } }
+                set: {
+                    if !$0 {
+                        streakRewardAlert = nil
+                    }
+                }
             )
         ) {
             Button("OK") { streakRewardAlert = nil }

@@ -74,14 +74,14 @@ struct ShareCardExportView: View {
             qrCodeView
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("AIが紡ぐ創作格言")
+                Text(AppStrings.creativeQuoteCredit)
                     .font(.system(size: 24, weight: .bold))
                     .foregroundStyle(colors.accent)
                 HStack(spacing: 12) {
-                    Text("#っぽい格言")
+                    Text(AppStrings.hashtag)
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundStyle(colors.accent.opacity(0.8))
-                    Text("明日には消える一句")
+                    Text(AppStrings.ephemeralTagline)
                         .font(.system(size: 18, weight: .medium))
                         .foregroundStyle(colors.accent.opacity(0.55))
                 }

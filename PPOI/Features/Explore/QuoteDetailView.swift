@@ -10,8 +10,6 @@ struct QuoteDetailView: View {
         appState.preferences.selectedTheme.colors
     }
 
-
-
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
@@ -27,7 +25,7 @@ struct QuoteDetailView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
 
-                Text("AIが紡ぐ創作格言")
+                Text(AppStrings.creativeQuoteCredit)
                     .font(.caption2)
                     .foregroundStyle(colors.accent.opacity(0.6))
 

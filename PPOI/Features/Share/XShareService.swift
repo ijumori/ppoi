@@ -23,7 +23,9 @@ enum XShareService {
 
         // 3. Final fallback: UIActivityViewController
         var items: [Any] = [text]
-        if let image { items.append(image) }
+        if let image {
+            items.append(image)
+        }
         ShareActivityPresenter.present(items: items)
     }
 
@@ -37,7 +39,7 @@ enum XShareService {
         let quoteText = quote.text.count > maxLength
             ? String(quote.text.prefix(maxLength)) + "…"
             : quote.text
-        text += "「\(quoteText)」\n\n#っぽい格言\n\(appStoreURL)"
+        text += "「\(quoteText)」\n\n\(AppStrings.hashtag)\n\(appStoreURL)"
         return text
     }
 }

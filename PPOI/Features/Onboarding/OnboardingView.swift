@@ -122,7 +122,7 @@ struct OnboardingView: View {
                         Text("「静寂の中にこそ、真の答えは眠っている」")
                             .font(.caption.weight(.medium))
                             .foregroundStyle(colors.primaryText)
-                        Text("#っぽい格言")
+                        Text(AppStrings.hashtag)
                             .font(.caption2)
                             .foregroundStyle(colors.accent)
                     }
