@@ -24,6 +24,7 @@ final class QuoteViewModel {
             let fetched = try await quoteService.fetchTodayQuote()
             quote = fetched
         } catch {
+            SecureLogger.error("loadQuote failed, falling back to cache/placeholder: \(error)", category: .network)
             quote = SecureQuoteCache.load(for: DateFormatter.jstDate.string(from: Date())) ?? .placeholder
         }
 
