@@ -75,14 +75,14 @@ struct SettingsView: View {
                 Text(theme.label)
                     .foregroundStyle(.secondary)
                 Spacer()
-                Text("7日連続で解放")
+                Text("\(StreakReward.streakThemeDays)日連続で解放")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Image(systemName: "lock.fill")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-            .accessibilityLabel("\(theme.label)、7日連続閲覧で解放")
+            .accessibilityLabel("\(theme.label)、\(StreakReward.streakThemeDays)日連続閲覧で解放")
         } else if theme.isPremiumOnly, !store.isPurchased {
             HStack {
                 Text(theme.label)

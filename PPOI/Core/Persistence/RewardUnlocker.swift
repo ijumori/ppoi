@@ -5,6 +5,11 @@ enum StreakReward {
     case streakTheme
     /// 30日連続 → 格言マスター称号
     case masterTitle
+
+    /// 禅・ゴールドテーマ解放に必要な連続日数
+    static let streakThemeDays = 7
+    /// 格言マスター称号に必要な連続日数
+    static let masterTitleDays = 30
 }
 
 @Observable
@@ -33,12 +38,14 @@ final class RewardUnlocker {
     /// ストリーク達成に応じて報酬を解放し、新規解放があれば返す
     @discardableResult
     func checkAndUnlockRewards(streak: Int) -> StreakReward? {
-        if streak >= 30, !hasEarnedMasterTitle {
+        if streak >= StreakReward.masterTitleDays, !hasEarnedMasterTitle {
             hasEarnedMasterTitle = true
-            if !hasUnlockedStreakTheme { hasUnlockedStreakTheme = true }
+            if !hasUnlockedStreakTheme {
+                hasUnlockedStreakTheme = true
+            }
             return .masterTitle
         }
-        if streak >= 7, !hasUnlockedStreakTheme {
+        if streak >= StreakReward.streakThemeDays, !hasUnlockedStreakTheme {
             hasUnlockedStreakTheme = true
             return .streakTheme
         }
