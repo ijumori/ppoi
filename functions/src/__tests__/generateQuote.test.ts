@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { todayJST, pickTone, callClaude } from "../generateQuote.js";
+import { describe, it, expect, vi } from "vitest";
+import { todayJST, callClaude } from "../generateQuote.js";
 import type Anthropic from "@anthropic-ai/sdk";
 
 // ---------------------------------------------------------------------------

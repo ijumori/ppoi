@@ -13,6 +13,11 @@ interface GeneratedQuote {
   question: string;
 }
 
+/** 未知の値を安全に QuoteTone へ絞り込む（不正なら null） */
+export function asQuoteTone(value: unknown): QuoteTone | null {
+  return value === "humorous" || value === "serious" ? value : null;
+}
+
 /** JST の今日の日付 yyyy-MM-dd */
 export function todayJST(): string {
   return new Intl.DateTimeFormat("en-CA", {
@@ -35,7 +40,7 @@ export async function pickTone(db: admin.firestore.Firestore): Promise<QuoteTone
   let serious = 0;
 
   snapshot.forEach((doc) => {
-    const tone = doc.data().tone as QuoteTone;
+    const tone = asQuoteTone(doc.data().tone);
     if (tone === "humorous") humorous++;
     else if (tone === "serious") serious++;
   });
@@ -94,12 +99,17 @@ export async function callClaude(
   const jsonMatch = raw.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error("No JSON found in Claude response");
 
-  const parsed = JSON.parse(jsonMatch[0]) as {
+  let parsed: {
     text: string;
     interpretation: string;
     category: QuoteCategory;
     question: string;
   };
+  try {
+    parsed = JSON.parse(jsonMatch[0]);
+  } catch (e) {
+    throw new Error(`Failed to parse Claude JSON response: ${(e as Error).message}`);
+  }
 
   // sanitize text
   parsed.text = parsed.text.replace(/^["「]|["」]$/g, "").trim();
@@ -120,15 +130,15 @@ export async function generateDailyQuote(
   const docRef = db.collection("quotes").doc(date);
   const existing = await docRef.get();
 
-  if (existing.exists) {
-    const data = existing.data()!;
+  const existingData = existing.exists ? existing.data() : undefined;
+  if (existingData) {
     return {
       date,
-      text: data.text,
-      tone: data.tone,
-      interpretation: data.interpretation ?? "",
-      category: data.category ?? "life",
-      question: data.question ?? "",
+      text: existingData.text,
+      tone: asQuoteTone(existingData.tone) ?? "serious",
+      interpretation: existingData.interpretation ?? "",
+      category: existingData.category ?? "life",
+      question: existingData.question ?? "",
     };
   }
 
