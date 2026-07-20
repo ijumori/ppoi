@@ -138,8 +138,7 @@ struct ShareCardExportView: View {
     // MARK: - Quote Typography
 
     private var quoteFont: Font {
-        let design: Font.Design = fontVariant == .serif ? .serif : .default
-        return .system(size: quoteFontSize, weight: .medium, design: design)
+        fontVariant.quoteFont(size: quoteFontSize)
     }
 
     private var quoteFontSize: CGFloat {

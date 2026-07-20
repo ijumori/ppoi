@@ -32,6 +32,7 @@
 		47E9A8EB0BC70C27FE71E932 /* AchievementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438F041FA453DE3B9799290F /* AchievementStore.swift */; };
 		4D34207FCF7ABEE2A2C85FD1 /* ShareImageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B12EA70D5A6FEC5732CE4 /* ShareImageSpec.swift */; };
 		530018EBB479EE1F0CF7429E /* ScreenshotExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3900BBD69D3D51ADE7449DA8 /* ScreenshotExportTests.swift */; };
+		539B616AEA95AD28096BCF82 /* QuoteFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED1E5ACB423270BA0FEDCDB /* QuoteFont.swift */; };
 		5E661A54DA6D69BA2B456379 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12366567DCABE2230E36064 /* SettingsView.swift */; };
 		65D531CEECE49D641885C0E4 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D4E441E5CD4361296EF5C7 /* QuoteView.swift */; };
 		67CDCA37DF7016399EE9B201 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D425574337D98F126E997B31 /* OnboardingView.swift */; };
@@ -187,6 +188,7 @@
 		AB0E26FAAF3E15912F09DB89 /* PPOIWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOIWidget.swift; sourceTree = "<group>"; };
 		AC6DF175351990541CA21A07 /* InviteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteManager.swift; sourceTree = "<group>"; };
 		AD06C2268F79E8AB31ABD84A /* StreakTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakTracker.swift; sourceTree = "<group>"; };
+		AED1E5ACB423270BA0FEDCDB /* QuoteFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteFont.swift; sourceTree = "<group>"; };
 		B09FCDAB0630E7B7DDBFCD1B /* JSTDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSTDate.swift; sourceTree = "<group>"; };
 		B40D68C1C22A01FE9EAB7D9F /* QuoteServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteServiceTests.swift; sourceTree = "<group>"; };
 		B7D9C1BCC7D015731EBBA324 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				C803E48325950C9EEBD31F4D /* AppStrings.swift */,
 				4D8DEC05962BCB1FFB6ED0B3 /* AppTheme.swift */,
 				8F92F84213240D1B9C08F2DE /* ExpandableCard.swift */,
+				AED1E5ACB423270BA0FEDCDB /* QuoteFont.swift */,
 				F4C2B43F31563B4393CA3D51 /* Radius.swift */,
 				0D72FE9097678D2EFD6641F9 /* Spacing.swift */,
 				E872D8C9185C483B98562104 /* ThemedBackground.swift */,
@@ -796,6 +799,7 @@
 				0DBDFD7FCFCE40F704155E71 /* Quote.swift in Sources */,
 				ACEE4DEF524B42E06ABA3533 /* QuoteCategory.swift in Sources */,
 				F5625B8E712264FA7000321C /* QuoteDetailView.swift in Sources */,
+				539B616AEA95AD28096BCF82 /* QuoteFont.swift in Sources */,
 				80A246980DF4C07B775DE66D /* QuoteService.swift in Sources */,
 				65D531CEECE49D641885C0E4 /* QuoteView.swift in Sources */,
 				9AA181139A10B7F894E3EF03 /* QuoteViewModel.swift in Sources */,

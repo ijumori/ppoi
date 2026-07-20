@@ -20,7 +20,7 @@ struct QuoteDetailView: View {
                     .foregroundStyle(colors.accent)
 
                 Text(quote.text)
-                    .font(.system(size: 28, weight: .medium, design: appState.preferences.fontVariant == .serif ? Font.Design.serif : .default))
+                    .font(appState.preferences.fontVariant.quoteFont(size: 28))
                     .foregroundStyle(colors.primaryText)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)

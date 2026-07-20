@@ -232,8 +232,7 @@ struct QuoteView: View {
     }
 
     private var quoteFont: Font {
-        let design: Font.Design = appState.preferences.fontVariant == .serif ? .serif : .default
-        return .system(size: 32, weight: .medium, design: design)
+        appState.preferences.fontVariant.quoteFont(size: 32)
     }
 
     /// X直接シェア：twitter:// → web intent → UIActivityViewController
