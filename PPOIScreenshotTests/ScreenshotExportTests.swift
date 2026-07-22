@@ -1,6 +1,5 @@
 import SwiftUI
 import XCTest
-
 @testable import PPOI
 
 /// App Store / docs 用 PNG を書き出す（シミュレータ上で実行）
@@ -15,6 +14,11 @@ final class ScreenshotExportTests: XCTestCase {
     private let deviceWidth: CGFloat = 430
     private let deviceHeight: CGFloat = 932
     private let exportScale: CGFloat = 3
+
+    /// iPad 12.9" 論理サイズ → 2048×2732 @2x（App Store の iPad 必須サイズ）
+    private let iPadWidth: CGFloat = 1024
+    private let iPadHeight: CGFloat = 1366
+    private let iPadScale: CGFloat = 2
 
     func testExportShareScreenshots() throws {
         let outputDir = Self.outputDirectory()
@@ -51,6 +55,48 @@ final class ScreenshotExportTests: XCTestCase {
         print("[PPOIScreenshotTests] Exported to \(outputDir.path)")
     }
 
+    /// iPad 用スクリーンショット（App Store 提出に必須）
+    func testExportIPadScreenshots() throws {
+        let outputDir = Self.outputDirectory()
+        try FileManager.default.createDirectory(at: outputDir, withIntermediateDirectories: true)
+
+        try exportIPadScreen(filename: "ipad-01-today.png", to: outputDir) {
+            IPadTodayScreenshotView(quote: quote, theme: theme, fontVariant: fontVariant)
+        }
+        try exportIPadScreen(filename: "ipad-02-explore.png", to: outputDir) {
+            IPadExploreScreenshotView(theme: theme)
+        }
+        try exportIPadScreen(filename: "ipad-03-share.png", to: outputDir) {
+            SharePreviewScreenshotView(
+                quote: quote,
+                reflection: reflection,
+                theme: theme,
+                fontVariant: fontVariant
+            )
+        }
+
+        print("[PPOIScreenshotTests] iPad exported to \(outputDir.path)")
+    }
+
+    private func exportIPadScreen(
+        filename: String,
+        to directory: URL,
+        @ViewBuilder content: () -> some View
+    ) throws {
+        let view = content()
+            .frame(width: iPadWidth, height: iPadHeight)
+            .background(Color(.systemBackground))
+
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = iPadScale
+
+        guard let image = renderer.uiImage, let data = image.pngData() else {
+            XCTFail("iPad screen render failed: \(filename)")
+            return
+        }
+        try data.write(to: directory.appendingPathComponent(filename))
+    }
+
     private func exportShareCard(
         reflection: String,
         filename: String,
@@ -62,7 +108,7 @@ final class ScreenshotExportTests: XCTestCase {
             theme: theme,
             fontVariant: fontVariant
         ),
-        let data = image.pngData()
+            let data = image.pngData()
         else {
             XCTFail("Share card render failed: \(filename)")
             return
@@ -70,10 +116,10 @@ final class ScreenshotExportTests: XCTestCase {
         try data.write(to: directory.appendingPathComponent(filename))
     }
 
-    private func exportDeviceScreen<V: View>(
+    private func exportDeviceScreen(
         filename: String,
         to directory: URL,
-        @ViewBuilder content: () -> V
+        @ViewBuilder content: () -> some View
     ) throws {
         let view = content()
             .frame(width: deviceWidth, height: deviceHeight)
@@ -107,7 +153,9 @@ private struct SharePreviewScreenshotView: View {
     let theme: AppTheme
     let fontVariant: FontVariant
 
-    private var colors: ThemeColors { theme.colors }
+    private var colors: ThemeColors {
+        theme.colors
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -165,7 +213,7 @@ private struct ShareInputScreenshotView: View {
                     .padding(.top, 16)
 
                 TextField("考察を入力（任意）", text: .constant(reflection), axis: .vertical)
-                    .lineLimit(3...6)
+                    .lineLimit(3 ... 6)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal, 20)
 
@@ -201,5 +249,129 @@ private struct ScreenshotNavBar: View {
         .frame(height: 44)
         .padding(.top, 47)
         .background(Color(.systemBackground))
+    }
+}
+
+/// iPad: 今日の格言 + AI解読 + 今日の問い（機能を示す静的モック）
+private struct IPadTodayScreenshotView: View {
+    let quote: Quote
+    let theme: AppTheme
+    let fontVariant: FontVariant
+
+    private var colors: ThemeColors {
+        theme.colors
+    }
+
+    var body: some View {
+        ZStack {
+            ThemedBackground(colors: colors)
+
+            VStack(spacing: 36) {
+                Spacer()
+
+                Text(AppStrings.creativeQuoteCredit)
+                    .font(.title3)
+                    .foregroundStyle(colors.accent.opacity(0.85))
+
+                Text(quote.text)
+                    .font(fontVariant.quoteFont(size: 46))
+                    .foregroundStyle(colors.primaryText)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 100)
+
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack(spacing: 10) {
+                        Image(systemName: "lightbulb")
+                            .foregroundStyle(colors.accent)
+                        Text("AI解読")
+                            .font(.headline)
+                            .foregroundStyle(colors.accent)
+                    }
+                    Text("計画通りにいかない偶然の出会いにこそ、真の成長の種が潜んでいる——そんな読み方もできる一句です。")
+                        .font(.title3)
+                        .foregroundStyle(colors.primaryText.opacity(0.85))
+                        .lineSpacing(6)
+                }
+                .padding(28)
+                .frame(maxWidth: 720, alignment: .leading)
+                .background(colors.accent.opacity(0.08))
+                .clipShape(RoundedRectangle(cornerRadius: Radius.xl))
+
+                HStack(spacing: 10) {
+                    Image(systemName: "questionmark.bubble")
+                        .foregroundStyle(colors.accent)
+                    Text("今日の問い：この一句を自分の仕事に当てはめると？")
+                        .font(.body)
+                        .foregroundStyle(colors.primaryText.opacity(0.8))
+                }
+
+                Spacer()
+            }
+            .padding(48)
+        }
+    }
+}
+
+/// iPad: カテゴリ別ブラウジング + 週間ランキング（機能を示す静的モック）
+private struct IPadExploreScreenshotView: View {
+    let theme: AppTheme
+
+    private var colors: ThemeColors {
+        theme.colors
+    }
+
+    private let categories = ["人生", "仕事", "恋愛", "笑い", "哲学", "孤独"]
+    private let ranking = [
+        "静寂の中にこそ、真の答えは眠っている。",
+        "急ぐ心は、いちばんの近道を見失う。",
+        "笑いとは、昨日の自分への小さな赦しだ。",
+    ]
+
+    var body: some View {
+        ZStack {
+            ThemedBackground(colors: colors)
+
+            VStack(alignment: .leading, spacing: 28) {
+                Text("さがす")
+                    .font(.largeTitle.bold())
+                    .foregroundStyle(colors.primaryText)
+
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 3), spacing: 16) {
+                    ForEach(categories, id: \.self) { c in
+                        Text(c)
+                            .font(.title3.weight(.medium))
+                            .foregroundStyle(colors.primaryText)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 24)
+                            .background(colors.accent.opacity(0.12))
+                            .clipShape(RoundedRectangle(cornerRadius: Radius.l))
+                    }
+                }
+
+                Text("週間ランキング")
+                    .font(.title2.bold())
+                    .foregroundStyle(colors.primaryText)
+                    .padding(.top, 8)
+
+                ForEach(Array(ranking.enumerated()), id: \.offset) { index, text in
+                    HStack(spacing: 16) {
+                        Text("\(index + 1)")
+                            .font(.largeTitle.bold())
+                            .foregroundStyle(colors.accent)
+                            .frame(width: 52)
+                        Text(text)
+                            .font(.title3)
+                            .foregroundStyle(colors.primaryText.opacity(0.9))
+                        Spacer()
+                    }
+                    .padding(22)
+                    .background(colors.accent.opacity(0.06))
+                    .clipShape(RoundedRectangle(cornerRadius: Radius.l))
+                }
+
+                Spacer()
+            }
+            .padding(56)
+        }
     }
 }
