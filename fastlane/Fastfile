@@ -86,35 +86,39 @@ lane :submit_v13 do
   app = Spaceship::ConnectAPI::App.get(app_id: app_id)
   version = app.get_edit_app_store_version
 
-  UI.user_error!("expected 1.3.0, got #{version.version_string}") unless version.version_string == "1.3.0"
+  # Once a version item has been added to a submission, the version is no
+  # longer "editable" (get_edit_app_store_version returns nil). Handle both:
+  # (a) version still editable -> prep build + free old rejection + add item;
+  # (b) version already added   -> just submit the submission holding it.
+  if version
+    UI.important("Editable version #{version.version_string} build=#{version.build&.version}")
+    version.select_build(build_id: build12_id) if version.build&.version != "12"
 
-  if version.build&.version != "12"
-    version.select_build(build_id: build12_id)
-    UI.important("Re-selected Build 12")
+    Spaceship::ConnectAPI.get_review_submissions(
+      app_id: app_id, filter: { state: "UNRESOLVED_ISSUES" }
+    ).to_models.each do |s|
+      Spaceship::ConnectAPI.patch_review_submission(review_submission_id: s.id, attributes: { canceled: true })
+      UI.important("Canceled old rejected submission #{s.id}")
+    end
+
+    ready = Spaceship::ConnectAPI.get_review_submissions(app_id: app_id, filter: { state: "READY_FOR_REVIEW" }).to_models
+    sub = ready.first || Spaceship::ConnectAPI.post_review_submission(app_id: app_id, platform: "IOS").to_models.first
+    begin
+      Spaceship::ConnectAPI.post_review_submission_item(review_submission_id: sub.id, app_store_version_id: version.id)
+      UI.important("Version item added")
+    rescue StandardError => e
+      UI.important("add item note: #{e.message}")
+    end
+  else
+    ready = Spaceship::ConnectAPI.get_review_submissions(app_id: app_id, filter: { state: "READY_FOR_REVIEW" }).to_models
+    sub = ready.find do |s|
+      Spaceship::ConnectAPI.get_review_submission_items(review_submission_id: s.id).to_models.any?
+    end
+    UI.user_error!("No submission with a version item found") unless sub
+    UI.important("No editable version; submitting existing submission with item")
   end
 
-  # Free the version from the old rejected submission (UNRESOLVED_ISSUES),
-  # otherwise it stays bound as a rejected item and cannot be re-submitted.
-  Spaceship::ConnectAPI.get_review_submissions(
-    app_id: app_id, filter: { state: "UNRESOLVED_ISSUES" }
-  ).to_models.each do |s|
-    Spaceship::ConnectAPI.patch_review_submission(review_submission_id: s.id, attributes: { canceled: true })
-    UI.important("Canceled old rejected submission #{s.id}")
-  end
-
-  ready = Spaceship::ConnectAPI.get_review_submissions(
-    app_id: app_id, filter: { state: "READY_FOR_REVIEW" }
-  ).to_models
-  sub = ready.first || Spaceship::ConnectAPI.post_review_submission(app_id: app_id, platform: "IOS").to_models.first
-  UI.important("Using review submission #{sub.id}")
-
-  begin
-    Spaceship::ConnectAPI.post_review_submission_item(review_submission_id: sub.id, app_store_version_id: version.id)
-    UI.important("Version item added")
-  rescue StandardError => e
-    UI.important("add item note: #{e.message}")
-  end
-
+  UI.important("Submitting review submission #{sub.id}")
   Spaceship::ConnectAPI.patch_review_submission(review_submission_id: sub.id, attributes: { submitted: true })
   UI.success("🎉 v1.3.0 (Build 12) SUBMITTED FOR APP STORE REVIEW!")
 end
