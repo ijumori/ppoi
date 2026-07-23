@@ -9,7 +9,7 @@ submit_for_review true
 automatic_release false
 
 # Build number to submit
-build_number "5"
+build_number "12"
 
 # Submission compliance information
 submission_information({
