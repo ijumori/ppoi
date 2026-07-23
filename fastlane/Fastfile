@@ -93,6 +93,15 @@ lane :submit_v13 do
     UI.important("Re-selected Build 12")
   end
 
+  # Free the version from the old rejected submission (UNRESOLVED_ISSUES),
+  # otherwise it stays bound as a rejected item and cannot be re-submitted.
+  Spaceship::ConnectAPI.get_review_submissions(
+    app_id: app_id, filter: { state: "UNRESOLVED_ISSUES" }
+  ).to_models.each do |s|
+    Spaceship::ConnectAPI.patch_review_submission(review_submission_id: s.id, attributes: { canceled: true })
+    UI.important("Canceled old rejected submission #{s.id}")
+  end
+
   ready = Spaceship::ConnectAPI.get_review_submissions(
     app_id: app_id, filter: { state: "READY_FOR_REVIEW" }
   ).to_models
