@@ -2,7 +2,7 @@ lane :submit_build7 do
   api_key = app_store_connect_api_key(
     key_id: "QYPK2U3FZ6",
     issuer_id: "70caad3c-77d8-4702-b9cc-24779b235dc5",
-    key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_QYPK2U3FZ6.p8")
+    key_filepath: File.expand_path("~/Keys/AuthKey_QYPK2U3FZ6.p8")
   )
 
   app_id = "6771264998"
@@ -79,7 +79,7 @@ lane :submit_v13 do
   app_store_connect_api_key(
     key_id: "QYPK2U3FZ6",
     issuer_id: "70caad3c-77d8-4702-b9cc-24779b235dc5",
-    key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_QYPK2U3FZ6.p8")
+    key_filepath: File.expand_path("~/Keys/AuthKey_QYPK2U3FZ6.p8")
   )
   app_id = "6771264998"
   build12_id = "181b0549-1e60-426e-9b3c-7d561404a7a4"
