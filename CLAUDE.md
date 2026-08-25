@@ -90,3 +90,8 @@ fastlane/           メタデータ・審査提出
 ## 役割（Cursor ルール / AGENTS.md）
 
 PO（要件）→ UI/UX（設計）→ iOS Dev（実装）→ QA（テスト）→ Release（公開）。`.cursor/rules/agent-*.mdc` に各役割の指針。
+
+## AIカンパニーのエージェントロースター
+このマシンには`~/.claude/agents/`にClaude Code用の専門エージェントが271体グローバル配置されている（[ijumori/ai-company](https://github.com/ijumori/ai-company)の`agents-roster/`で管理・全社共通）。Agentツールで名前を指定すればこのプロジェクトからも呼び出せる。
+おすすめ：`Mobile App Builder`／`Mobile Release Engineer`（App Store提出）／`App Store Optimizer`。
+全271体・18部門の一覧：[DIVISIONS.md](https://github.com/ijumori/ai-company/blob/main/agents-roster/DIVISIONS.md)
