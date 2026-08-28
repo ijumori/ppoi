@@ -4,8 +4,8 @@
 
 ## 重要な前提（このリポジトリ特有）
 
-- **配置場所は Google Drive 同期領域**（`~/マイドライブ（…）/04.Dev/PPOI`）。ユーザー共通ルールでは Drive 内で git 操作は原則禁止だが、本プロジェクトは業務マップ上ここが正となっている。git 操作をする場合は必ず事前確認する。
-- **`* (1)` は Google Drive の同期重複ファイル**（例: `SharedQuoteStore (1).swift`, `PPOIWidget (1)/`, `PPOI (1).storekit`）。**編集・参照しない。** `.gitignore` と `project.yml` の `excludes`（`**/* (1)/**`, `**/* (1)*`）で除外済み。正本は `(1)` の付かない方。
+- **配置場所は `~/dev/ppoi`**（2026-08-23にGoogle Driveから移行済み。Drive側`04.Dev/PPOI`は.git削除済みで成果物のみ残置、以後git操作対象外）。
+- **`* (1)` は移行前のGoogle Drive同期由来の重複ファイルの名残**（例: `SharedQuoteStore (1).swift`, `PPOIWidget (1)/`, `PPOI (1).storekit`）。**編集・参照しない。** `.gitignore` と `project.yml` の `excludes`（`**/* (1)/**`, `**/* (1)*`）で除外済み。正本は `(1)` の付かない方。
 - Bundle ID: `com.takahiro.ppoi` / Team: `NXFZ5AUX62` / App ID(ASC): `6771264998`
 
 ## ビルド / 実行
@@ -79,13 +79,15 @@ fastlane/           メタデータ・審査提出
 
 ## 現在フェーズ
 
-**v1.3.0 (Build 11) — App Store 提出前 / リファクタリング進行中**
+**v1.3.0 (Build 12) — 2026-07-23 却下（2.1(b) + 4.2）／2026-08-28 Resolution Center へ返信済み・Apple 応答待ち**
 
 - v1.2: 3タブ・iPad対応・AI解読・Explore・MyPage
 - v1.3: 一句日記 / カレンダー / 実績8種 / 週間ランキング / お気に入り上限（無料10・プレミアム1000）
-- v2.0: 買い切り課金（StoreKit 2）
-- リファクタリング: Phase 0〜2 完了 / 3〜5 進行中（`docs/refactoring-plan.md`）
-- 次アクション: v1.3 を ASC 提出
+- v2.0: 買い切り課金（StoreKit 2）実装済み
+- リファクタリング: Phase 0〜3 完了・Phase 4/5 一部（`docs/refactoring-plan.md`）
+- **却下対応（2026-08-28 決定）**: 4.2＝Resolution Center で押し返し（具体的な不足点を要求）／2.1(b)＝次ビルドで Paywall・プレミアム導線を全撤去し完全無料で再提出、IAP は 4.2 通過後に別バージョンで正式追加。
+  - 分析・返信文・チェックリスト: `~/Documents/Dev/asc-rejects/2026-08-28_ppoi_2.1-4.2.md`（リポジトリ外）
+  - 次アクション: Apple 応答待ち。並行で Paywall 除去を実装（別セッション・プラン承認後、Build 13）。定型回答の反復なら App Review Board へ。
 
 ## 役割（Cursor ルール / AGENTS.md）
 

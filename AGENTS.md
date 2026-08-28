@@ -41,12 +41,4 @@ Cursor ルールと並行して、Claude Code 用のプロジェクトスキル�
 
 ## 現在フェーズ
 
-**v1.3.0 (Build 12) — App Store 審査提出済み（2026-07-23・WAITING_FOR_REVIEW）**
-
-- v1.0 (Build 8): Guideline 4.2 却下（最低限機能）
-- v1.2: 3タブ構成・iPad対応・AI解読・Explore・MyPage 実装済み
-- v1.3: 一句日記 / カレンダー / 実績8種 / 週間ランキング / freeLimit=10 実装済み
-- v2.0: 買い切り課金 StoreKit 2 実装済み
-- リファクタリング: Phase 0〜3 完了・Phase 4/5 一部（`docs/refactoring-plan.md`）
-- 提出: Build 12 を再 Archive→アップロード、iPad/iPhone スクショ登録、旧却下 submission を解放して提出（`fastlane submit_v13`）
-- 次アクション: 審査結果を待つ。リジェクト時は Skill `asc-reject`
+最新状況は [CLAUDE.md](CLAUDE.md) の「現在フェーズ」を参照(このファイルでは重複保持しない)。
